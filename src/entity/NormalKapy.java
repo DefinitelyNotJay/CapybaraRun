@@ -33,6 +33,7 @@ public class NormalKapy extends Player {
             aniTick = 0;
             aniIndex++;
         }
+        // maximum
         if(aniIndex>=7){
             aniIndex = 0;
         }
