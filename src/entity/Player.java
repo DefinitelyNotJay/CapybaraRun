@@ -14,13 +14,12 @@ import methods.Animations;
 
 public abstract class Player extends Entity implements Animations{
     private boolean jump, down, left, right;
-    protected int width, height;
+    protected int width, height, HP, rateDecreaseHP;
     private int jumpHeight = 20;
     private final int gravity = 1;
     private int velocity = jumpHeight;
     private int slideNum = 0;
     private int first_y;
-    private int HP;
     public BufferedImage[] runningAni;
     public BufferedImage[][] jumpingAni;
 
@@ -62,6 +61,9 @@ public abstract class Player extends Entity implements Animations{
                 jump = false;
                 velocity = jumpHeight;
             }
+    }
+    public void decreaseHP(){
+        HP -= rateDecreaseHP;
     }
     public void slide(int num){
         this.y = num;
@@ -133,4 +135,14 @@ public abstract class Player extends Entity implements Animations{
     public void setHP(int HP) {
         this.HP = HP;
     }
+
+    public int getRateDecreaseHP() {
+        return rateDecreaseHP;
+    }
+
+    public void setRateDecreaseHP(int rateDecreaseHP) {
+        this.rateDecreaseHP = rateDecreaseHP;
+    }
+    
+
 }

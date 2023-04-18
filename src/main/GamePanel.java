@@ -59,5 +59,9 @@ public class GamePanel extends JPanel{
         }
 
     }
+
+    public void updateEverySec(){
+        player.decreaseHP();
+    }
     
 }
