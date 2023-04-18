@@ -25,9 +25,6 @@ public abstract class Player extends Entity implements Animations{
     public BufferedImage[][] jumpingAni;
 
     public abstract void updateAnimations();
-    public abstract void getRunningImg();
-    public abstract void getJumpingImg();
-    public abstract void getSlideImg();
     public Player(int HP, double x, double y, int width, int height){
         super(x, y);
         this.HP = HP;

@@ -44,22 +44,6 @@ public class NormalKapy extends Player {
 //        g2.fillRect((int)x, (int)y, width, height);
     }
 
-    @Override
-    public void getRunningImg() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getRunningImg'");
-    }
 
-    @Override
-    public void getJumpingImg() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getJumpingImg'");
-    }
-
-    @Override
-    public void getSlideImg() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'getSlideImg'");
-    }
 
 }

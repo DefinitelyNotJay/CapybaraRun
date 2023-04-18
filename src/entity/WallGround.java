@@ -9,7 +9,7 @@ import java.awt.Graphics;
 import main.GamePanel;
 
 public class WallGround extends Wall {
-
+    private int times = 0;
     public WallGround(GamePanel gp, double x, double y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
     }
@@ -18,11 +18,15 @@ public class WallGround extends Wall {
     public void crash() {
         if (gp.getPlayer().x >= this.x && gp.getPlayer().x <= this.x + width) {
             if (gp.getPlayer().y+gp.getPlayer().getHeight() >= this.y + height) {
-                System.out.println("Hit");
+                    times++;
+                    if (times == 1) {
+                        gp.getPlayer().setHP(gp.getPlayer().getHP() - 1);
+                        System.out.println(gp.getPlayer().getHP());
+                    }
             }
 
         } else {
-
+            times = 0;
         }
     }
 

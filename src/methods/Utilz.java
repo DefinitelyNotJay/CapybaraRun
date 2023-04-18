@@ -27,11 +27,7 @@ public class Utilz {
     }
     public static BufferedImage[] getRunningImg(String fileName){
         BufferedImage img = null;
-        try{
-            img = ImageIO.read(Utilz.class.getResourceAsStream(fileName)); 
-        }catch(IOException e){
-            e.printStackTrace();
-        }
+        img = GetImage(fileName);
         runningAni = new BufferedImage[7];
         for(int i=0; i<7; i++){
             runningAni[i] = img.getSubimage(32*i, 2, 32, 32);
