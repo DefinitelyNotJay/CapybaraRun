@@ -10,6 +10,7 @@ import main.GamePanel;
 public class WallPattern {
     private GamePanel gp;
     private WallGround w1, w2, w3, w4;
+
     private WallHanging wg1, wg2;
     private ArrayList<Wall> wallPattern;
     
@@ -37,6 +38,4 @@ public class WallPattern {
     public void setWallPattern(ArrayList<Wall> wallPattern) {
         this.wallPattern = wallPattern;
     }
-        
-    
 }

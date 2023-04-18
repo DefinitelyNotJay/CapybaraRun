@@ -54,9 +54,9 @@ public class GamePanel extends JPanel{
     }
     public void update(){
         player.update();
-        // for (int i=0; i<wp.getWallPattern().size(); i++){
-        //     wp.getWallPattern().get(i).update();
-        // }
+            for (int i=0; i<wp.getWallPattern().size(); i++){
+                wp.getWallPattern().get(i).update();
+            }
 
     }
 
