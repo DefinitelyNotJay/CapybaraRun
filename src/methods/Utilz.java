@@ -30,7 +30,7 @@ public class Utilz {
         img = GetImage(fileName);
         runningAni = new BufferedImage[7];
         for(int i=0; i<7; i++){
-            runningAni[i] = img.getSubimage(32*i, 2, 32, 32);
+            runningAni[i] = img.getSubimage(32*i, 1, 32, 33);
         }
         return runningAni;
     }

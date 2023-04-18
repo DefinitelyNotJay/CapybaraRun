@@ -24,6 +24,8 @@ public abstract class Player extends Entity implements Animations{
     public BufferedImage[][] jumpingAni;
 
     public abstract void updateAnimations();
+    public abstract void draw(Graphics g2);
+
     public Player(int HP, double x, double y, int width, int height){
         super(x, y);
         this.HP = HP;
@@ -31,18 +33,13 @@ public abstract class Player extends Entity implements Animations{
         this.width = width;
         this.height = height;
 //        this.tileSize = tileSize;
-        
     }
-    public void draw(Graphics g2){
-        g2.setColor(Color.pink);
-        g2.fillRect((int)x, (int)y, width, height);
-        g2.drawLine((int)x, (int)y, 500, 2);
-//        g2.dispose()
-    }
+
     public void update(){
         move();
         updateAnimations();
     }
+
     public void move(){
         if(jump){
             jump();
@@ -51,7 +48,6 @@ public abstract class Player extends Entity implements Animations{
             slide(300);
         }
         down = false;
-        
     }
     public void jump(){
 
@@ -143,6 +139,4 @@ public abstract class Player extends Entity implements Animations{
     public void setRateDecreaseHP(int rateDecreaseHP) {
         this.rateDecreaseHP = rateDecreaseHP;
     }
-    
-
 }

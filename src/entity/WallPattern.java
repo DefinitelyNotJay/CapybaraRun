@@ -1,10 +1,12 @@
 
 package entity;
 
+import java.awt.Graphics;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+
 import main.GamePanel;
 
 public class WallPattern {
@@ -37,5 +39,9 @@ public class WallPattern {
 
     public void setWallPattern(ArrayList<Wall> wallPattern) {
         this.wallPattern = wallPattern;
+    }
+
+    public void paint(Graphics g){
+        
     }
 }

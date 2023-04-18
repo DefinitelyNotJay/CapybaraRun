@@ -40,28 +40,27 @@ public class GamePanel extends JPanel{
         for (int i=0; i<wp.getWallPattern().size(); i++){
             wp.getWallPattern().get(i).draw(g2);
         }
-        
         g2.dispose();
 
     }
 
-    public Player getPlayer() {
-        return player;
-    }
-
-    public void setPlayer(Player player) {
-        this.player = player;
-    }
     public void update(){
         player.update();
-            for (int i=0; i<wp.getWallPattern().size(); i++){
-                wp.getWallPattern().get(i).update();
+        for (int i=0; i<wp.getWallPattern().size(); i++){
+            wp.getWallPattern().get(i).update();
             }
-
-    }
+            
+        }
 
     public void updateEverySec(){
         player.decreaseHP();
     }
     
+    public Player getPlayer() {
+        return player;
+    }
+    
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
 }
