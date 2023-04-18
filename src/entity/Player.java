@@ -14,7 +14,7 @@ import methods.Animations;
 
 public abstract class Player extends Entity implements Animations{
     private boolean jump, down, left, right;
-    protected int width, height, HP, rateDecreaseHP;
+    protected int width, height, HP, rateDecreaseHP = 1;
     private int jumpHeight = 20;
     private final int gravity = 1;
     private int velocity = jumpHeight;

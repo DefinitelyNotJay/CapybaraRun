@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package entity;
 
 import java.awt.Color;
@@ -20,7 +17,7 @@ public class WallGround extends Wall {
             if (gp.getPlayer().y+gp.getPlayer().getHeight() >= this.y + height) {
                     times++;
                     if (times == 1) {
-                        gp.getPlayer().setHP(gp.getPlayer().getHP() - 1);
+                        gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
                         System.out.println(gp.getPlayer().getHP());
                     }
             }

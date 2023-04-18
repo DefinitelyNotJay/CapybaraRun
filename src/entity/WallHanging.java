@@ -22,7 +22,7 @@ public class WallHanging extends Wall {
             if (gp.getPlayer().y <= this.y + height) {
                 times++;
                 if (times == 1) {
-                    gp.getPlayer().setHP(gp.getPlayer().getHP() - 1);
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
                     System.out.println(gp.getPlayer().getHP());
                 }
             }
@@ -33,8 +33,7 @@ public class WallHanging extends Wall {
 
     @Override
     public void draw(Graphics g2) {
-        g2.setColor(Color.red);
+        g2.setColor(Color.black);
         g2.fillRect((int) x, (int) y, width, height);
     }
-
 }
