@@ -31,7 +31,6 @@ public class KeyboardListener implements KeyListener{
                 break;
             case KeyEvent.VK_S:
                 gp.getPlayer().setDown(true);
-                gp.getPlayer().move();
                 break;
 //            case KeyEvent.VK_A:
 //                gp.getPlayer().setLeft(true);
@@ -57,7 +56,7 @@ public class KeyboardListener implements KeyListener{
                 break;
             case KeyEvent.VK_S:
                 gp.getPlayer().setDown(false);
-                gp.getPlayer().slideReset();
+                // gp.getPlayer().slideReset();
                 break;
 //            case KeyEvent.VK_A:
 //                gp.getPlayer().setLeft(false);
