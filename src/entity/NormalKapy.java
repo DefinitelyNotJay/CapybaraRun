@@ -25,6 +25,7 @@ public class NormalKapy extends Player {
         //     }
         // }
         runningAni = Utilz.getRunningImg("/res/capyrun2.png");
+        slideAni = Utilz.GetImage("/res/slideCapy.png");
     }
     @Override
     public void updateAnimations(){
@@ -33,13 +34,20 @@ public class NormalKapy extends Player {
             aniTick = 0;
             aniIndex++;
         }
-        // maximum
+
         if(aniIndex>=7){
             aniIndex = 0;
         }
     }
     public void draw(Graphics g2){
-        g2.drawImage(runningAni[aniIndex], (int)x, (int)y, Utilz.gp.tileSize, Utilz.gp.tileSize, null);
+        // System.out.println(super.down);
+        if(down){
+            g2.drawImage(slideAni, (int)x, (int)y, 45*2, 20*2, null);
+        }
+        else{
+            g2.drawImage(runningAni[aniIndex], (int)x, (int)y, Utilz.gp.tileSize, Utilz.gp.tileSize, null);
+        }
+        
 //        System.out.println(Utilz.tileSize);
 //        g2.fillRect((int)x, (int)y, width, height);
     }

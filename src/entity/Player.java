@@ -13,15 +13,16 @@ import main.GamePanel;
 import methods.Animations;
 
 public abstract class Player extends Entity implements Animations{
-    private boolean jump, down, left, right;
+    protected boolean jump, down, left, right;
     protected int width, height, HP, rateDecreaseHP = 1;
-    private int jumpHeight = 20;
-    private final int gravity = 1;
-    private int velocity = jumpHeight;
-    private int slideNum = 0;
-    private int first_y;
+    protected int jumpHeight = 20;
+    protected final int gravity = 1;
+    protected int velocity = jumpHeight;
+    protected int slideNum = 0;
+    protected int first_y;
     public BufferedImage[] runningAni;
     public BufferedImage[][] jumpingAni;
+    public BufferedImage slideAni;
 
     public abstract void updateAnimations();
     public abstract void draw(Graphics g2);
@@ -37,7 +38,7 @@ public abstract class Player extends Entity implements Animations{
 
     public void update(){
         move();
-        updateAnimations();
+        updateAnimations(); //ควรไปอยู่ใน paint
     }
 
     public void move(){
@@ -45,9 +46,10 @@ public abstract class Player extends Entity implements Animations{
             jump();
         } 
       else if(down && (this.y == first_y)){
-            slide(300);
+            slide(275);
+            
         }
-        down = false;
+        // down = false;
     }
     public void jump(){
 

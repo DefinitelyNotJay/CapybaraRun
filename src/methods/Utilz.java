@@ -34,9 +34,9 @@ public class Utilz {
         }
         return runningAni;
     }
-    // public static BufferedImage getSlideImage(String fileName){
-    //     BufferedImage slideImg = null;
-    //     slideImg
-    //     return slideImg
-    // }
+    public static BufferedImage getSlideImage(String fileName){
+        BufferedImage slideImg = null;
+        slideImg = GetImage(fileName);
+        return slideImg;
+    }
 }
