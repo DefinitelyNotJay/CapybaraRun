@@ -25,8 +25,8 @@ public class KeyboardListener implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
-            case KeyEvent.VK_W,
-            KeyEvent.VK_SPACE:
+            case KeyEvent.VK_W &
+                KeyEvent.VK_SPACE:
                 gp.getPlayer().setJump(true);
                 break;
             case KeyEvent.VK_S:
@@ -50,8 +50,8 @@ public class KeyboardListener implements KeyListener{
 //            case KeyEvent.VK_SPACE:
 //                gp.getPlayer().setJump(false);
 //                break;
-            case KeyEvent.VK_W,
-            KeyEvent.VK_SPACE:
+            case KeyEvent.VK_W &
+                KeyEvent.VK_SPACE:
             //    gp.getPlayer().setJump(false);
                 break;
             case KeyEvent.VK_S:

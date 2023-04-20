@@ -31,13 +31,13 @@ public class WallPattern {
         w2 = new WallGround(gp,550, 250, gp.tileSize, gp.tileSize);
         w3 = new WallGround(gp,820, 250, gp.tileSize, gp.tileSize);
         wg1 = new WallHanging(gp,1120, 180, gp.tileSize, gp.tileSize+20);
-        collect.add(w1);
-        collect.add(w2);
-        collect.add(w3);
-        collect.add(wg1);
-        WallSet.addAll(collect);//kuysus
-
-        Collections.addAll(wallPattern);
+        //collect.add(w1);
+        //collect.add(w2);
+        //collect.add(w3);
+        //collect.add(wg1);
+        //WallSet.addAll(collect);//kuysus
+        Collections.addAll(wallPattern, w1, w2, w3, wg1);
+        //Collections.addAll(wallPattern);
     }
     
 
