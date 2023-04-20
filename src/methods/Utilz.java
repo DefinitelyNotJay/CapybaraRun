@@ -1,4 +1,3 @@
-
 package methods;
 
 import java.awt.image.BufferedImage;

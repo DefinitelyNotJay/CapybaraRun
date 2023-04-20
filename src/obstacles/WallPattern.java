@@ -1,5 +1,5 @@
 
-package entity;
+package obstacles;
 
 import java.awt.Graphics;
 import java.lang.reflect.Array;
@@ -29,7 +29,7 @@ public class WallPattern {
         // wg1 = new WallHanging(gp,1120, 90, gp.tileSize*2, gp.tileSize*2+60);
         wg2 = new WallHanging(gp,1120, 90, gp.tileSize*8, gp.tileSize*2+60);
         
-        Collections.addAll(wallPattern, w1, w2, w3, wg2);
+        Collections.addAll(wallPattern, wg2);
     }
     
 

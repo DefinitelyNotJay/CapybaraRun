@@ -1,5 +1,4 @@
-
-package entity;
+package obstacles;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -13,8 +12,9 @@ public class WallGround extends Wall {
 
     @Override
     public void crash() {
-        if (gp.getPlayer().x >= this.x && gp.getPlayer().x <= this.x + width) {
-            if (gp.getPlayer().y+gp.getPlayer().getHeight() >= this.y + height) {
+        if (gp.getPlayer().getCrashAreaWidth()-gp.getPlayer().getCrashAreaWidth() >= this.x 
+        && gp.getPlayer().getCrashAreaWidth()+gp.getPlayer().getCrashAreaWidth() <= this.x + width) {
+            if (gp.getPlayer().getCrashAreaHeight()+gp.getPlayer().getHeight() >= this.y + height) {
                     times++;
                     if (times == 1) {
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);

@@ -1,5 +1,6 @@
-package entity;
+package player;
 
+import entity.Player;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;

@@ -1,6 +1,6 @@
+package obstacles;
 
-package entity;
-
+import entity.Entity;
 import entity.Entity;
 import java.awt.Color;
 import java.awt.Graphics;

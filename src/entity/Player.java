@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entity;
 
 import entity.Entity;
@@ -16,9 +12,10 @@ import methods.Animations;
 import methods.Utilz;
 
 public abstract class Player extends Entity implements Animations{
-    protected boolean jump, down, left, right;
+    protected boolean jump, down, left, right, isDoubleJump;
     protected int width, height, HP, rateDecreaseHP = 1;
     protected int jumpHeight = 20;
+    protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected final int gravity = 1;
     protected int velocity = jumpHeight;
     protected int slideNum = 0;
@@ -39,39 +36,38 @@ public abstract class Player extends Entity implements Animations{
 
     public void update(){
         move();
-        updateAnimations(); //ควรไปอยู่ใน paint
+        updateAnimations();
     }
     
-    public void updateAnimations(){
-        aniTick++;
-        if(aniTick>=aniSpeed){
-            aniTick = 0;
-            aniIndex++;
-        }
-
-        if(aniIndex>=7){
-            aniIndex = 0;
-        }
-    }
-
+    
     public void draw(Graphics g2){
-    if(down && (y == Constants.GROUND+(slideAni.getHeight()))){
+        if(down && (y == Constants.GROUND+(slideAni.getHeight()))){
         g2.drawImage(slideAni, (int)x, (int)y, 90, 40, null);
     }
     else{
         // 4 is missing T-T
         g2.drawImage(runningAni[aniIndex], (int)x, (int)y-4, Utilz.gp.tileSize, Utilz.gp.tileSize+2, null);
     }
+    
+}
+public void updateAnimations(){
+    aniTick++;
+    if(aniTick>=aniSpeed){
+        aniTick = 0;
+        aniIndex++;
+    }
 
+    if(aniIndex>=7){
+        aniIndex = 0;
+    }
 }
 
     public void move(){
         if(jump){
             jump();
-        } 
+        }
       else if(down && (y == Constants.GROUND)){
             slide(Constants.GROUND+(slideAni.getHeight()));
-            // slideReset();
         }
         else if(!down){
             slideReset();
@@ -167,4 +163,21 @@ public abstract class Player extends Entity implements Animations{
     public void setRateDecreaseHP(int rateDecreaseHP) {
         this.rateDecreaseHP = rateDecreaseHP;
     }
+
+    public int getCrashAreaWidth() {
+        return crashAreaWidth;
+    }
+
+    public void setCrashAreaWidth(int crashAreaWidth) {
+        this.crashAreaWidth = crashAreaWidth;
+    }
+
+    public int getCrashAreaHeight() {
+        return crashAreaHeight;
+    }
+
+    public void setCrashAreaHeight(int crashAreaHeight) {
+        this.crashAreaHeight = crashAreaHeight;
+    }
+    
 }
