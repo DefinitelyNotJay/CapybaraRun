@@ -9,49 +9,73 @@ import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+
+import constant.Constants;
 import main.GamePanel;
 import methods.Animations;
+import methods.Utilz;
 
 public abstract class Player extends Entity implements Animations{
-    private boolean jump, down, left, right;
+    protected boolean jump, down, left, right;
     protected int width, height, HP, rateDecreaseHP = 1;
-    private int jumpHeight = 20;
-    private final int gravity = 1;
-    private int velocity = jumpHeight;
-    private int slideNum = 0;
-    private int first_y;
+    protected int jumpHeight = 20;
+    protected final int gravity = 1;
+    protected int velocity = jumpHeight;
+    protected int slideNum = 0;
+    protected int first_y;
     public BufferedImage[] runningAni;
-    public BufferedImage[][] jumpingAni;
+    public BufferedImage slideAni;
+    private int aniTick, aniIndex, aniSpeed=10;
+    // public abstract void updateAnimations();
+    // public abstract void draw(Graphics g2);
 
-    public abstract void updateAnimations();
     public Player(int HP, double x, double y, int width, int height){
         super(x, y);
         this.HP = HP;
         first_y = (int)y;
         this.width = width;
         this.height = height;
-//        this.tileSize = tileSize;
-        
     }
-    public void draw(Graphics g2){
-        g2.setColor(Color.pink);
-        g2.fillRect((int)x, (int)y, width, height);
-        g2.drawLine((int)x, (int)y, 500, 2);
-//        g2.dispose()
-    }
+
     public void update(){
         move();
-        updateAnimations();
+        updateAnimations(); //ควรไปอยู่ใน paint
     }
+    
+    public void updateAnimations(){
+        aniTick++;
+        if(aniTick>=aniSpeed){
+            aniTick = 0;
+            aniIndex++;
+        }
+
+        if(aniIndex>=7){
+            aniIndex = 0;
+        }
+    }
+
+    public void draw(Graphics g2){
+    if(down && (y == Constants.GROUND+(slideAni.getHeight()))){
+        g2.drawImage(slideAni, (int)x, (int)y, 90, 40, null);
+    }
+    else{
+        // 4 is missing T-T
+        g2.drawImage(runningAni[aniIndex], (int)x, (int)y-4, Utilz.gp.tileSize, Utilz.gp.tileSize+2, null);
+    }
+
+}
+
     public void move(){
         if(jump){
             jump();
         } 
-      else if(down && (this.y == first_y)){
-            slide(300);
+      else if(down && (y == Constants.GROUND)){
+            slide(Constants.GROUND+(slideAni.getHeight()));
+            // slideReset();
         }
-        down = false;
-        
+        else if(!down){
+            slideReset();
+        }
     }
     public void jump(){
 
@@ -69,7 +93,7 @@ public abstract class Player extends Entity implements Animations{
         this.y = num;
     }
     public void slideReset(){
-        this.y = first_y;
+        this.y = Constants.GROUND;
     }
 
     public boolean isJump() {
@@ -143,6 +167,4 @@ public abstract class Player extends Entity implements Animations{
     public void setRateDecreaseHP(int rateDecreaseHP) {
         this.rateDecreaseHP = rateDecreaseHP;
     }
-    
-
 }

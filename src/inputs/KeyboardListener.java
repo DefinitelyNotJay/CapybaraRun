@@ -25,12 +25,12 @@ public class KeyboardListener implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
-            case KeyEvent.VK_W:
+            case KeyEvent.VK_W,
+            KeyEvent.VK_SPACE:
                 gp.getPlayer().setJump(true);
                 break;
             case KeyEvent.VK_S:
                 gp.getPlayer().setDown(true);
-                gp.getPlayer().move();
                 break;
 //            case KeyEvent.VK_A:
 //                gp.getPlayer().setLeft(true);
@@ -50,12 +50,13 @@ public class KeyboardListener implements KeyListener{
 //            case KeyEvent.VK_SPACE:
 //                gp.getPlayer().setJump(false);
 //                break;
-            case KeyEvent.VK_W:
-//                gp.getPlayer().setJump(false);
+            case KeyEvent.VK_W,
+            KeyEvent.VK_SPACE:
+            //    gp.getPlayer().setJump(false);
                 break;
             case KeyEvent.VK_S:
                 gp.getPlayer().setDown(false);
-                gp.getPlayer().slideReset();
+                // gp.getPlayer().slideReset();
                 break;
 //            case KeyEvent.VK_A:
 //                gp.getPlayer().setLeft(false);

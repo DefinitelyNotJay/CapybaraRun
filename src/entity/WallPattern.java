@@ -1,6 +1,7 @@
 
 package entity;
 
+import java.awt.Graphics;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -46,5 +47,9 @@ public class WallPattern {
 
     public void setWallPattern(ArrayList<Wall> wallPattern) {
         this.wallPattern = wallPattern;
+    }
+
+    public void paint(Graphics g){
+        
     }
 }

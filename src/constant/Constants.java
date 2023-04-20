@@ -10,6 +10,7 @@ package constant;
  */
 public class Constants {
     public static int GAMESPEED = 6;
+    public static final int GROUND = 256;
     public static class OcSize{
         public static final int S_WALL_HEIGHT = 0;
         public static final int L_WALL_HEIGHT = 0;
@@ -17,5 +18,6 @@ public class Constants {
         public static final int M_WAIR_HEIGHT = 0;
         public static final int L_WAIR_HEIGHT = 0;
     }
+    
     
 }
