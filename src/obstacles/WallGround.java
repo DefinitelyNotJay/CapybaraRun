@@ -13,11 +13,12 @@ public class WallGround extends Wall {
 
     @Override
     public void crash() {
-        if (gp.getPlayer().getCrashAreaWidth()-gp.getPlayer().getCrashAreaWidth() >= this.x
-        && gp.getPlayer().getCrashAreaWidth()+gp.getPlayer().getCrashAreaWidth() <= this.x + width) {
-            if (gp.getPlayer().getY()+Utilz.tileSize >= this.y) {
+        if (gp.getPlayer().getX()+gp.getPlayer().getWidth()+gp.getPlayer().getCrashAreaWidth() >= this.x
+        && gp.getPlayer().getX()+gp.getPlayer().getWidth()+gp.getPlayer().getCrashAreaHeight() <= this.x + width) {
+            if (gp.getPlayer().getY()+gp.getPlayer().getHeight()-gp.getPlayer().getCrashAreaHeight() >= this.y) {
                     times++;
                     if (times == 1) {
+                        System.out.println("Hit");
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
                         System.out.println(gp.getPlayer().getHP());
                     }
@@ -30,7 +31,6 @@ public class WallGround extends Wall {
 
     @Override
     public void draw(Graphics g2) {
-        g2.drawLine((int)x, (int)gp.getPlayer().getY()+Utilz.tileSize, 5, 5);
         g2.setColor(Color.black);
         g2.fillRect((int) x, (int) y, width, height);
     }

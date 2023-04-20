@@ -17,7 +17,9 @@ public class WallHanging extends Wall {
                 && gp.getPlayer().getX()+gp.getPlayer().getCrashAreaWidth() <= this.x + width) {
             if (gp.getPlayer().getY()+gp.getPlayer().getCrashAreaHeight() <= this.y + height) {
                 times++;
+                
                 if (times == 1) {
+                    System.out.println("crash");
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
                     System.out.println(gp.getPlayer().getHP());
                 }
@@ -28,7 +30,6 @@ public class WallHanging extends Wall {
     }
     @Override
     public void draw(Graphics g2) {
-        // g2.drawLine((int)gp.getPlayer().x, (int)gp.getPlayer().y+gp.getPlayer().crashAreaHeight, 3, 3);
         g2.setColor(Color.black);
         g2.fillRect((int) x, (int) y, width, height);
     }
