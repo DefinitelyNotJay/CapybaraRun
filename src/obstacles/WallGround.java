@@ -18,7 +18,7 @@ public class WallGround extends Wall {
             if (gp.getPlayer().getY()+gp.getPlayer().getHeight()-gp.getPlayer().getCrashAreaHeight() >= this.y) {
                     times++;
                     if (times == 1) {
-                        System.out.println("Hit");
+                        // System.out.println("Hit");
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
                         System.out.println(gp.getPlayer().getHP());
                     }

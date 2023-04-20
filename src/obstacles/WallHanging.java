@@ -19,7 +19,7 @@ public class WallHanging extends Wall {
                 times++;
                 
                 if (times == 1) {
-                    System.out.println("crash");
+                    // System.out.println("crash");
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
                     System.out.println(gp.getPlayer().getHP());
                 }
