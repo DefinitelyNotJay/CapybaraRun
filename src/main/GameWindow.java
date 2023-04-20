@@ -1,4 +1,3 @@
-
 package main;
 
 import javax.swing.*;
@@ -15,6 +14,7 @@ public class GameWindow {
         jframe.setLocationRelativeTo(null);
         jframe.setResizable(false);
         jframe.pack();
+        jframe.setLocation(0, 50);
         gamePanel.requestFocus();
         jframe.setVisible(true);
         

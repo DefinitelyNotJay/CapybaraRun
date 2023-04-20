@@ -1,10 +1,9 @@
-
 package main;
 
-import entity.NormalKapy;
+import player.NormalKapy;
 import entity.Player;
-import entity.Wall;
-import entity.WallPattern;
+import obstacles.Wall;
+import obstacles.WallPattern;
 import inputs.KeyboardListener;
 import java.awt.*;
 import javax.swing.*;
