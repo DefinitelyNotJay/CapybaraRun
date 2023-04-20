@@ -3,6 +3,7 @@ package obstacles;
 import java.awt.Color;
 import java.awt.Graphics;
 import main.GamePanel;
+import methods.Utilz;
 
 public class WallGround extends Wall {
     private int times = 0;
@@ -12,9 +13,9 @@ public class WallGround extends Wall {
 
     @Override
     public void crash() {
-        if (gp.getPlayer().getCrashAreaWidth()-gp.getPlayer().getCrashAreaWidth() >= this.x 
+        if (gp.getPlayer().getCrashAreaWidth()-gp.getPlayer().getCrashAreaWidth() >= this.x
         && gp.getPlayer().getCrashAreaWidth()+gp.getPlayer().getCrashAreaWidth() <= this.x + width) {
-            if (gp.getPlayer().getCrashAreaHeight()+gp.getPlayer().getHeight() >= this.y + height) {
+            if (gp.getPlayer().getY()+Utilz.tileSize >= this.y) {
                     times++;
                     if (times == 1) {
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
@@ -29,6 +30,7 @@ public class WallGround extends Wall {
 
     @Override
     public void draw(Graphics g2) {
+        g2.drawLine((int)x, (int)gp.getPlayer().getY()+Utilz.tileSize, 5, 5);
         g2.setColor(Color.black);
         g2.fillRect((int) x, (int) y, width, height);
     }
