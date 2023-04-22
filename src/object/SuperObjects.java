@@ -1,4 +1,4 @@
-package Objects;
+package object;
 
 import java.awt.Color;
 import java.awt.Graphics;
