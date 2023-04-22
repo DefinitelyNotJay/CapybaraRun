@@ -40,7 +40,7 @@ public class GamePanel extends JPanel{
         new Utilz(this);
         deathScreen = new DeathPanel(this);
     }
-    
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
