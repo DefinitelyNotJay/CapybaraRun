@@ -8,6 +8,8 @@ import inputs.KeyboardListener;
 import java.awt.*;
 import javax.swing.*;
 
+import Objects.AssetSetter;
+import Objects.SuperObjects;
 import constant.Constants;
 import methods.Utilz;
 
@@ -24,6 +26,8 @@ public class GamePanel extends JPanel{
     private Utilz utilz;
     private Constants c;
     public final int GROUND_H = 500;
+    public SuperObjects obj[] = new SuperObjects[10];
+    public AssetSetter aSetter = new AssetSetter(this);
     public GamePanel(){
         player = new NormalKapy(100, 120,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -32,7 +36,9 @@ public class GamePanel extends JPanel{
         new Utilz(this);
         
     }
-    
+public void setUpGame(){
+    aSetter.serObject();
+}
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
