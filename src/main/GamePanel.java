@@ -1,6 +1,6 @@
 package main;
 
-import player.NormalKapy;
+import player.Capybara;
 import screen.DeathPanel;
 import entity.Player;
 import obstacles.Wall;
@@ -13,8 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
-import Objects.AssetSetter;
-import Objects.SuperObjects;
+import object.AssetSetter;
+import object.SuperObjects;
 import constant.Constants;
 import static constant.Constants.*;
 import methods.Utilz;
@@ -38,7 +38,7 @@ public class GamePanel extends JPanel{
     private DeathPanel deathScreen;
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
-        player = new NormalKapy(100, 120,Constants.GROUND, tileSize, tileSize);
+        player = new Capybara(100, 120,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
