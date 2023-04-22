@@ -1,17 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import main.GamePanel;
 
-/**
- *
- * @author ASUS
- */
 public class KeyboardListener implements KeyListener{
     private GamePanel gp;
     public KeyboardListener(GamePanel gp){

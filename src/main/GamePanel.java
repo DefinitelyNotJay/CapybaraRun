@@ -1,11 +1,16 @@
 package main;
 
 import player.NormalKapy;
+import screen.DeathPanel;
 import entity.Player;
 import obstacles.Wall;
 import obstacles.WallPattern;
 import inputs.KeyboardListener;
+import inputs.MouseHandler;
+
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.*;
 
 import constant.Constants;
@@ -24,13 +29,16 @@ public class GamePanel extends JPanel{
     private WallPattern wp;
     private Utilz utilz;
     private Constants c;
+    private DeathPanel deathScreen;
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
         player = new NormalKapy(100, 120,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
+        addMouseListener(new MouseHandler(this));
         wp = new WallPattern(this);
         new Utilz(this);
+        deathScreen = new DeathPanel(this);
     }
     
     @Override
@@ -43,7 +51,8 @@ public class GamePanel extends JPanel{
                 wp.getWallPattern().get(i).draw(g2);
             }
         } else if(GameState == GAMESTATE_DEATH){
-//            player.drawDeath(g);
+            player.drawDeath(g2);
+            
         } else if(GameState == GAMESTATE_MENU){
             
         }
@@ -52,14 +61,22 @@ public class GamePanel extends JPanel{
     }
 
     public void update(){
-        player.update();
-        for (int i=0; i<wp.getWallPattern().size(); i++){
-            wp.getWallPattern().get(i).update();
-            }
+        if(GameState == GAMESTATE_PLAYING){
+            player.update();
+            for (int i=0; i<wp.getWallPattern().size(); i++){
+                wp.getWallPattern().get(i).update();
+                }
+        }
+
         }
 
     public void updateEverySec(){
         player.decreaseHP();
+    }
+
+    public void gameReset(){
+        player.setHP(100);
+        // waiting for reset obstacles method
     }
     
     public Player getPlayer() {

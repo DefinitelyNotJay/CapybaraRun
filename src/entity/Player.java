@@ -10,9 +10,10 @@ import static constant.Constants.*;
 import constant.Constants;
 import main.GamePanel;
 import methods.Animations;
+import methods.LoadImages;
 import methods.Utilz;
 
-public abstract class Player extends Entity implements Animations {
+public abstract class Player extends Entity implements Animations, LoadImages {
 
     protected boolean jump, down, left, right, isSlide = false;
     protected int width, height, HP, rateDecreaseHP = 1;
@@ -20,7 +21,6 @@ public abstract class Player extends Entity implements Animations {
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected final int gravity = 1;
     protected int velocity = jumpHeight;
-    protected int slideNum = 0;
     public BufferedImage[] runningAni;
     public BufferedImage slideAni;
     private int aniTick, aniIndex, aniSpeed = 10;
@@ -50,7 +50,7 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void drawDeath(Graphics g2){
-        g2.drawImage(slideAni, (int)x, (int)y, 90, 40, null);
+        g2.drawString("GAME OVER", 640, 256);
     }
 
 public void updateAnimations(){
@@ -136,13 +136,6 @@ public void updateAnimations(){
         this.right = right;
     }
 
-    public int getSlideNum() {
-        return slideNum;
-    }
-
-    public void setSlideNum(int slideNum) {
-        this.slideNum = slideNum;
-    }
 
     public int getWidth() {
         return width;
