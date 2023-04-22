@@ -6,51 +6,57 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
+import static constant.Constants.*;
 import constant.Constants;
 import main.GamePanel;
 import methods.Animations;
+import methods.LoadImages;
 import methods.Utilz;
 
-public abstract class Player extends Entity implements Animations{
-    protected boolean jump, down, left, right, isDoubleJump;
+public abstract class Player extends Entity implements Animations, LoadImages {
+
+    protected boolean jump, down, left, right, isSlide = false;
     protected int width, height, HP, rateDecreaseHP = 1;
-    protected int jumpHeight = 18;
+    protected int jumpHeight = 20;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected final int gravity = 1;
     protected int velocity = jumpHeight;
-    protected int slideNum = 0;
-    protected int first_y;
     public BufferedImage[] runningAni;
     public BufferedImage slideAni;
-    private int aniTick, aniIndex, aniSpeed=10;
+    private int aniTick, aniIndex, aniSpeed = 10;
     // public abstract void updateAnimations();
     // public abstract void draw(Graphics g2);
 
-    public Player(int HP, double x, double y, int width, int height){
+    public Player(int HP, double x, double y, int width, int height) {
         super(x, y);
         this.HP = HP;
-        first_y = (int)y;
         this.width = width;
         this.height = height;
     }
 
-    public void update(){
+    public void update() {
         move();
         updateAnimations();
+        healthCheck();
     }
-    
-    
-    public void draw(Graphics g2){
-        if(down && (y == Constants.GROUND+(slideAni.getHeight()))){
-        g2.drawImage(slideAni, (int)x, (int)y, 90, 40, null);
+
+    public void drawPlaying(Graphics g2) {
+        if (isSlide) {
+            g2.drawImage(slideAni, (int) x, (int) y, 90, 40, null);
+            isSlide = false;
+        } else {
+            g2.drawImage(runningAni[aniIndex], (int) x, (int) y - 4, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
+        }
     }
-    else{
-        // 4 is missing T-T
-        g2.drawImage(runningAni[aniIndex], (int)x, (int)y-4, Utilz.gp.tileSize, Utilz.gp.tileSize+2, null);
+
+    public void drawDeath(Graphics g2){
+        g2.drawString("GAME OVER", 640, 256);
     }
-    
-}
+
 public void updateAnimations(){
+    if (down && (y == Constants.GROUND+(slideAni.getHeight()))){
+        isSlide = true;
+    }
     aniTick++;
     if(aniTick>=aniSpeed){
         aniTick = 0;
@@ -74,13 +80,19 @@ public void updateAnimations(){
         }
     }
     public void jump(){
-
             y -= velocity;
             velocity -= gravity;
             if (velocity < -jumpHeight){
                 jump = false;
                 velocity = jumpHeight;
             }
+    }
+    public void healthCheck(){
+        if(HP <= 0){
+            GamePanel.GameState = GAMESTATE_DEATH;
+            // showDeadScreen();
+
+        }
     }
     public void decreaseHP(){
         HP -= rateDecreaseHP;
@@ -124,13 +136,6 @@ public void updateAnimations(){
         this.right = right;
     }
 
-    public int getSlideNum() {
-        return slideNum;
-    }
-
-    public void setSlideNum(int slideNum) {
-        this.slideNum = slideNum;
-    }
 
     public int getWidth() {
         return width;

@@ -1,16 +1,22 @@
 package main;
 
 import player.NormalKapy;
+import screen.DeathPanel;
 import entity.Player;
 import obstacles.Wall;
 import obstacles.WallPattern;
 import inputs.KeyboardListener;
+import inputs.MouseHandler;
+
 import java.awt.*;
+import java.util.concurrent.TimeUnit;
+
 import javax.swing.*;
 
 import Objects.AssetSetter;
 import Objects.SuperObjects;
 import constant.Constants;
+import static constant.Constants.*;
 import methods.Utilz;
 
 public class GamePanel extends JPanel{
@@ -28,13 +34,16 @@ public class GamePanel extends JPanel{
     public final int GROUND_H = 500;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
+    private DeathPanel deathScreen;
+    public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
         player = new NormalKapy(100, 120,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
+        addMouseListener(new MouseHandler(this));
         wp = new WallPattern(this);
         new Utilz(this);
-        
+        deathScreen = new DeathPanel(this);
     }
 public void setUpGame(){
     aSetter.serObject();
@@ -43,23 +52,38 @@ public void setUpGame(){
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
-        player.draw(g2);
-        for (int i=0; i<wp.getWallPattern().size(); i++){
-            wp.getWallPattern().get(i).draw(g2);
+        if(GameState == GAMESTATE_PLAYING){
+            player.drawPlaying(g2);
+            for (int i=0; i<wp.getWallPattern().size(); i++){
+                wp.getWallPattern().get(i).draw(g2);
+            }
+        } else if(GameState == GAMESTATE_DEATH){
+            player.drawDeath(g2);
+            
+        } else if(GameState == GAMESTATE_MENU){
+            
         }
         g2.dispose();
 
     }
 
     public void update(){
-        player.update();
-        for (int i=0; i<wp.getWallPattern().size(); i++){
-            wp.getWallPattern().get(i).update();
-            }
+        if(GameState == GAMESTATE_PLAYING){
+            player.update();
+            for (int i=0; i<wp.getWallPattern().size(); i++){
+                wp.getWallPattern().get(i).update();
+                }
+        }
+
         }
 
     public void updateEverySec(){
         player.decreaseHP();
+    }
+
+    public void gameReset(){
+        player.setHP(100);
+        // waiting for reset obstacles method
     }
     
     public Player getPlayer() {
