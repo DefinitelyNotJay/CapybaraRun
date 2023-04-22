@@ -54,16 +54,18 @@ public void setUpGame(){
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
+        
         if(GameState == GAMESTATE_PLAYING){
-            player.drawPlaying(g2);
-            for (int i=0; i<wp.getWallPattern().size(); i++){
-                wp.getWallPattern().get(i).draw(g2);
-            }
-        } else if(GameState == GAMESTATE_DEATH){
-            player.drawDeath(g2);
+
+         } else if(GameState == GAMESTATE_DEATH){
+            g2.drawString("GAME OVER", 640, 256);
+         } else if(GameState == GAMESTATE_MENU){
             
-        } else if(GameState == GAMESTATE_MENU){
-            
+        }
+        player.drawPlaying(g2);
+        for(int i=0; i<wp.getWallPattern().size(); i++){
+            wp.getWallPattern().get(i).draw(g2);
         }
         g2.dispose();
 
@@ -80,7 +82,9 @@ public void setUpGame(){
         }
 
     public void updateEverySec(){
-        player.decreaseHP();
+        if(GameState == GAMESTATE_PLAYING){
+            player.decreaseHP();
+        }
     }
 
     public void gameReset(){

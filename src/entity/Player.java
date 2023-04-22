@@ -35,9 +35,9 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     }
 
     public void update() {
-        move();
-        updateAnimations();
-        healthCheck();
+            move();
+            updateAnimations();
+            healthCheck();
     }
 
     public void drawPlaying(Graphics g2) {
@@ -50,7 +50,7 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     }
 
     public void drawDeath(Graphics g2){
-        g2.drawString("GAME OVER", 640, 256);
+        // g2.drawString("GAME OVER", 640, 256);
     }
 
 public void updateAnimations(){
