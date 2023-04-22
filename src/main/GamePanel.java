@@ -13,6 +13,8 @@ import java.util.concurrent.TimeUnit;
 
 import javax.swing.*;
 
+import Objects.AssetSetter;
+import Objects.SuperObjects;
 import constant.Constants;
 import static constant.Constants.*;
 import methods.Utilz;
@@ -29,6 +31,9 @@ public class GamePanel extends JPanel{
     private WallPattern wp;
     private Utilz utilz;
     private Constants c;
+    public final int GROUND_H = 500;
+    public SuperObjects obj[] = new SuperObjects[10];
+    public AssetSetter aSetter = new AssetSetter(this);
     private DeathPanel deathScreen;
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
@@ -41,6 +46,9 @@ public class GamePanel extends JPanel{
         deathScreen = new DeathPanel(this);
     }
 
+public void setUpGame(){
+    aSetter.serObject();
+}
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
