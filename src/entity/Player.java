@@ -24,8 +24,8 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     public BufferedImage[] runningAni;
     public BufferedImage slideAni;
     private int aniTick, aniIndex, aniSpeed = 10;
-    // public abstract void updateAnimations();
-    // public abstract void draw(Graphics g2);
+    //public abstract void updateAnimations();
+    //public abstract void draw(Graphics g2);
 
     public Player(int HP, double x, double y, int width, int height) {
         super(x, y);
