@@ -13,11 +13,10 @@ public class WallHanging extends Wall {
     }
     @Override
     public void crash() {
-        if (gp.getPlayer().getX()-gp.getPlayer().getCrashAreaWidth() >= this.x 
-                && gp.getPlayer().getX()+gp.getPlayer().getCrashAreaWidth() <= this.x + width) {
-            if (gp.getPlayer().getY()+gp.getPlayer().getCrashAreaHeight() <= this.y + height) {
+        if (playerX - playerSolidAreaX >= this.x 
+                && playerX + playerSolidAreaX <= this.x + width) {
+            if (playerY + playerSolidAreaY <= this.y + height) {
                 times++;
-                
                 if (times == 1) {
                     // System.out.println("crash");
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);

@@ -13,9 +13,9 @@ public class WallGround extends Wall {
 
     @Override
     public void crash() {
-        if (gp.getPlayer().getX()+gp.getPlayer().getWidth()+gp.getPlayer().getCrashAreaWidth() >= this.x
-        && gp.getPlayer().getX()+gp.getPlayer().getWidth()+gp.getPlayer().getCrashAreaHeight() <= this.x + width) {
-            if (gp.getPlayer().getY()+gp.getPlayer().getHeight()-gp.getPlayer().getCrashAreaHeight() >= this.y) {
+        if (playerX + playerWidth + playerSolidAreaX >= this.x
+        && playerX + playerWidth + playerSolidAreaY <= this.x + width) {
+            if (playerY + playerHeight - playerSolidAreaY >= this.y) {
                     times++;
                     if (times == 1) {
                         // System.out.println("Hit");

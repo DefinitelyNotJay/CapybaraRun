@@ -28,6 +28,6 @@ public class Ghost extends Player implements SpecialAbility{
 
     @Override
     public void skillActivate() {
-
+        
     }
 }
