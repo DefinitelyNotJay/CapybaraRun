@@ -1,7 +1,6 @@
 package main;
 
-import player.Capybara;
-import player.Zombie;
+import player.*;
 import screen.DeathPanel;
 import entity.Player;
 import obstacles.Wall;
@@ -38,7 +37,7 @@ public class GamePanel extends JPanel{
     private DeathPanel deathScreen;
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
-        player = new Zombie(100, 120,Constants.GROUND, tileSize, tileSize);
+        player = new Ninja(100, 120,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));

@@ -11,6 +11,7 @@ import constant.Constants;
 import main.GamePanel;
 import methods.Animations;
 import methods.LoadImages;
+import methods.SpecialAbility;
 import methods.Utilz;
 
 public abstract class Player extends Entity implements Animations, LoadImages {

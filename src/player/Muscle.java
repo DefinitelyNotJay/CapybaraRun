@@ -10,16 +10,16 @@ import main.GamePanel;
 import methods.SpecialAbility;
 import methods.Utilz;
 
-public class Capybara extends Player implements SpecialAbility{
-    public Capybara(int HP, double x, double y, int xSize, int ySize) {
+public class Muscle extends Player implements SpecialAbility{
+    public Muscle(int HP, double x, double y, int xSize, int ySize) {
         super(HP, x, y, xSize, ySize);
         loadImages();
     }
     
     @Override
     public void loadImages() {
-        runningAni = Utilz.getRunningImg("/res/player/capybara/capyrun2.png");
-        slideAni = Utilz.GetImage("/res/player/capybara/slideCapy.png");
+        runningAni = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
+        slideAni = Utilz.GetImage("/res/player/muscle/capyslide.png");
     }
 
     @Override

@@ -28,6 +28,7 @@ public class Zombie extends Player implements SpecialAbility{
         }
         else if(HP <= 0 && lives >= 1){
             HP = 10;
+            rateDecreaseHP = 1;
             lives--;
         }
     }
