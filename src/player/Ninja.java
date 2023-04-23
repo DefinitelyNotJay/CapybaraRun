@@ -1,11 +1,12 @@
 
 package player;
 
+import constant.Constants;
 import entity.Player;
 import methods.SpecialAbility;
 import methods.Utilz;
 
-public class Ninja extends Player implements SpecialAbility{
+public class Ninja extends Player{
     
     public Ninja(int HP, double x, double y, int xSize, int ySize){
         super(HP, x, y, xSize, ySize);
@@ -19,11 +20,21 @@ public class Ninja extends Player implements SpecialAbility{
     }
     @Override
     public void skill() {
-        
+        Constants.WALLDAMAGE = 0;
     }
 
     @Override
     public void skillActivate() {
+        
+    }
+
+    public void updateEverySec(){
+
+    }
+
+    
+    @Override
+    public void skillReset(){
         
     }
     

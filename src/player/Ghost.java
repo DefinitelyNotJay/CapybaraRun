@@ -9,8 +9,10 @@ import javax.imageio.ImageIO;
 import main.GamePanel;
 import methods.SpecialAbility;
 import methods.Utilz;
+import static constant.Constants.*;
 
-public class Ghost extends Player implements SpecialAbility{
+public class Ghost extends Player{
+    private int skillCooldown = 10;
     public Ghost(int HP, double x, double y, int xSize, int ySize) {
         super(HP, x, y, xSize, ySize);
         loadImages();
@@ -24,10 +26,19 @@ public class Ghost extends Player implements SpecialAbility{
 
     @Override
     public void skill() {
+        WALLDAMAGE = 0;
     }
 
     @Override
     public void skillActivate() {
+        if(timeCount >= skillCooldown){
+            skill();
+        }
+    }
+
+    
+    @Override
+    public void skillReset(){
         
     }
 }

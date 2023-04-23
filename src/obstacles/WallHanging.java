@@ -3,6 +3,7 @@ package obstacles;
 import java.awt.Color;
 import java.awt.Graphics;
 import main.GamePanel;
+import static constant.Constants.*;
 
 public class WallHanging extends Wall {
 
@@ -19,7 +20,7 @@ public class WallHanging extends Wall {
                 times++;
                 if (times == 1) {
                     // System.out.println("crash");
-                    gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                     System.out.println(gp.getPlayer().getHP());
                 }
             }

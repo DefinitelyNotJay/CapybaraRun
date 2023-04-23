@@ -9,7 +9,7 @@ import static constant.Constants.*;
 
 import java.util.concurrent.TimeUnit;
 
-public class Zombie extends Player implements SpecialAbility{
+public class Zombie extends Player{
     private int lives = 5;
     public Zombie(int HP, double x, double y, int xSize, int ySize){
         super(HP, x, y, xSize, ySize);
@@ -41,6 +41,12 @@ public class Zombie extends Player implements SpecialAbility{
     @Override
     public void skillActivate() {
 
+    }
+
+    
+    @Override
+    public void skillReset(){
+        
     }
     
 }

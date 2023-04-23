@@ -2,6 +2,8 @@ package obstacles;
 
 import java.awt.Color;
 import java.awt.Graphics;
+
+import static constant.Constants.*;
 import main.GamePanel;
 import methods.Utilz;
 
@@ -19,7 +21,7 @@ public class WallGround extends Wall {
                     times++;
                     if (times == 1) {
                         // System.out.println("Hit");
-                        gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
+                        gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                         System.out.println(gp.getPlayer().getHP());
                     }
             }

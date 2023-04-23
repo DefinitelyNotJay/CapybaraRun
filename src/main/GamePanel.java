@@ -37,7 +37,7 @@ public class GamePanel extends JPanel{
     private DeathPanel deathScreen;
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
-        player = new Ninja(100, 120,Constants.GROUND, tileSize, tileSize);
+        player = new Ghost(100, 120,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -82,7 +82,7 @@ public void setUpGame(){
 
     public void updateEverySec(){
         if(GameState == GAMESTATE_PLAYING){
-            player.decreaseHP();
+            player.updateEverySec();;
         }
     }
 

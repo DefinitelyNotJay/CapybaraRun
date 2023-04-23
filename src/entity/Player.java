@@ -18,6 +18,7 @@ public abstract class Player extends Entity implements Animations, LoadImages {
 
     protected boolean jump, down, left, right, isSlide = false;
     protected int width, height, HP, rateDecreaseHP = 1;
+    protected int timeCount = 0;
     protected int jumpHeight = 20;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected final int gravity = 1;
@@ -27,6 +28,9 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     private int aniTick, aniIndex, aniSpeed = 10;
     // public abstract void updateAnimations();
     // public abstract void draw(Graphics g2);
+    public abstract void skill();
+    public abstract void skillActivate();
+    public abstract void skillReset();
 
     public Player(int HP, double x, double y, int width, int height) {
         super(x, y);
@@ -34,11 +38,13 @@ public abstract class Player extends Entity implements Animations, LoadImages {
         this.width = width;
         this.height = height;
     }
+    
 
     public void update() {
             move();
             updateAnimations();
             healthCheck();
+            skillActivate();
     }
 
     public void drawPlaying(Graphics g2) {
@@ -48,6 +54,11 @@ public abstract class Player extends Entity implements Animations, LoadImages {
         } else {
             g2.drawImage(runningAni[aniIndex], (int) x, (int) y - 4, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
         }
+    }
+    
+    public void updateEverySec(){
+        decreaseHP();
+        timeCount++;
     }
 
     public void drawDeath(Graphics g2){

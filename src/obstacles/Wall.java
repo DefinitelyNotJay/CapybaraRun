@@ -5,12 +5,13 @@ import entity.Entity;
 import java.awt.Color;
 import java.awt.Graphics;
 import main.GamePanel;
+import static constant.Constants.*;
 
 public abstract class Wall extends Entity {
     
     protected GamePanel gp;
     private static final int WALLSPEED = 6;
-    protected int width, height;
+    protected int width, height, wallDamage = 10;
     public abstract void crash();
     public abstract void draw(Graphics g2);
     protected double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
@@ -35,5 +36,16 @@ public abstract class Wall extends Entity {
         }
         crash();
     }
+
+    public int getWallDamage() {
+        return wallDamage;
+    }
+
+    public void setWallDamage(int wallDamage) {
+        this.wallDamage = wallDamage;
+    }
+
+    
+
 
 }
