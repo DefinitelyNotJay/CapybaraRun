@@ -6,8 +6,11 @@
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/methods/Animations.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/player/Zombie.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/screen/DeathPanel.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/main/GameWindow.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/obstacles/WallPattern.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/player/Capybara.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/player/Ninja.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/player/Muscle.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/obstacles/WallGround.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/inputs/MouseHandler.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/obstacles/WallHanging.java</file>
@@ -16,6 +19,7 @@
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/obstacles/Wall.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/inputs/KeyboardListener.java</file>
             <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/entity/Player.java</file>
+            <file>file:/C:/Users/ASUS/Documents/NetBeansProjects/GameProject/src/player/Ghost.java</file>
         </group>
     </open-files>
 </project-private>

@@ -35,7 +35,7 @@ public class Zombie extends Player{
 
     @Override
     public void skill() {
-
+        
     }
 
     @Override
