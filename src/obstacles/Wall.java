@@ -10,7 +10,7 @@ import static constant.Constants.*;
 public abstract class Wall extends Entity {
     
     protected GamePanel gp;
-    private static final int WALLSPEED = 6;
+    // private static final int WALLSPEED = 6;
     protected int width, height, wallDamage = 10;
     public abstract void crash();
     public abstract void draw(Graphics g2);
@@ -30,7 +30,7 @@ public abstract class Wall extends Entity {
         playerY = gp.getPlayer().getY();
         playerHeight = gp.getPlayer().getHeight();
         playerSolidAreaY = gp.getPlayer().getCrashAreaHeight();
-        x -= WALLSPEED;
+        x -= GAMESPEED;
         if (x < 0) {
             x = 1100;
         }

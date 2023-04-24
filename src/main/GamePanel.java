@@ -31,19 +31,16 @@ public class GamePanel extends JPanel{
     private WallPattern wp;
     private Utilz utilz;
     private Constants c;
-    public final int GROUND_H = 500;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    private DeathPanel deathScreen;
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
-        player = new Ghost(100, 120,Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(100, 120,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
         wp = new WallPattern(this);
         new Utilz(this);
-        deathScreen = new DeathPanel(this);
     }
 
 public void setUpGame(){
@@ -54,7 +51,6 @@ public void setUpGame(){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        
         if(GameState == GAMESTATE_PLAYING){
 
          } else if(GameState == GAMESTATE_DEATH){

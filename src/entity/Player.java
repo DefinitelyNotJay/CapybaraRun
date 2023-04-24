@@ -16,7 +16,7 @@ import methods.Utilz;
 
 public abstract class Player extends Entity implements Animations, LoadImages {
 
-    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false;
+    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false;
     protected int width, height, HP, rateDecreaseHP = 1;
     protected int timeCount = 0;
     protected int jumpHeight = 20;
@@ -58,7 +58,6 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     public void updateEverySec(){
         decreaseHP();
         timeCount++;
-        skillActivate();
     }
 
     public void drawDeath(Graphics g2){
@@ -195,6 +194,11 @@ public void updateAnimations(){
 
     public void setCrashAreaHeight(int crashAreaHeight) {
         this.crashAreaHeight = crashAreaHeight;
+    }
+
+    public void setIsCrash(boolean isCrash){
+        this.isCrash = isCrash;
+
     }
     
 }

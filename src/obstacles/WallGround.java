@@ -23,6 +23,8 @@ public class WallGround extends Wall {
                         // System.out.println("Hit");
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                         System.out.println(gp.getPlayer().getHP());
+                        gp.getPlayer().setIsCrash(true);
+                        gp.getPlayer().setIsCrash(false);
                     }
             }
 

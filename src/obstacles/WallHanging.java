@@ -22,10 +22,13 @@ public class WallHanging extends Wall {
                     // System.out.println("crash");
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                     System.out.println(gp.getPlayer().getHP());
+                    gp.getPlayer().setIsCrash(true);
+                    gp.getPlayer().setIsCrash(false);
                 }
             }
         } else {
             times = 0;
+            gp.getPlayer().setIsCrash(false);
         }
     }
     @Override
