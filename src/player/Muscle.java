@@ -12,12 +12,13 @@ import methods.Utilz;
 import static constant.Constants.*;
 
 public class Muscle extends Player{
-    private int skillCooldown = 10;
-    private int skillDuration = 5;
-    private int skillDurationCount = 0;
-    public Muscle(int HP, double x, double y, int xSize, int ySize) {
-        super(HP, x, y, xSize, ySize);
+
+    public Muscle(GamePanel gp, int HP, double x, double y, int xSize, int ySize) {
+        super(gp, HP, x, y, xSize, ySize);
         loadImages();
+        skillCooldown = 10;
+        skillDuration = 5;
+        skillDurationCount = 0;
     }
     
     @Override

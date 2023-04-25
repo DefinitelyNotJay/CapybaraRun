@@ -3,13 +3,14 @@ package player;
 
 import constant.Constants;
 import entity.Player;
+import main.GamePanel;
 import methods.SpecialAbility;
 import methods.Utilz;
 
 public class Ninja extends Player{
     
-    public Ninja(int HP, double x, double y, int xSize, int ySize){
-        super(HP, x, y, xSize, ySize);
+    public Ninja(GamePanel gp, int HP, double x, double y, int xSize, int ySize){
+        super(gp, HP, x, y, xSize, ySize);
         loadImages();
     }
     

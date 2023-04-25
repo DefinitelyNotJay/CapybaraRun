@@ -21,7 +21,7 @@ import methods.Utilz;
 
 public class GamePanel extends JPanel{
     final int originalTileSize = 32;
-    public final int scale = 2;
+    public final int scale = 2; 
     public final int tileSize = originalTileSize*scale;
     final int maxScreenCol = 20;
     final int maxScreenRow = 8;
@@ -35,7 +35,7 @@ public class GamePanel extends JPanel{
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
-        player = new Muscle(100, 120,Constants.GROUND, tileSize, tileSize);
+        player = new Ghost(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));

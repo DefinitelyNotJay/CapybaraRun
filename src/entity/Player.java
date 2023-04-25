@@ -16,15 +16,17 @@ import methods.Utilz;
 
 public abstract class Player extends Entity implements Animations, LoadImages {
 
+    protected GamePanel gp;
     protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false;
     protected int width, height, HP, rateDecreaseHP = 1;
     protected int timeCount = 0;
     protected int jumpHeight = 16;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
+    protected int skillCooldown, skillDuration, skillDurationCount;
     protected final int gravity = 1;
     protected int velocity = jumpHeight;
     public BufferedImage[] runningAni;
-    public BufferedImage slideAni, healthBar, emptyHealthBar;
+    public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar, skillDurationBar;
     private int aniTick, aniIndex, aniSpeed = 10;
     // public abstract void updateAnimations();
     // public abstract void draw(Graphics g2);
@@ -32,8 +34,9 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     public abstract void skillActivate();
     public abstract void skillReset();
 
-    public Player(int HP, double x, double y, int width, int height) {
+    public Player(GamePanel gp, int HP, double x, double y, int width, int height) {
         super(x, y);
+        this.gp = gp;
         this.HP = HP;
         this.width = width;
         this.height = height;
@@ -43,6 +46,10 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     public void getStatusImage(){
         emptyHealthBar = Utilz.GetImage("/res/player/object/EmptyHealthBar.png");
         healthBar = Utilz.GetImage("/res/player/object/HealthBarFixed.png");
+        skillBar = Utilz.GetImage("/res/player/object/emptySkill.png");
+        skillOnUseBar = Utilz.GetImage("/res/player/object/skillOnUseBar.png");
+        skillCooldownBar = Utilz.GetImage("/res/player/object/skillCooldownBar.png");
+        skillDurationBar = Utilz.GetImage("/res/player/object/skillDurationBar.png");
     }
     
 
@@ -53,13 +60,18 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     }
 
     public void drawPlaying(Graphics g2) {
-        g2.drawImage(healthBar, (int)(160), 54, (int)(HP*1.75), 4*3, null);
-        g2.drawImage(emptyHealthBar, 103, 27, 80*3, 20*3, null);
+        if(skillOnUse){
+        g2.drawImage(skillOnUseBar, (int)(x*0.9), (int)(y*0.845), (int)(5*2), (int)(5*2), null);
+        g2.drawImage(skillDurationBar, (int)(x*0.976), (int)(y*0.85), (int)((90/skillDuration)*(skillDuration - skillDurationCount)), (int)(4*2), null);
+        }
+        g2.drawImage(skillBar, (int)(x*0.9), (int)(y*0.85), (int)(65*1.5), (int)(10*1.5), null);
+        g2.drawImage(healthBar, (int)(gp.tileSize*2.5), (int)(gp.tileSize/1.18), (int)(HP*1.75), (int)(gp.tileSize/5.33), null);
+        g2.drawImage(emptyHealthBar, (int)(gp.tileSize*1.61), (int)(gp.tileSize/2.37), (int)(gp.tileSize*3.75), (int)(gp.tileSize/1.06), null);
         if (isSlide) {
-            g2.drawImage(slideAni, (int) x, (int) y, 90, 40, null);
+            g2.drawImage(slideAni, (int) x, (int) y-4, 90, 40, null);
             isSlide = false;
         } else {
-            g2.drawImage(runningAni[aniIndex], (int) x, (int) y - 4, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
+            g2.drawImage(runningAni[aniIndex], (int) x, (int) y, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
         }
     }
     
