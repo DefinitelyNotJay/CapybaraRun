@@ -27,7 +27,7 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     protected int velocity = jumpHeight;
     public BufferedImage[] runningAni;
     public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar, skillDurationBar;
-    private int aniTick, aniIndex, aniSpeed = 10;
+    protected int aniTick, aniIndex, aniSpeed = 7;
     // public abstract void updateAnimations();
     // public abstract void draw(Graphics g2);
     public abstract void skill();
@@ -64,6 +64,7 @@ public abstract class Player extends Entity implements Animations, LoadImages {
         g2.drawImage(skillOnUseBar, (int)(x*0.9), (int)(y*0.845), (int)(5*2), (int)(5*2), null);
         g2.drawImage(skillDurationBar, (int)(x*0.976), (int)(y*0.85), (int)((90/skillDuration)*(skillDuration - skillDurationCount)), (int)(4*2), null);
         }
+        g2.drawImage(skillCooldownBar, (int)(x*0.91), (int)(y*0.88), (int)((90/skillCooldown)*(timeCount)), (int)(10*0.8), null);
         g2.drawImage(skillBar, (int)(x*0.9), (int)(y*0.85), (int)(65*1.5), (int)(10*1.5), null);
         g2.drawImage(healthBar, (int)(gp.tileSize*2.5), (int)(gp.tileSize/1.18), (int)(HP*1.75), (int)(gp.tileSize/5.33), null);
         g2.drawImage(emptyHealthBar, (int)(gp.tileSize*1.61), (int)(gp.tileSize/2.37), (int)(gp.tileSize*3.75), (int)(gp.tileSize/1.06), null);

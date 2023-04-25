@@ -38,11 +38,14 @@ public class Ghost extends Player{
         skillOnUse = true;
         runningAni = skillAniRun;
         GAMESPEED += 10;
+        aniSpeed = 1;
+        
     }
 
     @Override
     public void skillActivate() {
         if(timeCount == skillCooldown){
+            timeCount = 0;
             System.out.println("Skill Activated");
             skill();
         }
@@ -52,16 +55,22 @@ public class Ghost extends Player{
     public void updateEverySec(){
         skillActivate();
         super.updateEverySec();
-        timeCount++;
+        // immortal before running
         if(skillDurationCount+1 == skillDuration){
             GAMESPEED -= 10;
+            aniSpeed = 7;
         }
         if(skillDurationCount == skillDuration){
             System.out.println("No Skill!");
             skillReset();
         }
-        if(skillOnUse)
-        skillDurationCount++;
+        if(skillOnUse){
+            skillDurationCount++;
+        }
+        if(!skillOnUse){
+            timeCount++;
+        }
+
     }
 
     
@@ -72,7 +81,7 @@ public class Ghost extends Player{
         WALLDAMAGE = 10;
         // reset animation
         skillDurationCount = 0;
-        timeCount = 0;
+
         skillOnUse = false;
     }
 }
