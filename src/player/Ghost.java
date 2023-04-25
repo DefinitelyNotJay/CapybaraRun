@@ -53,6 +53,7 @@ public class Ghost extends Player{
     public void updateEverySec(){
         skillActivate();
         super.updateEverySec();
+        timeCount++;
         if(skillDurationCount+1 == skillDuration){
             GAMESPEED -= 10;
         }

@@ -21,7 +21,7 @@ import methods.Utilz;
 
 public class GamePanel extends JPanel{
     final int originalTileSize = 32;
-    final int scale = 2;
+    public final int scale = 2;
     public final int tileSize = originalTileSize*scale;
     final int maxScreenCol = 20;
     final int maxScreenRow = 8;

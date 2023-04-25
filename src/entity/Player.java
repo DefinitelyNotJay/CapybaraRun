@@ -19,12 +19,12 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false;
     protected int width, height, HP, rateDecreaseHP = 1;
     protected int timeCount = 0;
-    protected int jumpHeight = 20;
+    protected int jumpHeight = 16;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected final int gravity = 1;
     protected int velocity = jumpHeight;
     public BufferedImage[] runningAni;
-    public BufferedImage slideAni;
+    public BufferedImage slideAni, healthBar, emptyHealthBar;
     private int aniTick, aniIndex, aniSpeed = 10;
     // public abstract void updateAnimations();
     // public abstract void draw(Graphics g2);
@@ -37,6 +37,12 @@ public abstract class Player extends Entity implements Animations, LoadImages {
         this.HP = HP;
         this.width = width;
         this.height = height;
+        getStatusImage();
+    }
+
+    public void getStatusImage(){
+        emptyHealthBar = Utilz.GetImage("/res/player/object/EmptyHealthBar.png");
+        healthBar = Utilz.GetImage("/res/player/object/HealthBarFixed.png");
     }
     
 
@@ -47,6 +53,8 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     }
 
     public void drawPlaying(Graphics g2) {
+        g2.drawImage(healthBar, (int)(160), 54, (int)(HP*1.75), 4*3, null);
+        g2.drawImage(emptyHealthBar, 103, 27, 80*3, 20*3, null);
         if (isSlide) {
             g2.drawImage(slideAni, (int) x, (int) y, 90, 40, null);
             isSlide = false;
@@ -57,7 +65,6 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     
     public void updateEverySec(){
         decreaseHP();
-        timeCount++;
     }
 
     public void drawDeath(Graphics g2){
@@ -101,6 +108,7 @@ public void updateAnimations(){
     public void healthCheck(){
         if(HP <= 0){
             GamePanel.GameState = GAMESTATE_DEATH;
+            HP = 0;
             // showDeadScreen();
 
         }
@@ -200,5 +208,14 @@ public void updateAnimations(){
         this.isCrash = isCrash;
 
     }
+
+    public boolean isSkillOnUse() {
+        return skillOnUse;
+    }
+
+    public void setSkillOnUse(boolean skillOnUse) {
+        this.skillOnUse = skillOnUse;
+    }
+    
     
 }

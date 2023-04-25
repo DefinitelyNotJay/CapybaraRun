@@ -24,6 +24,9 @@ public class WallHanging extends Wall {
                     System.out.println(gp.getPlayer().getHP());
                     gp.getPlayer().setIsCrash(true);
                     gp.getPlayer().setIsCrash(false);
+                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("player.Muscle")){
+                        gp.getPlayer().setHP(gp.getPlayer().getHP()+10);
+                    }
                 }
             }
         } else {

@@ -12,8 +12,8 @@ import methods.Utilz;
 import static constant.Constants.*;
 
 public class Muscle extends Player{
-    private int skillCooldown = 5;
-    private int skillDuration = 3;
+    private int skillCooldown = 10;
+    private int skillDuration = 5;
     private int skillDurationCount = 0;
     public Muscle(int HP, double x, double y, int xSize, int ySize) {
         super(HP, x, y, xSize, ySize);
@@ -30,10 +30,10 @@ public class Muscle extends Player{
     public void skill() {
         skillOnUse = true;
         WALLDAMAGE = 0;
-        if(isCrash){
-            HP += 99999999;
+        // if(isCrash){
+        //     HP += 99999999;
 
-        }
+        // }
     }
 
     @Override
@@ -57,6 +57,9 @@ public class Muscle extends Player{
     public void updateEverySec(){
         super.updateEverySec();
         skillActivate();
+        if(HP<= 50){
+            timeCount++;
+        }
         if(skillOnUse){
             skillDurationCount++;
         }
