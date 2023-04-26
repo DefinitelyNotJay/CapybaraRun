@@ -1,29 +1,52 @@
 package object;
 
-import entity.Entity;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
+import entity.Entity;
+import main.Game;
 import main.GamePanel;
 
-public abstract class SuperObjects extends Entity {
-    
-    protected GamePanel gp;
-    //private static final int WALLSPEED = 6;
-    protected int width, height;
-    public abstract void Obcrash();
-    public abstract void draw(Graphics g2);
+public class SuperObjects extends Entity {
+    private BufferedImage Image;
+    private String name;
+    private boolean collision = false;
+    public int mapX, mapY, width, height;
+    private GamePanel gp;
 
     public SuperObjects(GamePanel gp, double x, double y, int sizeX, int sizeY) {
         super(x, y);
         this.gp = gp;
-        this.width = sizeX;
-        this.height = sizeY;
+        this.mapX = sizeX;
+        this.mapY = sizeY;
     }
-    // public void update() {
-    //     x -= WALLSPEED;
-    //     if (x < 0) {
-    //         x = 1100;
-    //     }
-        // crash();
-    //}
+    public void setName(String name){
+        this.name = name;
+    }
+    public String getName(){
+        return name;
+    }
+    public void mapX(int mapX){
+        this.mapX = mapX;
+    }
+    public int mapX(){
+        return mapX;
+    }
+    public void mapy(int mapY){
+        this.mapY = mapY;
+    }
+    public int mapY(){
+        return mapY;
+    }
+    public void setCollision(boolean collision){
+        this.collision = collision;
+    }
+    public boolean getCollision(){
+        return collision;
+    }
+    public void draw(Graphics g2) {
+        g2.setColor(Color.red);
+        g2.fillRect((int) mapX, (int) mapY, width, height);
+    }
 }

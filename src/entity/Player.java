@@ -17,7 +17,7 @@ public abstract class Player extends Entity implements Animations, LoadImages {
 
     protected boolean jump, down, left, right, isSlide = false;
     protected int width, height, HP, rateDecreaseHP = 1;
-    protected int jumpHeight = 20;
+    protected int jumpHeight = 16;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected final int gravity = 1;
     protected int velocity = jumpHeight;

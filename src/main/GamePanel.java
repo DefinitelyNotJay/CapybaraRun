@@ -29,7 +29,6 @@ public class GamePanel extends JPanel{
     final int screenHeight = tileSize * maxScreenRow; // 512 px
     private Player player;
     private WallPattern wp;
-    private AssetSetter as;
     private Utilz utilz;
     private Constants c;
     public final int GROUND_H = 500;
@@ -46,6 +45,10 @@ public class GamePanel extends JPanel{
         new Utilz(this);
         deathScreen = new DeathPanel(this);
     }
+
+public void setUpGame(){
+    aSetter.serObject();
+}
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
@@ -54,9 +57,6 @@ public class GamePanel extends JPanel{
             player.drawPlaying(g2);
             for (int i=0; i<wp.getWallPattern().size(); i++){
                 wp.getWallPattern().get(i).draw(g2);
-            }
-            for (int j=0; j<as.getListob().size(); j++){
-                    as.getListob().get(j).draw(g2);
             }
         } else if(GameState == GAMESTATE_DEATH){
             player.drawDeath(g2);
@@ -74,9 +74,6 @@ public class GamePanel extends JPanel{
             for (int i=0; i<wp.getWallPattern().size(); i++){
                 wp.getWallPattern().get(i).update();
                 }
-            // for (int j=0; j<as.getListob().size(); j++){
-            //         as.getListob().get(j).update();
-            // }
         }
 
         }
