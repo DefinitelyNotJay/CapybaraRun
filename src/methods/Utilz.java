@@ -14,6 +14,7 @@ public class Utilz {
     public Utilz(GamePanel gp){
         Utilz.gp = gp;
     }
+    
     public static BufferedImage GetImage(String fileName){
         BufferedImage img = null;
         try{

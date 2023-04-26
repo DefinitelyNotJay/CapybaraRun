@@ -2,6 +2,7 @@ package main;
 
 import player.*;
 import screen.DeathPanel;
+import screen.MenuGame;
 import entity.Player;
 import obstacles.Wall;
 import obstacles.WallPattern;
@@ -31,9 +32,10 @@ public class GamePanel extends JPanel{
     private WallPattern wp;
     private Utilz utilz;
     private Constants c;
+    private MenuGame mg;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = GAMESTATE_PLAYING;
+    public static int GameState = GAMESTATE_MENU;
     public GamePanel(){
         player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -41,6 +43,7 @@ public class GamePanel extends JPanel{
         addMouseListener(new MouseHandler(this));
         wp = new WallPattern(this);
         new Utilz(this);
+        mg = new MenuGame();
     }
 
 public void setUpGame(){
@@ -52,16 +55,18 @@ public void setUpGame(){
         Graphics2D g2 = (Graphics2D)g;
 
         if(GameState == GAMESTATE_PLAYING){
-
-         } else if(GameState == GAMESTATE_DEATH){
+            player.draw(g2);
+            for(int i=0; i<wp.getWallPattern().size(); i++){
+                wp.getWallPattern().get(i).draw(g2);
+            }
+         } 
+         else if(GameState == GAMESTATE_DEATH){
             g2.drawString("GAME OVER", 640, 256);
-         } else if(GameState == GAMESTATE_MENU){
-            
+         } 
+         else if(GameState == GAMESTATE_MENU){
+            mg.paint(g2);
         }
-        player.draw(g2);
-        for(int i=0; i<wp.getWallPattern().size(); i++){
-            wp.getWallPattern().get(i).draw(g2);
-        }
+
         g2.dispose();
 
     }

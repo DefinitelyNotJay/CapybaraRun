@@ -1,17 +1,13 @@
 package entity;
 
-import entity.Entity;
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.image.BufferedImage;
-import javax.swing.*;
 
 import static constant.Constants.*;
 import constant.Constants;
 import main.GamePanel;
 import methods.Animations;
 import methods.LoadImages;
-import methods.SpecialAbility;
 import methods.Utilz;
 
 public abstract class Player extends Entity implements Animations, LoadImages {
