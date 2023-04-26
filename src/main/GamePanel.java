@@ -35,7 +35,7 @@ public class GamePanel extends JPanel{
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = GAMESTATE_PLAYING;
     public GamePanel(){
-        player = new Ghost(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -58,7 +58,7 @@ public void setUpGame(){
          } else if(GameState == GAMESTATE_MENU){
             
         }
-        player.drawPlaying(g2);
+        player.draw(g2);
         for(int i=0; i<wp.getWallPattern().size(); i++){
             wp.getWallPattern().get(i).draw(g2);
         }

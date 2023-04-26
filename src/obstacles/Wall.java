@@ -1,8 +1,6 @@
 package obstacles;
 
 import entity.Entity;
-import entity.Entity;
-import java.awt.Color;
 import java.awt.Graphics;
 import main.GamePanel;
 import static constant.Constants.*;

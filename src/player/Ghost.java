@@ -81,7 +81,6 @@ public class Ghost extends Player{
         WALLDAMAGE = 10;
         // reset animation
         skillDurationCount = 0;
-
         skillOnUse = false;
     }
 }

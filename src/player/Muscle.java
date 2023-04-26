@@ -31,26 +31,21 @@ public class Muscle extends Player{
     public void skill() {
         skillOnUse = true;
         WALLDAMAGE = 0;
-        // if(isCrash){
-        //     HP += 99999999;
 
-        // }
     }
 
     @Override
     public void skillActivate() {
         if(timeCount == skillCooldown){
-            System.out.println("Skill Activate");
+            timeCount = 0;
             skill();
         }
     }
     
     @Override
     public void skillReset(){
-        System.out.println("No Skill!");
         skillOnUse = false;
         WALLDAMAGE = 10;
-        timeCount = 0;
         skillDurationCount = 0;
     }
 
@@ -58,7 +53,7 @@ public class Muscle extends Player{
     public void updateEverySec(){
         super.updateEverySec();
         skillActivate();
-        if(HP<= 50){
+        if(HP<= 50 && !skillOnUse){
             timeCount++;
         }
         if(skillOnUse){

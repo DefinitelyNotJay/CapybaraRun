@@ -5,7 +5,6 @@ import java.awt.Graphics;
 
 import static constant.Constants.*;
 import main.GamePanel;
-import methods.Utilz;
 
 public class WallGround extends Wall {
     private int times = 0;

@@ -2,7 +2,6 @@ package methods;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.sql.Array;
 
 import javax.imageio.ImageIO;
 import main.GamePanel;
