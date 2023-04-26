@@ -37,7 +37,7 @@ public class GamePanel extends JPanel{
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = GAMESTATE_MENU;
     public GamePanel(){
-        player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
+        // player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
