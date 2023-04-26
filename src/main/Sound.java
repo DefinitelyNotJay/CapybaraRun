@@ -9,7 +9,7 @@ public class Sound {
     private URL soundURL[] = new URL[30];
     
     public Sound(){
-        soundURL[0] = getClass().getResource("/sound/sound/capybara_main.wav");
+        soundURL[0] = getClass().getResource("/res/sound/capybara_main.wav");
     }
 
     public void setFiles(int i){
