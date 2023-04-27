@@ -7,13 +7,14 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import main.GamePanel;
+import methods.SpecialAbility;
 import methods.Utilz;
 
-public class Capybara extends Player {
-    // private int aniTick, aniIndex, aniSpeed=10;
-    public Capybara(int HP, double x, double y, int xSize, int ySize) {
-        super(HP, x, y, xSize, ySize);
+public class Capybara extends Player{
+    public Capybara(GamePanel gp, int HP, double x, double y, int xSize, int ySize) {
+        super(gp, HP, x, y, xSize, ySize);
         loadImages();
+        skillActivate();
     }
     
     @Override
@@ -22,7 +23,26 @@ public class Capybara extends Player {
         slideAni = Utilz.GetImage("/res/player/capybara/slideCapy.png");
     }
 
+    @Override
+    public void update() {
+        move();
+        updateAnimations();
+        healthCheck();
+}
 
+    @Override
+    public void skill() {
+        rateDecreaseHP = 0;
+        HP = 150;
+    }
 
+    @Override
+    public void skillActivate() {
+        skill();
+    }
 
+    @Override
+    public void skillReset(){
+        
+    }
 }

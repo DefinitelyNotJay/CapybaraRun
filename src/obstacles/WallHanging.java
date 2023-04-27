@@ -3,6 +3,7 @@ package obstacles;
 import java.awt.Color;
 import java.awt.Graphics;
 import main.GamePanel;
+import static constant.Constants.*;
 
 public class WallHanging extends Wall {
 
@@ -13,19 +14,24 @@ public class WallHanging extends Wall {
     }
     @Override
     public void crash() {
-        if (gp.getPlayer().getX()-gp.getPlayer().getCrashAreaWidth() >= this.x 
-                && gp.getPlayer().getX()+gp.getPlayer().getCrashAreaWidth() <= this.x + width) {
-            if (gp.getPlayer().getY()+gp.getPlayer().getCrashAreaHeight() <= this.y + height) {
+        if (playerX - playerSolidAreaX >= this.x 
+                && playerX + playerSolidAreaX <= this.x + width) {
+            if (playerY + playerSolidAreaY <= this.y + height) {
                 times++;
-                
                 if (times == 1) {
                     // System.out.println("crash");
-                    gp.getPlayer().setHP(gp.getPlayer().getHP() - 10);
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                     System.out.println(gp.getPlayer().getHP());
+                    gp.getPlayer().setIsCrash(true);
+                    gp.getPlayer().setIsCrash(false);
+                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("player.Muscle")){
+                        gp.getPlayer().setHP(gp.getPlayer().getHP()+10);
+                    }
                 }
             }
         } else {
             times = 0;
+            gp.getPlayer().setIsCrash(false);
         }
     }
     @Override

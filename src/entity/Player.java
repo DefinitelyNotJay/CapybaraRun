@@ -11,46 +11,85 @@ import constant.Constants;
 import main.GamePanel;
 import methods.Animations;
 import methods.LoadImages;
+import methods.SpecialAbility;
 import methods.Utilz;
 
 public abstract class Player extends Entity implements Animations, LoadImages {
 
-    protected boolean jump, down, left, right, isSlide = false;
+    protected GamePanel gp;
+    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false;
     protected int width, height, HP, rateDecreaseHP = 1;
+    protected int timeCount = 0;
     protected int jumpHeight = 16;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
+    protected int skillCooldown, skillDuration, skillDurationCount;
     protected final int gravity = 1;
     protected int velocity = jumpHeight;
     public BufferedImage[] runningAni;
-    public BufferedImage slideAni;
-    private int aniTick, aniIndex, aniSpeed = 10;
-    //public abstract void updateAnimations();
-    //public abstract void draw(Graphics g2);
+    public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar, skillDurationBar;
+    protected int aniTick, aniIndex, aniSpeed = 7;
+    // public abstract void updateAnimations();
+    // public abstract void draw(Graphics g2);
+    public abstract void skill();
+    public abstract void skillActivate();
+    public abstract void skillReset();
 
-    public Player(int HP, double x, double y, int width, int height) {
+    public Player(GamePanel gp, int HP, double x, double y, int width, int height) {
         super(x, y);
+        this.gp = gp;
         this.HP = HP;
         this.width = width;
         this.height = height;
+        getStatusImage();
     }
+
+    public void getStatusImage(){
+        emptyHealthBar = Utilz.GetImage("/res/player/object/EmptyHealthBar.png");
+        healthBar = Utilz.GetImage("/res/player/object/HealthBarFixed.png");
+        skillBar = Utilz.GetImage("/res/player/object/emptySkill.png");
+        skillOnUseBar = Utilz.GetImage("/res/player/object/skillOnUseBar.png");
+        skillCooldownBar = Utilz.GetImage("/res/player/object/skillCooldownBar.png");
+        skillDurationBar = Utilz.GetImage("/res/player/object/skillDurationBar.png");
+    }
+    
 
     public void update() {
-        move();
-        updateAnimations();
-        healthCheck();
+            move();
+            updateAnimations();
+            healthCheck();
     }
 
-    public void drawPlaying(Graphics g2) {
+    public void draw(Graphics g2) {
+        drawPlayerStatusBar(g2);
+        drawPlayer(g2);
+    }
+
+    public void drawPlayer(Graphics g2){
         if (isSlide) {
-            g2.drawImage(slideAni, (int) x, (int) y, 90, 40, null);
+            g2.drawImage(slideAni, (int) x, (int) y-4, 90, 40, null);
             isSlide = false;
         } else {
-            g2.drawImage(runningAni[aniIndex], (int) x, (int) y - 4, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
+            g2.drawImage(runningAni[aniIndex], (int) x, (int) y, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
         }
     }
 
+    public void drawPlayerStatusBar(Graphics g2){
+        if(skillOnUse){
+            g2.drawImage(skillOnUseBar, (int)(x*0.9), (int)(y*0.845), (int)(5*2), (int)(5*2), null);
+            g2.drawImage(skillDurationBar, (int)(x*0.976), (int)(y*0.85), (int)((90/skillDuration)*(skillDuration - skillDurationCount)), (int)(4*2), null);
+        }
+            g2.drawImage(skillCooldownBar, (int)(x*0.91), (int)(y*0.88), (int)((90/skillCooldown-1)*(timeCount)), (int)(10*0.8), null);
+            g2.drawImage(skillBar, (int)(x*0.9), (int)(y*0.85), (int)(65*1.5), (int)(10*1.5), null);
+            g2.drawImage(healthBar, (int)(gp.tileSize*2.5), (int)(gp.tileSize/1.18), (int)(HP*1.75), (int)(gp.tileSize/5.33), null);
+            g2.drawImage(emptyHealthBar, (int)(gp.tileSize*1.61), (int)(gp.tileSize/2.37), (int)(gp.tileSize*3.75), (int)(gp.tileSize/1.06), null);
+    }
+    
+    public void updateEverySec(){
+        decreaseHP();
+    }
+
     public void drawDeath(Graphics g2){
-        g2.drawString("GAME OVER", 640, 256);
+        // g2.drawString("GAME OVER", 640, 256);
     }
 
 public void updateAnimations(){
@@ -90,6 +129,7 @@ public void updateAnimations(){
     public void healthCheck(){
         if(HP <= 0){
             GamePanel.GameState = GAMESTATE_DEATH;
+            HP = 0;
             // showDeadScreen();
 
         }
@@ -184,5 +224,19 @@ public void updateAnimations(){
     public void setCrashAreaHeight(int crashAreaHeight) {
         this.crashAreaHeight = crashAreaHeight;
     }
+
+    public void setIsCrash(boolean isCrash){
+        this.isCrash = isCrash;
+
+    }
+
+    public boolean isSkillOnUse() {
+        return skillOnUse;
+    }
+
+    public void setSkillOnUse(boolean skillOnUse) {
+        this.skillOnUse = skillOnUse;
+    }
+    
     
 }
