@@ -35,10 +35,10 @@ public class GamePanel extends JPanel{
     private MenuGame mg;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = GAMESTATE_MENU;
+    public static int GameState = GAMESTATE_PLAYING;
     private static Sound music;
     public GamePanel(){
-        // player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -46,7 +46,7 @@ public class GamePanel extends JPanel{
         new Utilz(this);
         mg = new MenuGame();
         music = new Sound();
-        playMusic(0);
+        //playMusic(0);
     }
 
 public void setUpGame(){
