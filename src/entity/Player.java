@@ -62,7 +62,7 @@ public abstract class Player extends Entity implements Animations, LoadImages {
 
     public void drawPlayer(Graphics g2){
         if (isSlide) {
-            g2.drawImage(slideAni, (int) x, (int) y-4, 90, 40, null);
+            g2.drawImage(slideAni, (int) x, (int) y+5, 90, 40, null);
             isSlide = false;
         } else {
             g2.drawImage(runningAni[aniIndex], (int) x, (int) y, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
