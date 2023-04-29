@@ -45,7 +45,6 @@ public class Game implements Runnable{
             if(System.currentTimeMillis()-lastCheck>1000){
                 lastCheck = System.currentTimeMillis();
                 gamePanel.updateEverySec();
-                System.out.println(gamePanel.getPlayer().getHP());
 
             }
         }

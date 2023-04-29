@@ -24,10 +24,10 @@ public class GamePanel extends JPanel{
     final int originalTileSize = 32;
     public final int scale = 2; 
     public final int tileSize = originalTileSize*scale;
-    final int maxScreenCol = 20;
-    final int maxScreenRow = 8;
-    final int screenWidth = tileSize * maxScreenCol; // 1280 px
-    final int screenHeight = tileSize * maxScreenRow; // 512 px
+    public final int maxScreenCol = 20;
+    public final int maxScreenRow = 8;
+    public final int screenWidth = tileSize * maxScreenCol; // 1280 px
+    public final int screenHeight = tileSize * maxScreenRow; // 512 px
     private Player player;
     private WallPattern wp;
     private Utilz utilz;
@@ -35,10 +35,10 @@ public class GamePanel extends JPanel{
     private MenuGame mg;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = GAMESTATE_MENU;
+    public static int GameState = GAMESTATE_PLAYING;
     private static Sound music;
     public GamePanel(){
-        // player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -46,7 +46,7 @@ public class GamePanel extends JPanel{
         new Utilz(this);
         mg = new MenuGame();
         music = new Sound();
-        playMusic(0);
+        //playMusic(0);
     }
 
 public void setUpGame(){
@@ -60,9 +60,10 @@ public void setUpGame(){
         if(GameState == GAMESTATE_PLAYING){
             player.draw(g2);
             for(int i=0; i<wp.getWallPattern().size(); i++){
+                
                 wp.getWallPattern().get(i).draw(g2);
-            }
-         } 
+             }
+        } 
          else if(GameState == GAMESTATE_DEATH){
             g2.drawString("GAME OVER", 640, 256);
          } 
