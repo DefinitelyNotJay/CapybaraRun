@@ -13,7 +13,7 @@ import methods.Utilz;
 public abstract class Player extends Entity implements Animations, LoadImages {
 
     protected GamePanel gp;
-    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false;
+    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false, canDoubleJump = true;
     protected int width, height, HP, rateDecreaseHP = 1;
     protected int timeCount = 0;
     protected int jumpHeight = 16;
@@ -24,6 +24,11 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     public BufferedImage[] runningAni;
     public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar, skillDurationBar;
     protected int aniTick, aniIndex, aniSpeed = 7;
+    private static final int GRAVITY = 1;
+    private static final int JUMP_SPEED = 20;
+    private static final int MAX_JUMP_COUNT = 2;
+    private int yVelocity = 0;
+    private int jumpCount = 0;
     // public abstract void updateAnimations();
     // public abstract void draw(Graphics g2);
     public abstract void skill();
@@ -50,6 +55,7 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     
 
     public void update() {
+            alwaysOnGround();
             move();
             updateAnimations();
             healthCheck();
@@ -106,7 +112,8 @@ public void updateAnimations(){
     public void move(){
         if(jump){
             jump();
-        }
+            }
+
       else if(down && (y == Constants.GROUND)){
             slide(Constants.GROUND+(slideAni.getHeight()));
         }
@@ -120,14 +127,28 @@ public void updateAnimations(){
             if (velocity < -jumpHeight){
                 jump = false;
                 velocity = jumpHeight;
+        }
+            
             }
-    }
+    
     public void healthCheck(){
         if(HP <= 0){
-            GamePanel.GameState = GAMESTATE_DEATH;
+            GamePanel.GameState = DEAD;
             HP = 0;
             // showDeadScreen();
 
+        }
+
+    }
+    public void alwaysOnGround(){
+        if(this.y>GROUND) this.y = GROUND;
+    }
+    public boolean isFlying(){
+        if(this.x > GROUND){
+        return true;
+        }
+        else{
+            return false;
         }
     }
     public void decreaseHP(){

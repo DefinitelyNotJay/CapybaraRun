@@ -30,7 +30,7 @@ public class WallPattern {
         loadWalls();
     }
     
-    private void randomWallSequence(int max) {
+    public void randomWallSequence(int max) {
         Set<Integer> num = new HashSet<>();
         while(num.size() != max){
             num.add((int)Math.floor(Math.random() * (max - 1+1) + 0));
