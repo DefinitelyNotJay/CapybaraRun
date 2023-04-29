@@ -4,12 +4,15 @@ import screen.MenuGame;
 import screen.Result;
 import entity.Player;
 import obstacles.WallPattern;
+import player.*;
 import inputs.KeyboardListener;
 import inputs.MouseHandler;
 import java.awt.*;
 import javax.swing.*;
-import object.AssetSetter;
-import object.SuperObjects;
+
+import Item.AssetSetter;
+import Item.SuperObjects;
+import constant.Constants;
 import static constant.Constants.*;
 import methods.Utilz;
 
@@ -28,9 +31,10 @@ public class GamePanel extends JPanel{
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = MENU;
+    public static int GameState = GAMESTATE_PLAYING;
     private static Sound music;
     public GamePanel(){
-        // player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -38,12 +42,11 @@ public class GamePanel extends JPanel{
         new Utilz(this);
         mg = new MenuGame();
         music = new Sound();
-        result = new Result(this);
-        // playMusic(0);
+        //playMusic(0);
     }
 
 public void setUpGame(){
-    aSetter.serObject();
+    aSetter.setObject();
 }
 
     @Override
@@ -67,6 +70,13 @@ public void setUpGame(){
         else if(GameState == RESULT){
             result.paint(g2);
         }
+        
+        // for(int i = 0; i < obj.length;i++) {
+
+        //     if(obj[i] != null) {
+        //         obj[i].draw(g2);
+        //     }
+        // }
         g2.dispose();
     }
 

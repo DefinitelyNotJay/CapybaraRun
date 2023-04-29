@@ -1,4 +1,4 @@
-package object;
+package Item;
 
 import java.awt.Color;
 import java.awt.Graphics;
@@ -8,19 +8,21 @@ import entity.Entity;
 import main.Game;
 import main.GamePanel;
 
-public class SuperObjects extends Entity {
+public class SuperObjects {
     private BufferedImage Image;
     private String name;
     private boolean collision = false;
-    public int mapX, mapY, width, height;
+    public int mapX, mapY, sizeX, sizeY;
     private GamePanel gp;
 
-    public SuperObjects(GamePanel gp, double x, double y, int sizeX, int sizeY) {
-        super(x, y);
+    public SuperObjects(GamePanel gp, int x, int y, int sizeX, int sizeY) {
+        this.mapX = x;
+        this.mapY = y;
         this.gp = gp;
-        this.mapX = sizeX;
-        this.mapY = sizeY;
+        this.sizeX = sizeX;
+        this.sizeY = sizeY;
     }
+    
     public void setName(String name){
         this.name = name;
     }
@@ -47,6 +49,6 @@ public class SuperObjects extends Entity {
     }
     public void draw(Graphics g2) {
         g2.setColor(Color.red);
-        g2.fillRect((int) mapX, (int) mapY, width, height);
+        g2.fillRect(mapX(), mapY(), sizeX, sizeY);
     }
 }
