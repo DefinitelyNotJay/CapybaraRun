@@ -10,7 +10,7 @@ import methods.SpecialAbility;
 import methods.Utilz;
 import static constant.Constants.*;
 
-public class Muscle extends Player{
+public class Muscle extends Player {
 
     public Muscle(GamePanel gp, int HP, double x, double y, int xSize, int ySize) {
         super(gp, HP, x, y, xSize, ySize);
@@ -21,14 +21,15 @@ public class Muscle extends Player{
     }
 
     @Override
-    public void drawPlayerStatusBar(Graphics g2){
+    public void drawPlayerStatusBar(Graphics g2) {
         super.drawPlayerStatusBar(g2);
-        if(skillOnUse){
-            g2.drawImage(skillOnUseBar, (int)(x*0.9), (int)(y*0.845), (int)(5*2), (int)(5*2), null);
-            g2.drawImage(skillDurationBar, (int)(x*0.976), (int)(y*0.85), (int)((90/skillDuration)*(skillDuration - skillDurationCount)), (int)(4*2), null);
+        if (skillOnUse) {
+            g2.drawImage(skillOnUseBar, (int) (x * 0.9), (int) (y * 0.845), (int) (5 * 2), (int) (5 * 2), null);
+            g2.drawImage(skillDurationBar, (int) (x * 0.976), (int) (y * 0.85),
+                    (int) ((90 / skillDuration) * (skillDuration - skillDurationCount)), (int) (4 * 2), null);
         }
     }
-    
+
     @Override
     public void loadImages() {
         runningAni = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
@@ -43,30 +44,30 @@ public class Muscle extends Player{
 
     @Override
     public void skillActivate() {
-        if(timeCount == skillCooldown){
+        if (timeCount == skillCooldown) {
             timeCount = 0;
             skill();
         }
     }
-    
+
     @Override
-    public void skillReset(){
+    public void skillReset() {
         skillOnUse = false;
         WALLDAMAGE = 10;
         skillDurationCount = 0;
     }
 
     @Override
-    public void updateEverySec(){
+    public void updateEverySec() {
         super.updateEverySec();
         skillActivate();
-        if(HP <= 100 && !skillOnUse){
+        if (HP <= 100 && !skillOnUse) {
             timeCount++;
         }
-        if(skillOnUse){
+        if (skillOnUse) {
             skillDurationCount++;
         }
-        if(skillDurationCount == skillDuration){
+        if (skillDurationCount == skillDuration) {
             skillReset();
         }
 
