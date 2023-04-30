@@ -8,6 +8,7 @@ import main.GamePanel;
 
 public class WallGround extends Wall {
     private int times = 0;
+
     public WallGround(GamePanel gp, double x, double y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
     }
@@ -15,17 +16,26 @@ public class WallGround extends Wall {
     @Override
     public void crash() {
         if (playerX + playerWidth + playerSolidAreaX >= this.x
-        && playerX + playerWidth + playerSolidAreaY <= this.x + width) {
+                && playerX + playerWidth + playerSolidAreaY <= this.x + width) {
             if (playerY + playerHeight - playerSolidAreaY >= this.y) {
-                    times++;
-                    if (times == 1) {
-                        // System.out.println("Hit");
-                        gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
-                        System.out.println(gp.getPlayer().getHP());
-                        if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("player.Muscle")){
-                            gp.getPlayer().setHP(gp.getPlayer().getHP()+10);
+                times++;
+                if (times == 1) {
+                    // getDamage
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
+
+                    // flinching
+                    gp.getPlayer().setFlinching(true);
+
+                    // set immune player to true
+                    // gp.getPlayer().setImmune(true);
+
+                    // special ability for muscle
+                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("entity.Muscle")) {
+                        if (gp.getPlayer().getHP() + 10 <= gp.getPlayer().getMaxHP()) {
+                            gp.getPlayer().setHP(gp.getPlayer().getHP() + 10);
                         }
                     }
+                }
 
             }
 

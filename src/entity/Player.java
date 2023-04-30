@@ -3,18 +3,21 @@ package entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import javax.swing.plaf.synth.SynthListUI;
+
 import static constant.Constants.*;
 import constant.Constants;
 import main.GamePanel;
 import methods.Animations;
-import methods.LoadImages;
 import methods.Utilz;
 
-public abstract class Player extends Entity implements Animations, LoadImages {
+public abstract class Player extends Entity implements Animations {
 
     protected GamePanel gp;
-    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false, canDoubleJump = true;
-    protected int width, height, HP, rateDecreaseHP = 1;
+    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false, flinching = false,
+            appear = true, immune = false;
+    protected int width, height, HP, maxHP, rateDecreaseHP = 1, flinchingCount = 0, flinchPerSec = 10;
+    protected int fps = 0;
     protected int timeCount = 0;
     protected int jumpHeight = 16;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
@@ -22,17 +25,16 @@ public abstract class Player extends Entity implements Animations, LoadImages {
     protected final int gravity = 1;
     protected int velocity = jumpHeight;
     public BufferedImage[] runningAni;
-    public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar, skillDurationBar;
+    public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar,
+            skillDurationBar;
     protected int aniTick, aniIndex, aniSpeed = 7;
-    private static final int GRAVITY = 1;
-    private static final int JUMP_SPEED = 20;
-    private static final int MAX_JUMP_COUNT = 2;
-    private int yVelocity = 0;
-    private int jumpCount = 0;
+
     // public abstract void updateAnimations();
     // public abstract void draw(Graphics g2);
     public abstract void skill();
+
     public abstract void skillActivate();
+
     public abstract void skillReset();
 
     public Player(GamePanel gp, int HP, double x, double y, int width, int height) {
@@ -41,10 +43,11 @@ public abstract class Player extends Entity implements Animations, LoadImages {
         this.HP = HP;
         this.width = width;
         this.height = height;
+        maxHP = HP;
         getStatusImage();
     }
 
-    public void getStatusImage(){
+    public void getStatusImage() {
         emptyHealthBar = Utilz.GetImage("/res/player/object/EmptyHealthBar.png");
         healthBar = Utilz.GetImage("/res/player/object/HealthBarFixed.png");
         skillBar = Utilz.GetImage("/res/player/object/emptySkill.png");
@@ -52,113 +55,151 @@ public abstract class Player extends Entity implements Animations, LoadImages {
         skillCooldownBar = Utilz.GetImage("/res/player/object/skillCooldownBar.png");
         skillDurationBar = Utilz.GetImage("/res/player/object/skillDurationBar.png");
     }
-    
 
     public void update() {
-            alwaysOnGround();
-            move();
-            updateAnimations();
-            healthCheck();
+        move();
+        updateAnimations();
+        healthCheck();
+        // System.out.println(fps);
+
     }
 
     public void draw(Graphics g2) {
+        // 60FPS
+        getFlinching();
         drawPlayerStatusBar(g2);
         drawPlayer(g2);
     }
 
-    public void drawPlayer(Graphics g2){
+    public void drawPlayer(Graphics g2) {
         if (isSlide) {
-            g2.drawImage(slideAni, (int) x, (int) y+5, 90, 40, null);
+            if (appear)
+                g2.drawImage(slideAni, (int) x, (int) GROUND + 40, 90, 40, null);
             isSlide = false;
         } else {
-            g2.drawImage(runningAni[aniIndex], (int) x, (int) y, Utilz.gp.tileSize, Utilz.gp.tileSize + 2, null);
+            if (appear)
+                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, Utilz.gp.tileSize, Utilz.gp.tileSize, null);
         }
     }
 
-    public void drawPlayerStatusBar(Graphics g2){
-        if(skillOnUse){
-            g2.drawImage(skillOnUseBar, (int)(x*0.9), (int)(y*0.845), (int)(5*2), (int)(5*2), null);
-            g2.drawImage(skillDurationBar, (int)(x*0.976), (int)(y*0.85), (int)((90/skillDuration)*(skillDuration - skillDurationCount)), (int)(4*2), null);
-        }
-            g2.drawImage(skillCooldownBar, (int)(x*0.91), (int)(y*0.88), (int)((90/skillCooldown-1)*(timeCount)), (int)(10*0.8), null);
-            g2.drawImage(skillBar, (int)(x*0.9), (int)(y*0.85), (int)(65*1.5), (int)(10*1.5), null);
-            g2.drawImage(healthBar, (int)(gp.tileSize*2.5), (int)(gp.tileSize/1.18), (int)(HP*1.75), (int)(gp.tileSize/5.33), null);
-            g2.drawImage(emptyHealthBar, (int)(gp.tileSize*1.61), (int)(gp.tileSize/2.37), (int)(gp.tileSize*3.75), (int)(gp.tileSize/1.06), null);
+    public void drawPlayerStatusBar(Graphics g2) {
+
+        g2.drawImage(skillCooldownBar, (int) (x * 0.91), (int) (y * 0.88),
+                (int) ((90 / skillCooldown - 1) * (timeCount)), (int) (10 * 0.8), null);
+        g2.drawImage(skillBar, (int) (x * 0.9), (int) (y * 0.85), (int) (65 * 1.5), (int) (10 * 1.5), null);
+        g2.drawImage(healthBar, (int) (gp.tileSize * 2.5), (int) (gp.tileSize / 1.18), (int) (HP * 1.75),
+                (int) (gp.tileSize / 5.33), null);
+        g2.drawImage(emptyHealthBar, (int) (gp.tileSize * 1.61), (int) (gp.tileSize / 2.37), (int) (gp.tileSize * 3.75),
+                (int) (gp.tileSize / 1.06), null);
     }
-    
-    public void updateEverySec(){
+
+    public void updateEverySec() {
+        System.out.println(WALLDAMAGE);
         decreaseHP();
+        flinchingBlink();
+
     }
 
-    public void drawDeath(Graphics g2){
+    public void drawDeath(Graphics g2) {
         // g2.drawString("GAME OVER", 640, 256);
     }
 
-public void updateAnimations(){
-    if (down && (y == Constants.GROUND+(slideAni.getHeight()))){
-        isSlide = true;
-    }
-    aniTick++;
-    if(aniTick>=aniSpeed){
-        aniTick = 0;
-        aniIndex++;
-    }
-
-    if(aniIndex>=7){
-        aniIndex = 0;
-    }
-}
-
-    public void move(){
-        if(jump){
-            jump();
-            }
-
-      else if(down && (y == Constants.GROUND)){
-            slide(Constants.GROUND+(slideAni.getHeight()));
+    public void updateAnimations() {
+        if (down && (y == Constants.GROUND + (slideAni.getHeight()))) {
+            isSlide = true;
         }
-        else if(!down){
+        aniTick++;
+        if (aniTick >= aniSpeed) {
+            aniTick = 0;
+            aniIndex++;
+        }
+
+        if (aniIndex >= 7) {
+            aniIndex = 0;
+        }
+    }
+
+    public void move() {
+        if (jump) {
+            jump();
+        }
+
+        else if (down && (y >= Constants.GROUND)) {
+            slide(Constants.GROUND + (slideAni.getHeight()));
+        } else if (!down) {
             slideReset();
         }
     }
-    public void jump(){
-            y -= velocity;
-            velocity -= gravity;
-            if (velocity < -jumpHeight){
-                jump = false;
-                velocity = jumpHeight;
+
+    public void jump() {
+        y -= velocity;
+        velocity -= gravity;
+        if (velocity < -jumpHeight) {
+            jump = false;
+            velocity = jumpHeight;
         }
-            
-            }
-    
-    public void healthCheck(){
-        if(HP <= 0){
+    }
+
+    public void healthCheck() {
+        if (HP <= 0) {
             GamePanel.GameState = DEAD;
             HP = 0;
-            // showDeadScreen();
-
+        } else if (HP >= maxHP) {
+            HP = maxHP;
         }
 
     }
-    public void alwaysOnGround(){
-        if(this.y>GROUND) this.y = GROUND;
-    }
-    public boolean isFlying(){
-        if(this.x > GROUND){
-        return true;
+
+    public void getFlinching() {
+        // immune
+        if (immune) {
+            WALLDAMAGE = 0;
+        } else {
+            WALLDAMAGE = 10;
         }
-        else{
+
+        // immune state start
+        if (flinching) {
+            flinchingCount++;
+            immune = true;
+        }
+
+        // immune state end
+        if (flinchingCount >= 80) {
+            appear = true;
+            flinching = false;
+            flinchingCount = 0;
+            immune = false;
+        }
+        flinchingBlink();
+    }
+
+    public void flinchingBlink() {
+        if (flinchingCount % 2 == 0) {
+            appear = true;
+        } else {
+            appear = false;
+        }
+    }
+
+    public boolean isFlying() {
+        if (this.x > GROUND) {
+            return true;
+        } else {
             return false;
         }
     }
-    public void decreaseHP(){
+
+    public void decreaseHP() {
         HP -= rateDecreaseHP;
     }
-    public void slide(int num){
+
+    public void slide(int num) {
         this.y = num;
     }
-    public void slideReset(){
-        this.y = Constants.GROUND;
+
+    public void slideReset() {
+        this.y = Constants.GROUND + 5;
     }
 
     public boolean isJump() {
@@ -192,7 +233,6 @@ public void updateAnimations(){
     public void setRight(boolean right) {
         this.right = right;
     }
-
 
     public int getWidth() {
         return width;
@@ -242,7 +282,7 @@ public void updateAnimations(){
         this.crashAreaHeight = crashAreaHeight;
     }
 
-    public void setIsCrash(boolean isCrash){
+    public void setIsCrash(boolean isCrash) {
         this.isCrash = isCrash;
 
     }
@@ -254,6 +294,37 @@ public void updateAnimations(){
     public void setSkillOnUse(boolean skillOnUse) {
         this.skillOnUse = skillOnUse;
     }
-    
-    
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public boolean isFlinching() {
+        return flinching;
+    }
+
+    public void setFlinching(boolean flinching) {
+        this.flinching = flinching;
+    }
+
+    public int getFlinchingCount() {
+        return flinchingCount;
+    }
+
+    public void setFlinchingCount(int flinchingCount) {
+        this.flinchingCount = flinchingCount;
+    }
+
+    public boolean isImmune() {
+        return immune;
+    }
+
+    public void setImmune(boolean immune) {
+        this.immune = immune;
+    }
+
 }

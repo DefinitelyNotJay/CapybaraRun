@@ -22,13 +22,14 @@ public class WallPattern {
     
     public WallPattern(GamePanel gp){
         this.gp = gp;
-        wallPattern = new ArrayList<Wall>();
+        
         wallPattern1 = new ArrayList<Wall>();
         randomWallSequence(7);
         loadWalls();
     }
     
     public void randomWallSequence(int max) {
+        wallPattern = new ArrayList<Wall>();
         Set<Integer> num = new HashSet<>();
         while(num.size() != max){
             num.add((int)Math.floor(Math.random() * (max - 1+1) + 1));

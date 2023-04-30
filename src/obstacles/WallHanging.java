@@ -12,20 +12,28 @@ public class WallHanging extends Wall {
     public WallHanging(GamePanel gp, double x, double y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
     }
+
     @Override
     public void crash() {
-        if (playerX - playerSolidAreaX >= this.x 
+        if (playerX - playerSolidAreaX >= this.x
                 && playerX + playerSolidAreaX <= this.x + width) {
             if (playerY + playerSolidAreaY <= this.y + height) {
                 times++;
                 if (times == 1) {
-                    // System.out.println("crash");
+                    // getDamage
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
-                    System.out.println(gp.getPlayer().getHP());
-                    gp.getPlayer().setIsCrash(true);
-                    gp.getPlayer().setIsCrash(false);
-                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("player.Muscle")){
-                        gp.getPlayer().setHP(gp.getPlayer().getHP()+10);
+
+                    // flinching
+                    gp.getPlayer().setFlinching(true);
+
+                    // set immune player to true
+                    // gp.getPlayer().setImmune(true);
+
+                    // special ability for muscle
+                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("entity.Muscle")) {
+                        if (gp.getPlayer().getHP() + 10 <= gp.getPlayer().getMaxHP()) {
+                            gp.getPlayer().setHP(gp.getPlayer().getHP() + 10);
+                        }
                     }
                 }
             }
@@ -34,6 +42,7 @@ public class WallHanging extends Wall {
             gp.getPlayer().setIsCrash(false);
         }
     }
+
     @Override
     public void draw(Graphics g2) {
         g2.setColor(Color.black);

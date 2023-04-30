@@ -2,9 +2,10 @@ package main;
 
 import screen.MenuGame;
 import screen.Result;
+import tiles.*;
+import entity.Muscle;
 import entity.Player;
 import obstacles.WallPattern;
-import player.*;
 import inputs.KeyboardListener;
 import inputs.MouseHandler;
 import java.awt.*;
@@ -31,10 +32,10 @@ public class GamePanel extends JPanel{
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = MENU;
-    public static int GameState = GAMESTATE_PLAYING;
     private static Sound music;
+    public Tile t1;
     public GamePanel(){
-        player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize*2, Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -42,6 +43,8 @@ public class GamePanel extends JPanel{
         new Utilz(this);
         mg = new MenuGame();
         music = new Sound();
+        result = new Result(this);
+        t1 = new Tile(this);
         //playMusic(0);
     }
 
@@ -54,11 +57,13 @@ public void setUpGame(){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        if(GameState == PLAYING){
-            player.draw(g2);
+        if(GameState == PLAYING)
+        {
+            t1.draw(g2);
             for(int i=0; i<wp.getWallPattern().size(); i++){
                 wp.getWallPattern().get(i).draw(g2);
              }
+            player.draw(g2);
         } 
          else if(GameState == DEAD){
             Utilz.sleep(2);
@@ -97,7 +102,8 @@ public void setUpGame(){
 
     public void gameReset(){
         player.setHP(100);
-       wp.randomWallSequence(2);
+        wp.randomWallSequence(7);
+        wp.loadWalls();
         
         // waiting for reset obstacles method
     }

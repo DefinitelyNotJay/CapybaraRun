@@ -4,11 +4,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import constant.Constants;
+import entity.Muscle;
 
 import static constant.Constants.*;
 
 import main.GamePanel;
-import player.*;
+import tiles.*;
 
 public class MouseHandler implements MouseListener{
     private GamePanel gp;
@@ -18,8 +19,8 @@ public class MouseHandler implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {
         if(GamePanel.GameState == RESULT){
-            GamePanel.GameState = PLAYING;
             gp.gameReset();
+            GamePanel.GameState = PLAYING;
         }
         if(GamePanel.GameState == MENU){
             if(e.getY()>= 263 && e.getY() <= 263+72){
