@@ -23,7 +23,7 @@ public class Zombie extends Player{
     @Override
     public void healthCheck(){
         if(HP <= 0 && lives == 0){
-            GamePanel.GameState = GAMESTATE_DEATH;
+            GamePanel.GameState = DEAD;
             lives = 5;
         }
         else if(HP <= 0 && lives >= 1){

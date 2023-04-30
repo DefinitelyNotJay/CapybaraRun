@@ -1,17 +1,13 @@
 package main;
 
-import player.*;
-import screen.DeathPanel;
 import screen.MenuGame;
+import screen.Result;
 import entity.Player;
-import obstacles.Wall;
 import obstacles.WallPattern;
+import player.*;
 import inputs.KeyboardListener;
 import inputs.MouseHandler;
-
 import java.awt.*;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.*;
 
 import Item.AssetSetter;
@@ -30,12 +26,11 @@ public class GamePanel extends JPanel{
     public final int screenHeight = tileSize * maxScreenRow; // 512 px
     private Player player;
     private WallPattern wp;
-    private Utilz utilz;
-    private Constants c;
     private MenuGame mg;
+    private Result result;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = GAMESTATE_PLAYING;
+    public static int GameState = MENU;
     private static Sound music;
     public GamePanel(){
         player = new Muscle(this, 100, tileSize*2,Constants.GROUND, tileSize, tileSize);
@@ -52,12 +47,13 @@ public class GamePanel extends JPanel{
 public void setUpGame(){
     aSetter.setObject();
 }
+
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
 
-        if(GameState == GAMESTATE_PLAYING){
+        if(GameState == PLAYING){
             player.draw(g2);
             for(int i=0; i<wp.getWallPattern().size(); i++){
                 wp.getWallPattern().get(i).draw(g2);
@@ -68,19 +64,30 @@ public void setUpGame(){
                         obj[i].draw(g2);
                 }
             }
-        }
-         else if(GameState == GAMESTATE_DEATH){
-            g2.drawString("GAME OVER", 640, 256);
-         } 
-         else if(GameState == GAMESTATE_MENU){
+        } 
+         else if(GameState == DEAD){
+            Utilz.sleep(2);
+            GameState = RESULT;
+         }
+         else if(GameState == MENU){
             mg.paint(g2);
         }
+        else if(GameState == RESULT){
+            result.paint(g2);
+        }
+        
+        // for(int i = 0; i < obj.length;i++) {
+
+        //     if(obj[i] != null) {
+        //         obj[i].draw(g2);
+        //     }
+        // }
         g2.dispose();
         }
     
 
     public void update(){
-        if(GameState == GAMESTATE_PLAYING){
+        if(GameState == PLAYING){
             player.update();
             for (int i=0; i<wp.getWallPattern().size(); i++){
                 wp.getWallPattern().get(i).update();
@@ -91,17 +98,18 @@ public void setUpGame(){
                     }
                 }
         }
-
-        }
+    }
 
     public void updateEverySec(){
-        if(GameState == GAMESTATE_PLAYING){
-            player.updateEverySec();;
+        if(GameState == PLAYING){
+            player.updateEverySec();
         }
     }
 
     public void gameReset(){
         player.setHP(100);
+       wp.randomWallSequence(2);
+        
         // waiting for reset obstacles method
     }
     
