@@ -64,58 +64,80 @@ public class WallPattern {
         new WallHanging(gp, 1400, 90, gp.tileSize, gp.tileSize+20)
         );
         Collections.addAll(wallPattern,
-        //0 
-        new WallGround(gp,start+150+arr.get(0), 255, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+150+250+arr.get(0), 255, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+150+250+250+arr.get(0), 255, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+150+250+250+250+arr.get(0), 255, gp.tileSize, gp.tileSize),
-        //1
-        new WallGround(gp,start+arr.get(1), 255, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(1)+250, 200, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+arr.get(1)+250+250, 255, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(1)+250+250+250, 200, gp.tileSize, gp.tileSize),
-        //2
-        new WallGround(gp,start+arr.get(2), 255, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
-        //3
-        new WallHanging(gp,start+arr.get(3), 200, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+arr.get(3)+200, 255, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(3)+200+200, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(3)+200+200+150, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(3)+200+200+150+100, 200, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+arr.get(3)+200+200+150+100+200, 255, gp.tileSize, gp.tileSize),
-        //4
-        new WallHanging(gp,start+arr.get(4), 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(4)+100, 200, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+arr.get(4)+100+200, 255, gp.tileSize, gp.tileSize),
-        new WallGround(gp,start+arr.get(4)+100+200+250, 255, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(4)+100+200+250+200, 200, gp.tileSize, gp.tileSize),
-        //5
-        new WallGround(gp,start+arr.get(5), 255, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(5)+200, 150, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(5)+200+200, 150, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(5)+200+200+200, 200, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(5)+200+200+200+150, 200, gp.tileSize, gp.tileSize),
-        //6
-        new WallHanging(gp,start+arr.get(6), 50, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64, 70, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64+64, 90, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64+64+64, 110, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64+64+64+64, 130, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64+64+64+64+64, 150, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64+64+64+64+64+64, 170, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64+64+64+64+64+64+64, 190, gp.tileSize, gp.tileSize),
-        new WallHanging(gp,start+arr.get(6)+64+64+64+64+64+64+64+64, 210, gp.tileSize, gp.tileSize)
+        // //0 
+        // new WallGround(gp,start+150+arr.get(0), 255, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+150+250+arr.get(0), 255, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+150+250+250+arr.get(0), 255, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+150+250+250+250+arr.get(0), 255, gp.tileSize, gp.tileSize),
+        // //1
+        // new WallGround(gp,start+arr.get(1), 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(1)+250, 200, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+arr.get(1)+250+250, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(1)+250+250+250, 200, gp.tileSize, gp.tileSize),
+        // //2
+        // new WallGround(gp,start+arr.get(2), 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(2)+200+60+60+60+60+60+60+60+60+60+60, 200, gp.tileSize, gp.tileSize),
+        // //3
+        // new WallHanging(gp,start+arr.get(3), 200, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+arr.get(3)+200, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(3)+200+200, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(3)+200+200+150, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(3)+200+200+150+100, 200, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+arr.get(3)+200+200+150+100+200, 255, gp.tileSize, gp.tileSize),
+        // //4
+        // new WallHanging(gp,start+arr.get(4), 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(4)+100, 200, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+arr.get(4)+100+200, 255, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+arr.get(4)+100+200+250, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(4)+100+200+250+200, 200, gp.tileSize, gp.tileSize),
+        // //5
+        // new WallGround(gp,start+arr.get(5), 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(5)+200, 150, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(5)+200+200, 150, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(5)+200+200+200, 200, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(5)+200+200+200+150, 200, gp.tileSize, gp.tileSize),
+        // //6
+        // new WallHanging(gp,start+arr.get(6), 50, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64, 70, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64+64, 90, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64+64+64, 110, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64+64+64+64, 130, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64+64+64+64+64, 150, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64+64+64+64+64+64, 170, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64+64+64+64+64+64+64, 190, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+arr.get(6)+64+64+64+64+64+64+64+64, 210, gp.tileSize, gp.tileSize)
+        //7
+        // new WallGround(gp,start, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+200, 90, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+200+200, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+200+200+200, 90, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+200+200+200+200, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+200+200+200+200+200, 90, gp.tileSize, gp.tileSize)
+        //8
+        // new WallGround(gp,start, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+165, 90, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+165+75, 90, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+200+200, 255, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+200+200+165, 90, gp.tileSize, gp.tileSize),
+        // new WallHanging(gp,start+200+200+165+75, 90, gp.tileSize, gp.tileSize),
+        // new WallGround(gp,start+200+200+200+200, 255, gp.tileSize, gp.tileSize)
+        //9
+        new WallGround(gp,start, 255, gp.tileSize, gp.tileSize),
+        new WallHanging(gp,start+180, 200, gp.tileSize, gp.tileSize),
+        new WallHanging(gp,start+170+150, 200, gp.tileSize, gp.tileSize),
+        new WallHanging(gp,start+170+150+150, 200, gp.tileSize, gp.tileSize),
+        new WallHanging(gp,start+180, 200, gp.tileSize, gp.tileSize)
+
         
 
         
