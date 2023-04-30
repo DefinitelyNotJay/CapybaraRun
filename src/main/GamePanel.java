@@ -36,7 +36,7 @@ public class GamePanel extends JPanel {
     public Tile t1;
 
     public GamePanel() {
-        player = new Muscle(this, 100, tileSize * 2, Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize * 2, 360, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));

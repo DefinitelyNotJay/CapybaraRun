@@ -6,12 +6,15 @@ import main.GamePanel;
 import static constant.Constants.*;
 
 public abstract class Wall extends Entity {
-    
+
     protected GamePanel gp;
     // private static final int WALLSPEED = 6;
     protected int width, height, wallDamage = 10;
+
     public abstract void crash();
+
     public abstract void draw(Graphics g2);
+
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
 
     public Wall(GamePanel gp, double x, double y, int sizeX, int sizeY) {
@@ -28,9 +31,9 @@ public abstract class Wall extends Entity {
         playerY = gp.getPlayer().getY();
         playerHeight = gp.getPlayer().getHeight();
         playerSolidAreaY = gp.getPlayer().getCrashAreaHeight();
-        x -= GAMESPEED-2;
+        x -= GAMESPEED - 2;
         // if (x < 0) {
-        //     x = 1100;
+        // x = 1100;
         // }
         crash();
     }
@@ -42,8 +45,5 @@ public abstract class Wall extends Entity {
     public void setWallDamage(int wallDamage) {
         this.wallDamage = wallDamage;
     }
-
-    
-
 
 }

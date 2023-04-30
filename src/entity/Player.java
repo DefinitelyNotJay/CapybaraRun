@@ -74,11 +74,12 @@ public abstract class Player extends Entity implements Animations {
     public void drawPlayer(Graphics g2) {
         if (isSlide) {
             if (appear)
-                g2.drawImage(slideAni, (int) x, (int) GROUND + 40, 90, 40, null);
+                g2.drawImage(slideAni, (int) x, (int) 360, (int) (90 * 1.3), (int) (40 * 1.3), null);
             isSlide = false;
         } else {
             if (appear)
-                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, Utilz.gp.tileSize, Utilz.gp.tileSize, null);
+                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, (int) (Utilz.gp.tileSize * 1.3),
+                        (int) (Utilz.gp.tileSize * 1.3), null);
         }
     }
 
@@ -199,7 +200,7 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void slideReset() {
-        this.y = Constants.GROUND + 5;
+        this.y = 320;
     }
 
     public boolean isJump() {
