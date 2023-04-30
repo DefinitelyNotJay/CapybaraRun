@@ -60,31 +60,35 @@ public void setUpGame(){
         if(GameState == GAMESTATE_PLAYING){
             player.draw(g2);
             for(int i=0; i<wp.getWallPattern().size(); i++){
-                
                 wp.getWallPattern().get(i).draw(g2);
              }
-        } 
+             for(int i = 0; i < obj.length;i++) {
+                if(obj[i] != null) {
+                    // if (SuperObjects.getCollision() != true)
+                        obj[i].draw(g2);
+                }
+            }
+        }
          else if(GameState == GAMESTATE_DEATH){
             g2.drawString("GAME OVER", 640, 256);
          } 
          else if(GameState == GAMESTATE_MENU){
             mg.paint(g2);
         }
-        
-        // for(int i = 0; i < obj.length;i++) {
-
-        //     if(obj[i] != null) {
-        //         obj[i].draw(g2);
-        //     }
-        // }
         g2.dispose();
-    }
+        }
+    
 
     public void update(){
         if(GameState == GAMESTATE_PLAYING){
             player.update();
             for (int i=0; i<wp.getWallPattern().size(); i++){
                 wp.getWallPattern().get(i).update();
+                }
+                for(int i = 0; i < obj.length;i++) {
+                    if(obj[i] != null) {
+                       obj[i].update();
+                    }
                 }
         }
 
