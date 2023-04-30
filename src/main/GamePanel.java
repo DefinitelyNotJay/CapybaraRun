@@ -17,10 +17,10 @@ import constant.Constants;
 import static constant.Constants.*;
 import methods.Utilz;
 
-public class GamePanel extends JPanel{
+public class GamePanel extends JPanel {
     final int originalTileSize = 32;
-    public final int scale = 2; 
-    public final int tileSize = originalTileSize*scale;
+    public final int scale = 2;
+    public final int tileSize = originalTileSize * scale;
     public final int maxScreenCol = 20;
     public final int maxScreenRow = 8;
     public final int screenWidth = tileSize * maxScreenCol; // 1280 px
@@ -34,8 +34,9 @@ public class GamePanel extends JPanel{
     public static int GameState = MENU;
     private static Sound music;
     public Tile t1;
-    public GamePanel(){
-        player = new Muscle(this, 100, tileSize*2, Constants.GROUND, tileSize, tileSize);
+
+    public GamePanel() {
+        player = new Muscle(this, 100, tileSize * 2, Constants.GROUND, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -45,81 +46,88 @@ public class GamePanel extends JPanel{
         music = new Sound();
         result = new Result(this);
         t1 = new Tile(this);
-        //playMusic(0);
+        // playMusic(0);
     }
 
-public void setUpGame(){
-    aSetter.setObject();
-}
+    public void setUpGame() {
+        aSetter.setObject();
+    }
 
     @Override
-    public void paintComponent(Graphics g){
+    public void paintComponent(Graphics g) {
         super.paintComponent(g);
-        Graphics2D g2 = (Graphics2D)g;
+        Graphics2D g2 = (Graphics2D) g;
 
-        if(GameState == PLAYING)
-        {
+        if (GameState == PLAYING) {
             t1.draw(g2);
-            for(int i=0; i<wp.getWallPattern().size(); i++){
+            for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).draw(g2);
-             }
+            }
             player.draw(g2);
-        } 
-         else if(GameState == DEAD){
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    // if (SuperObjects.getCollision() != true)
+                    obj[i].draw(g2);
+                }
+            }
+        } else if (GameState == DEAD) {
             Utilz.sleep(2);
             GameState = RESULT;
-         }
-         else if(GameState == MENU){
+        } else if (GameState == MENU) {
             mg.paint(g2);
-        }
-        else if(GameState == RESULT){
+        } else if (GameState == RESULT) {
             result.paint(g2);
         }
-        
+
         // for(int i = 0; i < obj.length;i++) {
 
-        //     if(obj[i] != null) {
-        //         obj[i].draw(g2);
-        //     }
+        // if(obj[i] != null) {
+        // obj[i].draw(g2);
+        // }
         // }
         g2.dispose();
     }
 
-    public void update(){
-        if(GameState == PLAYING){
+    public void update() {
+        if (GameState == PLAYING) {
             player.update();
-            for (int i=0; i<wp.getWallPattern().size(); i++){
+            for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
+            }
+            for (int i = 0; i < obj.length; i++) {
+                if (obj[i] != null) {
+                    obj[i].update();
                 }
+            }
         }
     }
 
-    public void updateEverySec(){
-        if(GameState == PLAYING){
+    public void updateEverySec() {
+        if (GameState == PLAYING) {
             player.updateEverySec();
         }
     }
 
-    public void gameReset(){
+    public void gameReset() {
         player.setHP(100);
         wp.randomWallSequence(7);
         wp.loadWalls();
-        
+
         // waiting for reset obstacles method
     }
-    
+
     public Player getPlayer() {
         return player;
     }
-    
+
     public void setPlayer(Player player) {
         this.player = player;
     }
 
-    public static void playMusic(int i){
+    public static void playMusic(int i) {
         music.setFiles(i);
         music.playsound();
-        //music.setVolume(SettingPanel.getMusicVolume());
+        // music.setVolume(SettingPanel.getMusicVolume());
         music.loopsound();
     }
 }

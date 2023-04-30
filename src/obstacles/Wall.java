@@ -12,7 +12,7 @@ public abstract class Wall extends Entity {
     protected int width, height, wallDamage = 10;
     public abstract void crash();
     public abstract void draw(Graphics g2);
-    protected double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
+    public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
 
     public Wall(GamePanel gp, double x, double y, int sizeX, int sizeY) {
         super(x, y);
