@@ -36,7 +36,7 @@ public class GamePanel extends JPanel {
     public Tile t1;
 
     public GamePanel() {
-        player = new Muscle(this, 100, tileSize * 2, 360, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize * 2, 320, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
@@ -64,12 +64,12 @@ public class GamePanel extends JPanel {
                 wp.getWallPattern().get(i).draw(g2);
             }
             player.draw(g2);
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    // if (SuperObjects.getCollision() != true)
-                    obj[i].draw(g2);
-                }
-            }
+            // for (int i = 0; i < obj.length; i++) {
+            // if (obj[i] != null) {
+            // // if (SuperObjects.getCollision() != true)
+            // obj[i].draw(g2);
+            // }
+            // }
         } else if (GameState == DEAD) {
             Utilz.sleep(2);
             GameState = RESULT;
@@ -94,11 +94,11 @@ public class GamePanel extends JPanel {
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
             }
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    obj[i].update();
-                }
-            }
+            // for (int i = 0; i < obj.length; i++) {
+            // if (obj[i] != null) {
+            // obj[i].update();
+            // }
+            // }
         }
     }
 

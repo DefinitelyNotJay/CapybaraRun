@@ -72,10 +72,9 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void drawPlayer(Graphics g2) {
-        if (isSlide) {
+        if (down && !jump) {
             if (appear)
-                g2.drawImage(slideAni, (int) x, (int) 360, (int) (90 * 1.3), (int) (40 * 1.3), null);
-            isSlide = false;
+                g2.drawImage(slideAni, (int) x, (int) y, (int) (90 * 1.3), (int) (40 * 1.3), null);
         } else {
             if (appear)
                 g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, (int) (Utilz.gp.tileSize * 1.3),
@@ -106,9 +105,6 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void updateAnimations() {
-        if (down && (y == Constants.GROUND + (slideAni.getHeight()))) {
-            isSlide = true;
-        }
         aniTick++;
         if (aniTick >= aniSpeed) {
             aniTick = 0;
@@ -122,22 +118,18 @@ public abstract class Player extends Entity implements Animations {
 
     public void move() {
         if (jump) {
-            jump();
+            y -= velocity;
+            velocity -= gravity;
+            if (velocity < -jumpHeight) {
+                jump = false;
+                velocity = jumpHeight;
+            }
         }
 
         else if (down && (y >= Constants.GROUND)) {
-            slide(Constants.GROUND + (slideAni.getHeight()));
+            y = 360;
         } else if (!down) {
             slideReset();
-        }
-    }
-
-    public void jump() {
-        y -= velocity;
-        velocity -= gravity;
-        if (velocity < -jumpHeight) {
-            jump = false;
-            velocity = jumpHeight;
         }
     }
 
@@ -200,7 +192,7 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void slideReset() {
-        this.y = 320;
+        this.y = gp.tileSize * 5;
     }
 
     public boolean isJump() {
