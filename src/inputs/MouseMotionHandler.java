@@ -26,13 +26,13 @@ public class MouseMotionHandler implements MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
-        boolean yButtonArea = e.getY() >= 263 && e.getY() <= 263 + 72;
+        boolean yButtonArea = e.getX() >= 410 && e.getX() <= 410 + 431;
 
-        boolean isInPlaybuttonArea = e.getX() >= 517 && e.getX() <= 517 + 230;
+        boolean isInPlaybuttonArea = e.getY() >= 418 && e.getY() <= 418 + 70;
 
-        boolean isInCreditsButtonArea = e.getX() >= 284 && e.getX() <= 284 + 230;
+        boolean isInCreditsButtonArea = e.getY() >= 444 && e.getY() <= 444 + 230;
 
-        boolean isInQuitButtonArea = e.getX() >= 752 && e.getX() <= 752 + 230;
+        boolean isInQuitButtonArea = e.getY() >= 752 && e.getY() <= 752 + 230;
 
         if (GameState == MENU) {
             mg.button[1].isHover = (isInPlaybuttonArea && yButtonArea) ? true : false;

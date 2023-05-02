@@ -7,11 +7,11 @@ import entity.Entity;
 import methods.Utilz;
 
 public class Button extends Entity {
-    private int width, height;
+    private double width, height;
     public boolean isHover = false;
     public BufferedImage defaultPic, hoverPic;
 
-    public Button(int x, int y, int width, int height) {
+    public Button(int x, int y, double width, double height) {
         super(x, y);
         this.width = width;
         this.height = height;
@@ -33,6 +33,6 @@ public class Button extends Entity {
     }
 
     public void draw(Graphics g) {
-        g.drawImage(getImage(), x, y, width, height, null);
+        g.drawImage(getImage(), x, y, (int) width, (int) height, null);
     }
 }
