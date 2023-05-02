@@ -10,16 +10,18 @@ import methods.SpecialAbility;
 import methods.Utilz;
 import static constant.Constants.*;
 
-public class Ghost extends Player{
+public class Ghost extends Player {
     private BufferedImage skillAniRun[], normalAnirun[];
     private BufferedImage skillAniSlide, normalAniSlide;
-    public Ghost(GamePanel gp, int HP, double x, double y, int xSize, int ySize) {
+
+    public Ghost(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
         super(gp, HP, x, y, xSize, ySize);
         skillCooldown = 10;
         skillDuration = 5;
         skillDurationCount = 0;
         loadImages();
     }
+
     @Override
     public void loadImages() {
         normalAnirun = Utilz.getRunningImg("/res/player/ghost/capyrun.png");
@@ -38,12 +40,12 @@ public class Ghost extends Player{
         runningAni = skillAniRun;
         GAMESPEED += 10;
         aniSpeed = 1;
-        
+
     }
 
     @Override
     public void skillActivate() {
-        if(timeCount == skillCooldown){
+        if (timeCount == skillCooldown) {
             timeCount = 0;
             System.out.println("Skill Activated");
             skill();
@@ -51,30 +53,29 @@ public class Ghost extends Player{
     }
 
     @Override
-    public void updateEverySec(){
+    public void updateEverySec() {
         skillActivate();
         super.updateEverySec();
         // immortal before running
-        if(skillDurationCount+1 == skillDuration){
+        if (skillDurationCount + 1 == skillDuration) {
             GAMESPEED -= 10;
             aniSpeed = 7;
         }
-        if(skillDurationCount == skillDuration){
+        if (skillDurationCount == skillDuration) {
             System.out.println("No Skill!");
             skillReset();
         }
-        if(skillOnUse){
+        if (skillOnUse) {
             skillDurationCount++;
         }
-        if(!skillOnUse){
+        if (!skillOnUse) {
             timeCount++;
         }
 
     }
 
-    
     @Override
-    public void skillReset(){
+    public void skillReset() {
         runningAni = normalAnirun;
 
         WALLDAMAGE = 10;

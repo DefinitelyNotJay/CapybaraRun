@@ -9,7 +9,7 @@ import main.GamePanel;
 public class WallGround extends Wall {
     private int times = 0;
 
-    public WallGround(GamePanel gp, double x, double y, int sizeX, int sizeY) {
+    public WallGround(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
     }
 
