@@ -9,7 +9,7 @@ public class WallHanging extends Wall {
 
     private int times = 0;
 
-    public WallHanging(GamePanel gp, double x, double y, int sizeX, int sizeY) {
+    public WallHanging(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
     }
 

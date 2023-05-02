@@ -12,7 +12,7 @@ import static constant.Constants.*;
 
 public class Muscle extends Player {
 
-    public Muscle(GamePanel gp, int HP, double x, double y, int xSize, int ySize) {
+    public Muscle(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
         super(gp, HP, x, y, xSize, ySize);
         loadImages();
         skillCooldown = 10;

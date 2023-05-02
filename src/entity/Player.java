@@ -37,7 +37,7 @@ public abstract class Player extends Entity implements Animations {
 
     public abstract void skillReset();
 
-    public Player(GamePanel gp, int HP, double x, double y, int width, int height) {
+    public Player(GamePanel gp, int HP, int x, int y, int width, int height) {
         super(x, y);
         this.gp = gp;
         this.HP = HP;

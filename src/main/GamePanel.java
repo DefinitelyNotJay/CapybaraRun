@@ -15,6 +15,7 @@ import Item.AssetSetter;
 import Item.SuperObjects;
 import constant.Constants;
 import static constant.Constants.*;
+import inputs.MouseMotionHandler;
 import methods.Utilz;
 
 public class GamePanel extends JPanel {
@@ -38,14 +39,16 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         player = new Muscle(this, 100, tileSize * 2, 320, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        addKeyListener(new KeyboardListener(this));
-        addMouseListener(new MouseHandler(this));
+
         wp = new WallPattern(this);
         new Utilz(this);
         mg = new MenuGame();
         music = new Sound();
         result = new Result(this);
         t1 = new Tile(this);
+        addKeyListener(new KeyboardListener(this));
+        addMouseListener(new MouseHandler(this));
+        addMouseMotionListener(new MouseMotionHandler(this, mg));
         // playMusic(0);
     }
 

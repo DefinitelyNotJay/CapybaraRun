@@ -10,14 +10,13 @@ public abstract class Wall extends Entity {
     protected GamePanel gp;
     // private static final int WALLSPEED = 6;
     protected int width, height, wallDamage = 10;
+    public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
 
     public abstract void crash();
 
     public abstract void draw(Graphics g2);
 
-    public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
-
-    public Wall(GamePanel gp, double x, double y, int sizeX, int sizeY) {
+    public Wall(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         super(x, y);
         this.gp = gp;
         this.width = sizeX;
