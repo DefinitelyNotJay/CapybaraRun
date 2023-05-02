@@ -31,7 +31,7 @@ public abstract class Wall extends Entity {
         playerY = gp.getPlayer().getY();
         playerHeight = gp.getPlayer().getHeight();
         playerSolidAreaY = gp.getPlayer().getCrashAreaHeight();
-        x -= GAMESPEED - 2;
+        //x -= GAMESPEED - 2;
         // if (x < 0) {
         // x = 1100;
         // }
