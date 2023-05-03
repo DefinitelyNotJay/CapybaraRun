@@ -41,10 +41,10 @@ public class WallPattern {
     public void loadWalls() {
         Collections.addAll(wallPattern,
                 // 0
-                new WallGround(gp, start + arr.get(0)+ 150, 342, gp.tileSize, gp.tileSize),
-                new WallGround(gp, start + arr.get(0)+ 150 + 250, 342, gp.tileSize, gp.tileSize),
-                new WallGround(gp, start + arr.get(0)+ 150 + 250 + 250, 342, gp.tileSize,gp.tileSize),
-                new WallGround(gp, start + arr.get(0)+ 150 + 250 + 250 + 250, 342, gp.tileSize,gp.tileSize),
+                new WallGround(gp, start + arr.get(0)+ 200, 342, gp.tileSize, gp.tileSize),
+                new WallGround(gp, start + arr.get(0)+ 200 + 250, 342, gp.tileSize, gp.tileSize),
+                new WallGround(gp, start + arr.get(0)+ 200 + 250 + 250, 342, gp.tileSize,gp.tileSize),
+                new WallGround(gp, start + arr.get(0)+ 200 + 250 + 250 + 250, 342, gp.tileSize,gp.tileSize),
                 // 1
                 new WallGround(gp, start + arr.get(1), 342, gp.tileSize, gp.tileSize),
                 new WallHanging(gp, start + arr.get(1) + 250, 280, gp.tileSize, gp.tileSize),
