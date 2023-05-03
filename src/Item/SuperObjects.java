@@ -16,7 +16,7 @@ public class SuperObjects{
     private boolean collision = false;
     public int mapX, mapY, sizeX, sizeY;
     private GamePanel gp;
-    public BufferedImage cat;
+    public BufferedImage bloodItem;
     public int speed;
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
     
@@ -54,13 +54,13 @@ public class SuperObjects{
         return collision;
     }
     public void loadImages(){
-        cat = Utilz.GetImage("/res/player/capybara/slideCapy.png");
+        bloodItem = Utilz.GetImage("/res/item/blood.png");
     }
     public void draw(Graphics g2) {
         
         mapX -= 8;
         if(!this.collision)
-        g2.drawImage(cat, mapX, mapY, gp.tileSize,gp.tileSize , null);
+        g2.drawImage(bloodItem, mapX, mapY, gp.tileSize,gp.tileSize , null);
         // g2.setColor(Color.red);
         // g2.fillRect(mapX(), mapY(), gp.tileSize,gp.tileSize);
     }
@@ -84,8 +84,8 @@ public class SuperObjects{
     public void skillItem(){
         if(collision){
         if (getName().equals("Big")){
-            collision = false;
-            gp.getPlayer().setHP(gp.getPlayer().getHP()-10);
+            //collision = false;
+            //gp.getPlayer().setHP(gp.getPlayer().getHP()-10);
 
 
         }

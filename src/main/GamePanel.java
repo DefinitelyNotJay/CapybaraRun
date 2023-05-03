@@ -66,7 +66,7 @@ public class GamePanel extends JPanel {
             player.draw(g2);
             for (int i = 0; i < obj.length; i++) {
                 if (obj[i] != null) {
-                    // if (SuperObjects.getCollision() != true)
+                    //if (SuperObjects.getCollision() != true)
                     obj[i].draw(g2);
                 }
             }
