@@ -29,7 +29,7 @@ public class GamePanel extends JPanel {
     private Player player;
     private WallPattern wp;
     private MenuGame mg;
-    private Result result;
+    private Result rs;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = MENU;
@@ -44,11 +44,11 @@ public class GamePanel extends JPanel {
         new Utilz(this);
         mg = new MenuGame();
         music = new Sound();
-        result = new Result(this);
+        rs = new Result();
         t1 = new Tile(this);
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
-        addMouseMotionListener(new MouseMotionHandler(this, mg));
+        addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
         // playMusic(0);
     }
 
@@ -79,7 +79,7 @@ public class GamePanel extends JPanel {
         } else if (GameState == MENU) {
             mg.paint(g2);
         } else if (GameState == RESULT) {
-            result.paint(g2);
+            rs.paint(g2);
         }
 
         // for(int i = 0; i < obj.length;i++) {
@@ -102,6 +102,8 @@ public class GamePanel extends JPanel {
             // obj[i].update();
             // }
             // }
+        } else if (GameState == MENU) {
+            mg.update();
         }
     }
 
@@ -113,7 +115,7 @@ public class GamePanel extends JPanel {
 
     public void gameReset() {
         player.setHP(100);
-        wp.randomWallSequence(7);
+        wp.randomWallSequence(31);
         wp.loadWalls();
 
         // waiting for reset obstacles method

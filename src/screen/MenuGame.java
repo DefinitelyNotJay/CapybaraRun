@@ -2,11 +2,17 @@ package screen;
 
 import java.awt.*;
 import javax.swing.*;
+
+import methods.Animations;
+import methods.ScreenTools;
 import methods.Utilz;
 import java.awt.image.BufferedImage;
 
-public class MenuGame extends JPanel {
+public class MenuGame extends JPanel implements Animations, ScreenTools {
+
     public Button[] button;
+    private int aniTick, aniIndex, aniSpeed = 7;
+    private BufferedImage[] runningCapy;
     public final int CREDITS = 0, PLAY = 1, QUIT = 2;
     private BufferedImage bgImg;
 
@@ -16,21 +22,41 @@ public class MenuGame extends JPanel {
 
     }
 
-    public void buttonCreate() {
-        button = new Button[3];
-        button[CREDITS] = new Button(284, 263, 230, 72);
-        button[PLAY] = new Button(517, 263, 230, 72);
-        button[QUIT] = new Button(752, 263, 230, 72);
+    public void update() {
+        updateAnimations();
     }
 
-    private void loadImages() {
-        bgImg = Utilz.GetImage("/res/screen/menu/final_menu.png");
+    public void buttonCreate() {
+        button = new Button[3];
+        button[CREDITS] = new Button(570, 230, 125, 54);
+        button[PLAY] = new Button(570, 170, 125, 54);
+        button[QUIT] = new Button(570, 290, 125, 54);
+    }
 
-        button[PLAY].setImages("/res/screen/menu/btn_play");
+    @Override
+    public void updateAnimations() {
+        aniTick++;
+        if (aniTick >= aniSpeed) {
+            aniTick = 0;
+            aniIndex++;
+        }
 
-        button[CREDITS].setImages("/res/screen/menu/btn_credits");
+        if (aniIndex >= 7) {
+            aniIndex = 0;
+        }
+    }
 
-        button[QUIT].setImages("/res/screen/menu/btn_quit");
+    @Override
+    public void loadImages() {
+        runningCapy = Utilz.getRunningImg("/res/player/capybara/capyrun2.png");
+
+        bgImg = Utilz.GetImage("/res/screen/menu/menu bg.png");
+
+        button[PLAY].setImages("/res/screen/menu/start");
+
+        button[CREDITS].setImages("/res/screen/menu/credits");
+
+        button[QUIT].setImages("/res/screen/menu/quit");
 
         // comment hover button in Button
 
@@ -41,5 +67,7 @@ public class MenuGame extends JPanel {
         for (int i = 0; i < button.length; i++) {
             button[i].draw(g2);
         }
+        g2.drawImage(runningCapy[aniIndex], 590, 380, (int) (32 * 2.5), (int) (34 * 2.5), null);
     }
+
 }
