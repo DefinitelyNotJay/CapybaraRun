@@ -18,7 +18,7 @@ public class WallPattern {
     public WallPattern(GamePanel gp) {
         this.gp = gp;
 
-        randomWallSequence(41);
+        randomWallSequence(45);
         loadWalls();
         System.out.println(gp.tileSize);
     }
@@ -246,6 +246,14 @@ public class WallPattern {
                 // 30
                 new WallGround(gp, start + arr.get(30), 342, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(30) + 400, 342, gp.tileSize, gp.tileSize),
+                //31
+                new WallHanging(gp, start + arr.get(31) , 280, gp.tileSize, gp.tileSize),
+                //32
+                new WallGround(gp, start + arr.get(32), 342, gp.tileSize, gp.tileSize),
+                //33
+                new WallHanging(gp, start + arr.get(33) , 280, gp.tileSize, gp.tileSize),
+                //34
+                new WallGround(gp, start + arr.get(34), 342, gp.tileSize, gp.tileSize),
                 //35
                 new WallGround(gp, start + arr.get(35), 342, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(35) + 400, 342, gp.tileSize, gp.tileSize),
@@ -298,7 +306,25 @@ public class WallPattern {
                 new WallHanging(gp, start + arr.get(40) , 280, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(40) + 200, 342, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(40) + 200 + 250, 342, gp.tileSize, gp.tileSize),
-                new WallGround(gp, start + arr.get(40) + 200 + 250 + 250, 342, gp.tileSize, gp.tileSize)
+                new WallGround(gp, start + arr.get(40) + 200 + 250 + 250, 342, gp.tileSize, gp.tileSize),
+                //41
+                new WallGround(gp, start + arr.get(41) , 342, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(41) + 200, 280, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(41) + 200 + 200, 280, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(41) + 200 + 200 + 200, 280, gp.tileSize, gp.tileSize),
+                new WallGround(gp, start + arr.get(41) + 200 + 200 + 200 + 200, 342, gp.tileSize, gp.tileSize),
+                //42
+                new WallHanging(gp, start + arr.get(42) + 500, 280, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(42) + 200, 280, gp.tileSize, gp.tileSize),
+                //43
+                new WallHanging(gp, start + arr.get(43) + 500, 280, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(43) + 200, 280, gp.tileSize, gp.tileSize),
+                //44
+                new WallGround(gp, start + arr.get(44), 342, gp.tileSize, gp.tileSize),
+                new WallGround(gp, start + arr.get(44) + 400, 342, gp.tileSize, gp.tileSize),
+                //45
+                new WallGround(gp, start + arr.get(45), 342, gp.tileSize, gp.tileSize),
+                new WallGround(gp, start + arr.get(45) + 400, 342, gp.tileSize, gp.tileSize)
         );
 
         wallPattern.addAll(wallPattern);
