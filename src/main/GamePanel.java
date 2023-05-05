@@ -35,7 +35,6 @@ public class GamePanel extends JPanel {
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = MENU;
-    private static Sound effect;
     private static Sound music;
     public Tile t1;
 
@@ -72,12 +71,12 @@ public class GamePanel extends JPanel {
                 wp.getWallPattern().get(i).draw(g2);
             }
             player.draw(g2);
-            // for (int i = 0; i < obj.length; i++) {
-            // if (obj[i] != null) {
-            // // if (SuperObjects.getCollision() != true)
-            // obj[i].draw(g2);
-            // }
-            // }
+            for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+            // if (SuperObjects.getCollision() != true)
+            obj[i].draw(g2);
+            }
+            }
         } else if (GameState == DEAD) {
             Utilz.sleep(2);
             GameState = RESULT;
@@ -98,11 +97,11 @@ public class GamePanel extends JPanel {
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
             }
-            // for (int i = 0; i < obj.length; i++) {
-            // if (obj[i] != null) {
-            // obj[i].update();
-            // }
-            // }
+            for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+            obj[i].update();
+            }
+            }
         } else if (GameState == MENU) {
             mg.update();
         }
