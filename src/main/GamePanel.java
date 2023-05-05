@@ -54,7 +54,7 @@ public class GamePanel extends JPanel {
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
         addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
-         playMusic(0);
+        playMusic(0);
     }
 
     public void setUpGame() {
@@ -130,10 +130,24 @@ public class GamePanel extends JPanel {
         this.player = player;
     }
 
+    public static void stopMusic(){
+        music.stopSound();
+    }
+
     public static void playMusic(int i) {
         music.setFiles(i);
         music.playSound();
-        // music.setVolume(SettingPanel.getMusicVolume());
+        //music.setVolume(10);
         music.loopSound();
+    }
+
+    public static void playSE(int i){
+        effect.setFiles(i);
+        effect.setVolume(20);
+        effect.playSound();
+    }
+
+    public static Sound getEffect() {
+        return effect;
     }
 }
