@@ -116,7 +116,7 @@ public class GamePanel extends JPanel {
 
     public void gameReset() {
         player.setHP(100);
-        wp.randomWallSequence(31);
+        wp.randomWallSequence(51);
         wp.loadWalls();
 
         // waiting for reset obstacles method
