@@ -11,17 +11,18 @@ import main.Game;
 import main.GamePanel;
 import methods.Utilz;
 
-public class SuperObjects{
-    private BufferedImage Image;
+public abstract class SuperObjects {
+    private BufferedImage imageItem;
     private String name;
     private boolean collision = false;
     public int mapX, mapY, sizeX, sizeY;
-    private GamePanel gp;
+    protected GamePanel gp;
     public BufferedImage bloodItem;
     public int speed;
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
-    
-    
+
+    public abstract void effect();
+
     public SuperObjects(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         this.mapX = x;
         this.mapY = y;
@@ -30,42 +31,60 @@ public class SuperObjects{
         this.sizeY = sizeY;
         loadImages();
     }
-    
-    public void setName(String name){
+
+    public void setName(String name) {
         this.name = name;
     }
-    public String getName(){
+
+    public String getName() {
         return name;
     }
-    public void mapX(int mapX){
+
+    public void mapX(int mapX) {
         this.mapX = mapX;
     }
-    public int mapX(){
+
+    public int mapX() {
         return mapX;
     }
-    public void mapy(int mapY){
+
+    public void mapy(int mapY) {
         this.mapY = mapY;
     }
-    public int mapY(){
+
+    public int mapY() {
         return mapY;
     }
-    public void setCollision(boolean collision){
+
+    public BufferedImage getItemImage() {
+        return imageItem;
+    }
+
+    public void setItemImage(String pathFile) {
+        this.imageItem = Utilz.GetImage(pathFile);
+    }
+
+    public void setCollision(boolean collision) {
         this.collision = collision;
     }
-    public boolean getCollision(){
+
+    public boolean getCollision() {
         return collision;
     }
-    public void loadImages(){
-        bloodItem = Utilz.GetImage("/res/item/blood.png");
+
+    public void loadImages() {
+
     }
+
     public void draw(Graphics g2) {
-        
+
         mapX -= 8;
-        if(!this.collision)
-        g2.drawImage(bloodItem, mapX, mapY, gp.tileSize,gp.tileSize , null);
+        if (!this.collision)
+            g2.drawImage(imageItem, mapX, mapY, gp.tileSize, gp.tileSize, null);
         // g2.setColor(Color.red);
         // g2.fillRect(mapX(), mapY(), gp.tileSize,gp.tileSize);
     }
+
     public void update() {
         playerX = gp.getPlayer().getX();
         playerWidth = gp.getPlayer().getWidth();
@@ -75,30 +94,20 @@ public class SuperObjects{
         crashItem();
         skillItem();
     }
-    public void crashItem(){
+
+    public void crashItem() {
         if (playerX + playerWidth + playerSolidAreaX >= this.mapX
-        && playerX + playerWidth + playerSolidAreaY <= this.mapX+sizeX){
-            if (playerY + playerHeight - playerSolidAreaY >= this.mapY){
+                && playerX + playerWidth + playerSolidAreaY <= this.mapX + sizeX) {
+            if (playerY + playerHeight - playerSolidAreaY >= this.mapY
+                    && playerY + playerHeight - playerSolidAreaY <= this.mapY + sizeY) {
                 setCollision(true);
             }
         }
     }
-    public void skillItem(){
-        if(collision){
-        if (getName().equals("fast")){
-            if (mapX() > -1500) {
-                GAMESPEED = 13;
-                gp.getPlayer().setImmune(true);
-                System.out.println("fast item");
-            }else{
-                GAMESPEED = 6;
-                gp.getPlayer().setImmune(false);
-                gp.getPlayer().getImmune();
-            }
-            
 
-
+    public void skillItem() {
+        if (collision) {
+            effect();
         }
-    }
     }
 }

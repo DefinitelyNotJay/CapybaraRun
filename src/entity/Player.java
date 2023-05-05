@@ -145,7 +145,7 @@ public abstract class Player extends Entity implements Animations {
 
     }
 
-    public void getImmune(){
+    public void getImmune() {
         if (immune) {
             rateDecreaseHP = 0;
             WALLDAMAGE = 0;
@@ -154,6 +154,7 @@ public abstract class Player extends Entity implements Animations {
             WALLDAMAGE = 10;
         }
     }
+
     public void getFlinching() {
         // immune
         getImmune();
