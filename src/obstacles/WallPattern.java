@@ -18,7 +18,7 @@ public class WallPattern {
     public WallPattern(GamePanel gp) {
         this.gp = gp;
         
-        randomWallSequence(46);
+        randomWallSequence(51);
         loadWalls();
         System.out.println(gp.tileSize);
     }
