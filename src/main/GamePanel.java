@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
     private ChooseCharacter cc;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = SELECT;
+    public static int GameState = MENU;
     private static Sound music;
     public Tile t1;
 
@@ -96,11 +96,11 @@ public class GamePanel extends JPanel {
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
             }
-            // for (int i = 0; i < obj.length; i++) {
-            // if (obj[i] != null) {
-            // obj[i].update();
-            // }
-            // }
+            for (int i = 0; i < obj.length; i++) {
+            if (obj[i] != null) {
+            obj[i].update();
+            }
+            }
         } else if (GameState == MENU) {
             mg.update();
         }

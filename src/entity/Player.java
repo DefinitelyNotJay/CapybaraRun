@@ -143,13 +143,18 @@ public abstract class Player extends Entity implements Animations {
 
     }
 
-    public void getFlinching() {
-        // immune
+    public void getImmune(){
         if (immune) {
+            rateDecreaseHP = 0;
             WALLDAMAGE = 0;
         } else {
+            rateDecreaseHP = 1;
             WALLDAMAGE = 10;
         }
+    }
+    public void getFlinching() {
+        // immune
+        getImmune();
 
         // immune state start
         if (flinching) {

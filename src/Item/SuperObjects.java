@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
+import static constant.Constants.*;
 import entity.Entity;
 import main.Game;
 import main.GamePanel;
@@ -19,6 +20,7 @@ public class SuperObjects{
     public BufferedImage bloodItem;
     public int speed;
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
+    
     
     public SuperObjects(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         this.mapX = x;
@@ -83,9 +85,17 @@ public class SuperObjects{
     }
     public void skillItem(){
         if(collision){
-        if (getName().equals("Big")){
-            //collision = false;
-            //gp.getPlayer().setHP(gp.getPlayer().getHP()-10);
+        if (getName().equals("fast")){
+            if (mapX() > -1500) {
+                GAMESPEED = 13;
+                gp.getPlayer().setImmune(true);
+                System.out.println("fast item");
+            }else{
+                GAMESPEED = 6;
+                gp.getPlayer().setImmune(false);
+                gp.getPlayer().getImmune();
+            }
+            
 
 
         }
