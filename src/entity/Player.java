@@ -136,6 +136,8 @@ public abstract class Player extends Entity implements Animations {
     public void healthCheck() {
         if (HP <= 0) {
             GamePanel.GameState = DEAD;
+            // GamePanel.stopMusic();
+            // GamePanel.playMusic(3);
             HP = 0;
         } else if (HP >= maxHP) {
             HP = maxHP;
