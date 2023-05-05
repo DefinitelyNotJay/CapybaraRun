@@ -33,15 +33,15 @@ public class MouseHandler implements MouseListener {
             boolean isInBackButtonArea = e.getX() >= 365 && e.getX() <= 365 + 125;
 
             boolean isInRestartButtonArea = e.getX() >= 787 && e.getX() <= 787 + 125;
-
             if (isInBackButtonArea && yButtonArea) {
                 GamePanel.GameState = MENU;
-                GamePanel.stopMusic();
-                GamePanel.playMusic(0);
+                // GamePanel.stopMusic();
+                // GamePanel.playMusic(0);
             } else if (isInRestartButtonArea && yButtonArea) {
+                gp.gameReset();
                 GamePanel.GameState = PLAYING;
-                GamePanel.stopMusic();
-                GamePanel.playMusic(2);
+                // GamePanel.stopMusic();
+                // GamePanel.playMusic(3);
             }
 
         }
