@@ -18,6 +18,7 @@ import tiles.*;
 
 public class MouseHandler implements MouseListener {
     private GamePanel gp;
+   
 
     public MouseHandler(GamePanel gp) {
         this.gp = gp;
@@ -35,8 +36,12 @@ public class MouseHandler implements MouseListener {
 
             if (isInBackButtonArea && yButtonArea) {
                 GamePanel.GameState = MENU;
+                GamePanel.stopMusic();
+                GamePanel.playMusic(0);
             } else if (isInRestartButtonArea && yButtonArea) {
                 GamePanel.GameState = PLAYING;
+                GamePanel.stopMusic();
+                GamePanel.playMusic(2);
             }
 
         }
@@ -53,6 +58,8 @@ public class MouseHandler implements MouseListener {
                 if (isInPlaybuttonArea) {
                     gp.setPlayer(new Muscle(gp, 100, gp.tileSize * 2, Constants.GROUND, gp.tileSize, gp.tileSize));
                     GamePanel.GameState = PLAYING;
+                    GamePanel.stopMusic();
+                    GamePanel.playMusic(2);
                 } else if (isInQuitButtonArea) {
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
