@@ -20,7 +20,7 @@ public class Result extends JPanel implements ScreenTools {
     }
 
     public void loadImages() {
-        bgImg = Utilz.GetImage("/res/screen/result/total score bg.png");
+        bgImg = Utilz.GetImage("/res/screen/result/totalbg.png");
 
         scoreFrame = Utilz.GetImage("/res/screen/result/score frame.png");
 

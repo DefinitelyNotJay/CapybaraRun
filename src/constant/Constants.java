@@ -13,5 +13,6 @@ public class Constants {
     public static final int PLAYING = 2;
     public static final int DEAD = 3;
     public static final int RESULT = 4;
+    public static final int SELECT = 5;
 
 }
