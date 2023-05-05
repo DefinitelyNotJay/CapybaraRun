@@ -18,6 +18,9 @@ public class Sound {
         soundURL[2] = getClass().getResource("/res/sound/Playing_Theme.wav");
         soundURL[3] = getClass().getResource("/res/sound/Ending.wav");
         //effect
+        soundURL[4] = getClass().getResource("/res/sound/zombie_jump.wav");
+        soundURL[5] = getClass().getResource("/res/sound/zombie_slide.wav");
+        //soundURL[6] = getClass().getResource("/res/sound/Ending.wav");
     }
 
     public void setFiles(int i){
@@ -35,7 +38,7 @@ public class Sound {
     }
 
     public void loopSound(){
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        //clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     public void stopSound(){

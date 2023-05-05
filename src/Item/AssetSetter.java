@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import main.GamePanel;
 import methods.Utilz;
 
-public class AssetSetter{
+public class AssetSetter {
     GamePanel gp;
     public BufferedImage bloodItem, fastItem;
 
@@ -14,8 +14,15 @@ public class AssetSetter{
     }
     
     public void setObject(){
-        gp.obj[0] = new Obj_Item(gp, 1800, 250, gp.tileSize, gp.tileSize, "fast");
-        // gp.obj[1] = new Obj_Item(gp, 2200, 250, gp.tileSize, gp.tileSize, "blood");
-        //gp.obj[2] = new Obj_Item(gp, 2200, 250, gp.tileSize, gp.tileSize, "fast");
+        gp.obj[0] = new Flash(gp, 1800, 260, gp.tileSize, gp.tileSize, "fast");
+        gp.obj[0].setItemImage("/res/item/fast.png");
+        gp.obj[1] = new Flash(gp, 8200, 260, gp.tileSize, gp.tileSize, "IncreaseHP");
+        gp.obj[1].setItemImage("/res/item/IncreaseHP.png");
+        gp.obj[2] = new Flash(gp, 10200, 270, gp.tileSize, gp.tileSize, "DecreaseHP");
+        gp.obj[2].setItemImage("/res/item/DecreaseHP.png");
+        gp.obj[3] = new Flash(gp, 14200, 260, gp.tileSize, gp.tileSize, "IncreaseHP");
+        gp.obj[3].setItemImage("/res/item/IncreaseHP.png");
+        gp.obj[4] = new Flash(gp, 18200, 260, gp.tileSize, gp.tileSize, "IncreaseHP");
+        gp.obj[4].setItemImage("/res/item/IncreaseHP.png");
     }
 }
