@@ -1,5 +1,6 @@
 package main;
 
+import screen.ChooseCharacter;
 import screen.MenuGame;
 import screen.Result;
 import tiles.*;
@@ -30,9 +31,10 @@ public class GamePanel extends JPanel {
     private WallPattern wp;
     private MenuGame mg;
     private Result rs;
+    private ChooseCharacter cc;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = MENU;
+    public static int GameState = SELECT;
     private static Sound music;
     public Tile t1;
 
@@ -43,6 +45,7 @@ public class GamePanel extends JPanel {
         wp = new WallPattern(this);
         new Utilz(this);
         mg = new MenuGame();
+        cc = new ChooseCharacter();
         music = new Sound();
         rs = new Result();
         t1 = new Tile(this);
@@ -80,14 +83,10 @@ public class GamePanel extends JPanel {
             mg.paint(g2);
         } else if (GameState == RESULT) {
             rs.paint(g2);
+        } else if (GameState == SELECT) {
+            cc.paint(g2);
         }
 
-        // for(int i = 0; i < obj.length;i++) {
-
-        // if(obj[i] != null) {
-        // obj[i].draw(g2);
-        // }
-        // }
         g2.dispose();
     }
 

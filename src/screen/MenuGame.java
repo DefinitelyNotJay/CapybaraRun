@@ -11,7 +11,7 @@ import java.awt.image.BufferedImage;
 public class MenuGame extends JPanel implements Animations, ScreenTools {
 
     public Button[] button;
-    private int aniTick, aniIndex, aniSpeed = 7;
+    private int aniTick, aniIndex, aniSpeed = 5;
     private BufferedImage[] runningCapy;
     public final int CREDITS = 0, PLAY = 1, QUIT = 2;
     private BufferedImage bgImg;
@@ -50,7 +50,7 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
     public void loadImages() {
         runningCapy = Utilz.getRunningImg("/res/player/capybara/capyrun2.png");
 
-        bgImg = Utilz.GetImage("/res/screen/menu/menu bg.png");
+        bgImg = Utilz.GetImage("/res/screen/menu/Menu.png");
 
         button[PLAY].setImages("/res/screen/menu/start");
 
