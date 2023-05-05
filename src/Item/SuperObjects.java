@@ -95,9 +95,6 @@ public class SuperObjects{
                 gp.getPlayer().setImmune(false);
                 gp.getPlayer().getImmune();
             }
-            
-
-
         }
     }
     }
