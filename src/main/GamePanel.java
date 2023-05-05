@@ -36,6 +36,7 @@ public class GamePanel extends JPanel {
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = MENU;
     private static Sound music;
+    private static Sound effect;
     public Tile t1;
 
     public GamePanel() {
