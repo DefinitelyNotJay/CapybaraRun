@@ -19,9 +19,11 @@ public class KeyboardListener implements KeyListener{
     public void keyPressed(KeyEvent e) {
         switch(e.getKeyCode()){
             case KeyEvent.VK_W:
+                GamePanel.playSE(4);
                 gp.getPlayer().setJump(true);
                 break;
             case KeyEvent.VK_S:
+                GamePanel.playSE(5);
                 gp.getPlayer().setDown(true);
                 break;
 //            case KeyEvent.VK_A:
@@ -43,9 +45,13 @@ public class KeyboardListener implements KeyListener{
 //                gp.getPlayer().setJump(false);
 //                break;
             case KeyEvent.VK_W:
+                GamePanel.playMusic(4);
+                //GamePanel.stopMusic();
                 gp.getPlayer().setJump(true);
                 break;
             case KeyEvent.VK_S:
+                GamePanel.playMusic(5);
+                //GamePanel.stopMusic();
                 gp.getPlayer().setDown(false);
                 // gp.getPlayer().slideReset();
                 break;
