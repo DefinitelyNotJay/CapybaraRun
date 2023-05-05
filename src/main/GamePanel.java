@@ -34,25 +34,27 @@ public class GamePanel extends JPanel {
     private ChooseCharacter cc;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = SELECT;
+    public static int GameState = MENU;
+    private static Sound effect;
     private static Sound music;
     public Tile t1;
 
     public GamePanel() {
         player = new Muscle(this, 100, tileSize * 2, 320, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-
+        
         wp = new WallPattern(this);
         new Utilz(this);
         mg = new MenuGame();
         cc = new ChooseCharacter();
         music = new Sound();
+        effect = new Sound();
         rs = new Result();
         t1 = new Tile(this);
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this));
         addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
-        // playMusic(0);
+         playMusic(0);
     }
 
     public void setUpGame() {
@@ -130,8 +132,8 @@ public class GamePanel extends JPanel {
 
     public static void playMusic(int i) {
         music.setFiles(i);
-        music.playsound();
+        music.playSound();
         // music.setVolume(SettingPanel.getMusicVolume());
-        music.loopsound();
+        music.loopSound();
     }
 }
