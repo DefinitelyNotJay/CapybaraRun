@@ -15,6 +15,7 @@ import Item.AssetSetter;
 import Item.SuperObjects;
 import constant.Constants;
 import static constant.Constants.*;
+import inputs.MouseMotionHandler;
 import methods.Utilz;
 
 public class GamePanel extends JPanel {
@@ -28,7 +29,7 @@ public class GamePanel extends JPanel {
     private Player player;
     private WallPattern wp;
     private MenuGame mg;
-    private Result result;
+    private Result rs;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
     public static int GameState = MENU;
@@ -36,16 +37,18 @@ public class GamePanel extends JPanel {
     public Tile t1;
 
     public GamePanel() {
-        player = new Muscle(this, 100, tileSize * 2, Constants.GROUND, tileSize, tileSize);
+        player = new Muscle(this, 100, tileSize * 2, 320, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-        addKeyListener(new KeyboardListener(this));
-        addMouseListener(new MouseHandler(this));
+
         wp = new WallPattern(this);
         new Utilz(this);
         mg = new MenuGame();
         music = new Sound();
-        result = new Result(this);
+        rs = new Result();
         t1 = new Tile(this);
+        addKeyListener(new KeyboardListener(this));
+        addMouseListener(new MouseHandler(this));
+        addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
         // playMusic(0);
     }
 
@@ -65,10 +68,10 @@ public class GamePanel extends JPanel {
             }
             player.draw(g2);
             for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    //if (SuperObjects.getCollision() != true)
-                    obj[i].draw(g2);
-                }
+            if (obj[i] != null) {
+            // if (SuperObjects.getCollision() != true)
+            obj[i].draw(g2);
+            }
             }
         } else if (GameState == DEAD) {
             Utilz.sleep(2);
@@ -76,7 +79,7 @@ public class GamePanel extends JPanel {
         } else if (GameState == MENU) {
             mg.paint(g2);
         } else if (GameState == RESULT) {
-            result.paint(g2);
+            rs.paint(g2);
         }
 
         // for(int i = 0; i < obj.length;i++) {
@@ -94,11 +97,13 @@ public class GamePanel extends JPanel {
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
             }
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    obj[i].update();
-                }
-            }
+            // for (int i = 0; i < obj.length; i++) {
+            // if (obj[i] != null) {
+            // obj[i].update();
+            // }
+            // }
+        } else if (GameState == MENU) {
+            mg.update();
         }
     }
 
@@ -110,7 +115,7 @@ public class GamePanel extends JPanel {
 
     public void gameReset() {
         player.setHP(100);
-        wp.randomWallSequence(7);
+        wp.randomWallSequence(31);
         wp.loadWalls();
 
         // waiting for reset obstacles method

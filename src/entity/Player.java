@@ -37,7 +37,7 @@ public abstract class Player extends Entity implements Animations {
 
     public abstract void skillReset();
 
-    public Player(GamePanel gp, int HP, double x, double y, int width, int height) {
+    public Player(GamePanel gp, int HP, int x, int y, int width, int height) {
         super(x, y);
         this.gp = gp;
         this.HP = HP;
@@ -72,13 +72,13 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void drawPlayer(Graphics g2) {
-        if (isSlide) {
+        if (down && !jump) {
             if (appear)
-                g2.drawImage(slideAni, (int) x, (int) GROUND + 40, 90, 40, null);
-            isSlide = false;
+                g2.drawImage(slideAni, (int) x, (int) y, (int) (90 * 1.3), (int) (40 * 1.3), null);
         } else {
             if (appear)
-                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, Utilz.gp.tileSize, Utilz.gp.tileSize, null);
+                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, (int) (Utilz.gp.tileSize * 1.3),
+                        (int) (Utilz.gp.tileSize * 1.3), null);
         }
     }
 
@@ -105,9 +105,6 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void updateAnimations() {
-        if (down && (y == Constants.GROUND + (slideAni.getHeight()))) {
-            isSlide = true;
-        }
         aniTick++;
         if (aniTick >= aniSpeed) {
             aniTick = 0;
@@ -121,22 +118,18 @@ public abstract class Player extends Entity implements Animations {
 
     public void move() {
         if (jump) {
-            jump();
+            y -= velocity;
+            velocity -= gravity;
+            if (velocity < -jumpHeight) {
+                jump = false;
+                velocity = jumpHeight;
+            }
         }
 
         else if (down && (y >= Constants.GROUND)) {
-            slide(Constants.GROUND + (slideAni.getHeight()));
+            y = 360;
         } else if (!down) {
             slideReset();
-        }
-    }
-
-    public void jump() {
-        y -= velocity;
-        velocity -= gravity;
-        if (velocity < -jumpHeight) {
-            jump = false;
-            velocity = jumpHeight;
         }
     }
 
@@ -199,7 +192,7 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void slideReset() {
-        this.y = Constants.GROUND + 5;
+        this.y = gp.tileSize * 5;
     }
 
     public boolean isJump() {

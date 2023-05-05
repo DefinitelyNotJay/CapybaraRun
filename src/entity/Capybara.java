@@ -9,13 +9,13 @@ import main.GamePanel;
 import methods.SpecialAbility;
 import methods.Utilz;
 
-public class Capybara extends Player{
-    public Capybara(GamePanel gp, int HP, double x, double y, int xSize, int ySize) {
+public class Capybara extends Player {
+    public Capybara(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
         super(gp, HP, x, y, xSize, ySize);
         loadImages();
         skillActivate();
     }
-    
+
     @Override
     public void loadImages() {
         runningAni = Utilz.getRunningImg("/res/player/capybara/capyrun2.png");
@@ -27,7 +27,7 @@ public class Capybara extends Player{
         move();
         updateAnimations();
         healthCheck();
-}
+    }
 
     @Override
     public void skill() {
@@ -41,7 +41,7 @@ public class Capybara extends Player{
     }
 
     @Override
-    public void skillReset(){
-        
+    public void skillReset() {
+
     }
 }

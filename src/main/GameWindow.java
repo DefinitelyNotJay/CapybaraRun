@@ -11,12 +11,12 @@ public class GameWindow {
         this.gamePanel = gamePanel;
         jframe.add(gamePanel);
         jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jframe.setLocationRelativeTo(null);
         jframe.setResizable(false);
         jframe.pack();
         jframe.setLocation(0, 50);
         gamePanel.requestFocus();
         jframe.setVisible(true);
+        jframe.setLocationRelativeTo(null);
         gamePanel.setUpGame();
     }
 }

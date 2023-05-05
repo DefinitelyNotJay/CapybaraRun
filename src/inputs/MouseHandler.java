@@ -2,6 +2,7 @@ package inputs;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import constant.Constants;
 import entity.Muscle;
@@ -9,27 +10,53 @@ import entity.Muscle;
 import static constant.Constants.*;
 
 import main.GamePanel;
+import methods.Animations;
+import methods.Utilz;
+
+import static main.GamePanel.GameState;
 import tiles.*;
 
-public class MouseHandler implements MouseListener{
+public class MouseHandler implements MouseListener {
     private GamePanel gp;
-    public MouseHandler(GamePanel gp){
+
+    public MouseHandler(GamePanel gp) {
         this.gp = gp;
+
     }
+
     @Override
     public void mouseClicked(MouseEvent e) {
-        if(GamePanel.GameState == RESULT){
-            gp.gameReset();
-            GamePanel.GameState = PLAYING;
+        if (GamePanel.GameState == RESULT) {
+            boolean yButtonArea = e.getY() >= 290 && e.getY() <= 290 + 50;
+
+            boolean isInBackButtonArea = e.getX() >= 365 && e.getX() <= 365 + 125;
+
+            boolean isInRestartButtonArea = e.getX() >= 787 && e.getX() <= 787 + 125;
+
+            if (isInBackButtonArea && yButtonArea) {
+                GamePanel.GameState = MENU;
+            } else if (isInRestartButtonArea && yButtonArea) {
+                GamePanel.GameState = PLAYING;
+            }
+
         }
-        if(GamePanel.GameState == MENU){
-            if(e.getY()>= 263 && e.getY() <= 263+72){
-                if(e.getX()>=520 && e.getX()<=520+230){
-                    gp.setPlayer(new Muscle(gp,  100, gp.tileSize*2,Constants.GROUND, gp.tileSize, gp.tileSize));
+        if (GamePanel.GameState == MENU) {
+            boolean yButtonArea = e.getX() >= 570 && e.getX() <= 570 + 125;
+
+            boolean isInPlaybuttonArea = e.getY() >= 170 && e.getY() <= 170 + 54;
+
+            boolean isInCreditsButtonArea = e.getY() >= 230 && e.getY() <= 230 + 54;
+
+            boolean isInQuitButtonArea = e.getY() >= 290 && e.getY() <= 290 + 54;
+
+            if (yButtonArea) {
+                if (isInPlaybuttonArea) {
+                    gp.setPlayer(new Muscle(gp, 100, gp.tileSize * 2, Constants.GROUND, gp.tileSize, gp.tileSize));
                     GamePanel.GameState = PLAYING;
-                }
-                else if(e.getX()>=754 && e.getX()<=754+230){
+                } else if (isInQuitButtonArea) {
                     System.exit(0);
+                } else if (isInCreditsButtonArea) {
+
                 }
             }
 
@@ -55,5 +82,5 @@ public class MouseHandler implements MouseListener{
     public void mouseExited(MouseEvent e) {
 
     }
-    
+
 }
