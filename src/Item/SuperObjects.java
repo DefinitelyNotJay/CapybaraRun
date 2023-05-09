@@ -81,8 +81,6 @@ public abstract class SuperObjects {
         mapX -= 8;
         if (!this.collision)
             g2.drawImage(imageItem, mapX, mapY, gp.tileSize, gp.tileSize, null);
-        // g2.setColor(Color.red);
-        // g2.fillRect(mapX(), mapY(), gp.tileSize,gp.tileSize);
     }
 
     public void update() {
