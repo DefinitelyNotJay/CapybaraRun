@@ -40,20 +40,24 @@ public class GamePanel extends JPanel {
     public Tile t1;
 
     public GamePanel() {
-        player = new Muscle(this, 100, tileSize * 2, 320, tileSize, tileSize);
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
 
-        wp = new WallPattern(this);
         new Utilz(this);
+        // screen
         mg = new MenuGame();
         cc = new ChooseCharacter();
+        rs = new Result();
+        // wall
+        wp = new WallPattern(this);
+
+        t1 = new Tile(this);
+        // listener
+        addKeyListener(new KeyboardListener(this));
+        addMouseListener(new MouseHandler(this, mg, rs, cc));
+        addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
+        // sound
         music = new Sound();
         effect = new Sound();
-        rs = new Result();
-        t1 = new Tile(this);
-        addKeyListener(new KeyboardListener(this));
-        addMouseListener(new MouseHandler(this));
-        addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
         playMusic(0);
     }
 
@@ -65,7 +69,6 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
         if (GameState == PLAYING) {
             t1.draw(g2);
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
@@ -105,6 +108,8 @@ public class GamePanel extends JPanel {
             }
         } else if (GameState == MENU) {
             mg.update();
+        } else if (GameState == SELECT) {
+            cc.update();
         }
     }
 
@@ -115,8 +120,8 @@ public class GamePanel extends JPanel {
     }
 
     public void gameReset() {
-        player.setHP(100);
-        wp.randomWallSequence(51);
+        player.setHP(player.getMaxHP());
+        wp.randomWallSequence(wp.getWallAmount());
         wp.loadWalls();
 
         // waiting for reset obstacles method

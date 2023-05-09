@@ -20,15 +20,14 @@ public class WallGround extends Wall {
             if (playerY + playerHeight - playerSolidAreaY >= this.y) {
                 times++;
                 if (times == 1) {
-                    // getDamage
-                    gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
+                    if (!gp.getPlayer().isImmune()) {
+                        // getDamage
+                        gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
 
-                    // flinching
-                    gp.getPlayer().setFlinching(true);
-
-                    // set immune player to true
-                    // gp.getPlayer().setImmune(true);
-
+                        // flinching
+                        gp.getPlayer().setFlinching(true);
+                    }
+                    System.out.println(gp.getPlayer().getClass().getName());
                     // special ability for muscle
                     if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("entity.Muscle")) {
                         if (gp.getPlayer().getHP() + 10 <= gp.getPlayer().getMaxHP()) {

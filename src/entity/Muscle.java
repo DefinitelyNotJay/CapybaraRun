@@ -38,8 +38,8 @@ public class Muscle extends Player {
 
     @Override
     public void skill() {
+        gp.getPlayer().setImmune(true);
         skillOnUse = true;
-        WALLDAMAGE = 0;
     }
 
     @Override
@@ -52,8 +52,8 @@ public class Muscle extends Player {
 
     @Override
     public void skillReset() {
+        gp.getPlayer().setImmune(false);
         skillOnUse = false;
-        WALLDAMAGE = 10;
         skillDurationCount = 0;
     }
 

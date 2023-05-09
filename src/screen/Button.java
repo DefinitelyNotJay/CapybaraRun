@@ -35,4 +35,45 @@ public class Button extends Entity {
     public void draw(Graphics g) {
         g.drawImage(getImage(), x, y, (int) width, (int) height, null);
     }
+
+    public double getWidth() {
+        return width;
+    }
+
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
+    public boolean isIsHover() {
+        return isHover;
+    }
+
+    public void setIsHover(boolean isHover) {
+        this.isHover = isHover;
+    }
+
+    public BufferedImage getDefaultPic() {
+        return defaultPic;
+    }
+
+    public void setDefaultPic(BufferedImage defaultPic) {
+        this.defaultPic = defaultPic;
+    }
+
+    public BufferedImage getHoverPic() {
+        return hoverPic;
+    }
+
+    public void setHoverPic(BufferedImage hoverPic) {
+        this.hoverPic = hoverPic;
+    }
+
 }

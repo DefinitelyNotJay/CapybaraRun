@@ -7,14 +7,16 @@ import java.io.UTFDataFormatException;
 import methods.Animations;
 import methods.ScreenTools;
 import methods.Utilz;
+import static constant.Constants.*;
 
 public class ChooseCharacter implements ScreenTools, Animations {
-    private BufferedImage bgImg, frame, skill, name, model, characterFrame;
-    private final int CAPY = 0, GHOST = 1, MUSCLE = 2, NINJA = 3, ZOMBIE = 4;
-    private int page = 1;
+    private BufferedImage bgImg, frame, skill, name, model, characterFrame, left, right;
+    private int page = CAPY;
+    private Button btn[];
 
     public ChooseCharacter() {
         loadImages();
+        buttonCreate();
     }
 
     @Override
@@ -23,13 +25,22 @@ public class ChooseCharacter implements ScreenTools, Animations {
         frame = Utilz.GetImage("/res/screen/select/frame.png");
         skill = Utilz.GetImage("/res/screen/select/skill.png");
         characterFrame = Utilz.GetImage("/res/screen/select/character.png");
-
+        left = Utilz.GetImage("/res/screen/select/left.png");
+        right = Utilz.GetImage("/res/screen/select/right.png");
         getModelAndNameImage();
-
     }
 
     @Override
     public void buttonCreate() {
+        btn = new Button[3];
+        btn[LEFTBTN] = new Button(520, 270, 75, 70);
+        btn[LEFTBTN].setImages("/res/screen/select/left");
+
+        btn[RIGHTBTN] = new Button(1011, 270, 75, 70);
+        btn[RIGHTBTN].setImages("/res/screen/select/right");
+
+        btn[GOBTN] = new Button(735, 380, 125, 55);
+        btn[GOBTN].setImages("/res/screen/select/GO");
 
     }
 
@@ -39,7 +50,10 @@ public class ChooseCharacter implements ScreenTools, Animations {
         g.drawImage(frame, 380 + 23, 43, null);
         g.drawImage(characterFrame, -200 + 23, 57, (int) (320 * 3.2), (int) (180 * 2.9), null);
         g.drawImage(name, 563, 80, null);
-        g.drawImage(model, 240, 190, (int) (2560 / 12), (int) (1440 / 12), null);
+        g.drawImage(model, 228, 195, (int) (878 / 4.7), (int) (986 / 4.7), null);
+        btn[LEFTBTN].draw(g);
+        btn[RIGHTBTN].draw(g);
+        btn[GOBTN].draw(g);
     }
 
     @Override
@@ -47,30 +61,70 @@ public class ChooseCharacter implements ScreenTools, Animations {
 
     }
 
+    public void update() {
+        getModelAndNameImage();
+
+    }
+
     public void getModelAndNameImage() {
         switch (page) {
             case CAPY:
-                model = Utilz.GetImage("/res/screen/select/characters/1_capy_sample.png");
+                model = Utilz.GetImage("/res/screen/select/characters/capy.png");
                 name = Utilz.GetImage("/res/screen/select/characters/name_capy.png");
                 break;
             case ZOMBIE:
-                model = Utilz.GetImage("/res/screen/select/characters/5_zombie.png");
+                model = Utilz.GetImage("/res/screen/select/characters/zombie.png");
                 name = Utilz.GetImage("/res/screen/select/characters/name_zombie.png");
                 break;
             case NINJA:
-                model = Utilz.GetImage("/res/screen/select/characters/4_ninja.png");
+                model = Utilz.GetImage("/res/screen/select/characters/ninja.png");
                 name = Utilz.GetImage("/res/screen/select/characters/name_ninja.png");
                 break;
             case MUSCLE:
-                model = Utilz.GetImage("/res/screen/select/characters/3_muscle.png");
+                model = Utilz.GetImage("/res/screen/select/characters/muscle.png");
                 name = Utilz.GetImage("/res/screen/select/characters/name_muscle.png");
                 break;
             case GHOST:
-                model = Utilz.GetImage("/res/screen/select/characters/2_ghost.png");
+                model = Utilz.GetImage("/res/screen/select/characters/ghost.png");
                 name = Utilz.GetImage("/res/screen/select/characters/name_ghost.png");
                 break;
-
         }
+    }
+
+    public Button getLeftBtn() {
+        return btn[LEFTBTN];
+    }
+
+    public Button getRightBtn() {
+        return btn[RIGHTBTN];
+    }
+
+    public BufferedImage getLeft() {
+        return left;
+    }
+
+    public Button getGoBtn() {
+        return btn[GOBTN];
+    }
+
+    public void setLeft(BufferedImage left) {
+        this.left = left;
+    }
+
+    public BufferedImage getRight() {
+        return right;
+    }
+
+    public void setRight(BufferedImage right) {
+        this.right = right;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
     }
 
 }

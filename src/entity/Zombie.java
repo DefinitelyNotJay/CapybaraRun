@@ -23,25 +23,32 @@ public class Zombie extends Player {
     }
 
     @Override
-    public void healthCheck() {
-        if (HP <= 0 && lives == 0) {
-            GamePanel.GameState = DEAD;
-            lives = 5;
-        } else if (HP <= 0 && lives >= 1) {
-            HP = 10;
-            rateDecreaseHP = 1;
-            lives--;
-        }
+    public void update() {
+        super.update();
+        skillActivate();
+
     }
 
     @Override
     public void skill() {
+        HP = 10;
+        lives--;
+        rateDecreaseHP = 0;
 
     }
 
     @Override
-    public void skillActivate() {
+    public void healthCheck() {
+        if (HP <= 0 && lives < 1) {
+            GamePanel.GameState = DEAD;
+        }
+    }
 
+    @Override
+    public void skillActivate() {
+        if (HP <= 0 && lives >= 1) {
+            skill();
+        }
     }
 
     @Override

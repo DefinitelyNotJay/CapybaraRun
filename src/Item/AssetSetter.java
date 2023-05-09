@@ -9,11 +9,11 @@ public class AssetSetter {
     GamePanel gp;
     public BufferedImage bloodItem, fastItem;
 
-    public AssetSetter(GamePanel gp){
+    public AssetSetter(GamePanel gp) {
         this.gp = gp;
     }
-    
-    public void setObject(){
+
+    public void setObject() {
         gp.obj[0] = new Flash(gp, 1800, 260, gp.tileSize, gp.tileSize, "fast");
         gp.obj[0].setItemImage("/res/item/fast.png");
         gp.obj[1] = new Flash(gp, 8200, 260, gp.tileSize, gp.tileSize, "IncreaseHP");
@@ -24,5 +24,7 @@ public class AssetSetter {
         gp.obj[3].setItemImage("/res/item/IncreaseHP.png");
         gp.obj[4] = new Flash(gp, 18200, 260, gp.tileSize, gp.tileSize, "IncreaseHP");
         gp.obj[4].setItemImage("/res/item/IncreaseHP.png");
+        gp.obj[5] = new Flash(gp, 800, 280, gp.tileSize, gp.tileSize, "Giant");
+        gp.obj[5].setItemImage("/res/item/cat.png");
     }
 }

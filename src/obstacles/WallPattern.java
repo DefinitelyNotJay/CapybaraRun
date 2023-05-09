@@ -13,12 +13,13 @@ public class WallPattern {
     public ArrayList<Wall> wallPattern;
     private int start = 440;
     private List<Integer> arr;
+    private final int wallAmount = 51;
     // private HashSet<WallPattern> wall_Set;
 
     public WallPattern(GamePanel gp) {
         this.gp = gp;
         
-        randomWallSequence(51);
+        randomWallSequence(wallAmount);
         loadWalls();
         System.out.println(gp.tileSize);
     }
@@ -351,6 +352,9 @@ public class WallPattern {
 
         wallPattern.addAll(wallPattern);
 
+    }
+    public int getWallAmount(){
+        return wallAmount;
     }
 
     public ArrayList<Wall> getWallPattern() {
