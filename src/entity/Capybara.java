@@ -1,12 +1,6 @@
 package entity;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import main.GamePanel;
-import methods.SpecialAbility;
 import methods.Utilz;
 
 public class Capybara extends Player {
@@ -14,6 +8,7 @@ public class Capybara extends Player {
         super(gp, HP, x, y, xSize, ySize);
         loadImages();
         skillActivate();
+        skill();
     }
 
     @Override
@@ -24,15 +19,14 @@ public class Capybara extends Player {
 
     @Override
     public void update() {
-        move();
-        updateAnimations();
-        healthCheck();
+        super.update();
+
     }
 
     @Override
     public void skill() {
-        rateDecreaseHP = 0;
-        HP = 150;
+        if (rateDecreaseHP != 0)
+            rateDecreaseHP = 0;
     }
 
     @Override

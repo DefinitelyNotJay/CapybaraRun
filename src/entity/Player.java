@@ -3,8 +3,6 @@ package entity;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-import javax.swing.plaf.synth.SynthListUI;
-
 import static constant.Constants.*;
 import constant.Constants;
 import main.GamePanel;
@@ -14,16 +12,20 @@ import methods.Utilz;
 public abstract class Player extends Entity implements Animations {
 
     protected GamePanel gp;
+    protected int character;
     protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false, flinching = false,
             appear = true, immune = false;
     protected int width, height, HP, maxHP, rateDecreaseHP = 1, flinchingCount = 0, flinchPerSec = 10;
     protected int fps = 0;
     protected int timeCount = 0;
     protected int jumpHeight = 16;
+    protected int customSize = 1;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected int skillCooldown, skillDuration, skillDurationCount;
     protected final int gravity = 1;
+    protected double healthMultiply;
     protected int velocity = jumpHeight;
+    protected int moveReset = 0;
     public BufferedImage[] runningAni;
     public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar,
             skillDurationBar;
@@ -44,7 +46,9 @@ public abstract class Player extends Entity implements Animations {
         this.width = width;
         this.height = height;
         maxHP = HP;
+        healthMultiply = (100 + 0.0) / HP;
         getStatusImage();
+        moveReset = gp.tileSize * 5;
     }
 
     public void getStatusImage() {
@@ -60,8 +64,6 @@ public abstract class Player extends Entity implements Animations {
         move();
         updateAnimations();
         healthCheck();
-        // System.out.println(fps);
-
     }
 
     public void draw(Graphics g2) {
@@ -74,34 +76,31 @@ public abstract class Player extends Entity implements Animations {
     public void drawPlayer(Graphics g2) {
         if (down && !jump) {
             if (appear)
-                g2.drawImage(slideAni, (int) x, (int) y, (int) (90 * 1.3), (int) (40 * 1.3), null);
+                g2.drawImage(slideAni, (int) x, (int) y, (int) (90 * 1.3 * customSize), (int) (40 * 1.3 * customSize),
+                        null);
         } else {
             if (appear)
-                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, (int) (Utilz.gp.tileSize * 1.3),
-                        (int) (Utilz.gp.tileSize * 1.3), null);
+                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, (int) (Utilz.gp.tileSize * 1.3 * customSize),
+                        (int) (Utilz.gp.tileSize * 1.3 * customSize), null);
         }
     }
 
     public void drawPlayerStatusBar(Graphics g2) {
 
         g2.drawImage(skillCooldownBar, (int) (x * 0.91), (int) (y * 0.88),
-                (int) ((90 / skillCooldown - 1) * (timeCount)), (int) (10 * 0.8), null);
+                (int) ((90 / (skillCooldown - 1)) * (timeCount)), (int) (10 * 0.8), null);
         g2.drawImage(skillBar, (int) (x * 0.9), (int) (y * 0.85), (int) (65 * 1.5), (int) (10 * 1.5), null);
-        g2.drawImage(healthBar, (int) (gp.tileSize * 2.5), (int) (gp.tileSize / 1.18), (int) (HP * 1.75),
+        g2.drawImage(healthBar, (int) (gp.tileSize * 2.5), (int) (gp.tileSize /
+                1.18),
+                (int) (HP * healthMultiply * 1.75),
                 (int) (gp.tileSize / 5.33), null);
+        // System.out.println(healthMultiply);
         g2.drawImage(emptyHealthBar, (int) (gp.tileSize * 1.61), (int) (gp.tileSize / 2.37), (int) (gp.tileSize * 3.75),
                 (int) (gp.tileSize / 1.06), null);
     }
 
     public void updateEverySec() {
-        System.out.println(WALLDAMAGE);
         decreaseHP();
-        flinchingBlink();
-
-    }
-
-    public void drawDeath(Graphics g2) {
-        // g2.drawString("GAME OVER", 640, 256);
     }
 
     public void updateAnimations() {
@@ -162,6 +161,7 @@ public abstract class Player extends Entity implements Animations {
         // immune state start
         if (flinching) {
             flinchingCount++;
+            flinchingBlink();
             immune = true;
         }
 
@@ -172,7 +172,7 @@ public abstract class Player extends Entity implements Animations {
             flinchingCount = 0;
             immune = false;
         }
-        flinchingBlink();
+
     }
 
     public void flinchingBlink() {
@@ -200,7 +200,7 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void slideReset() {
-        this.y = gp.tileSize * 5;
+        this.y = moveReset;
     }
 
     public boolean isJump() {
@@ -326,6 +326,22 @@ public abstract class Player extends Entity implements Animations {
 
     public void setImmune(boolean immune) {
         this.immune = immune;
+    }
+
+    public int getCustomSize() {
+        return customSize;
+    }
+
+    public void setCustomSize(int customSize) {
+        this.customSize = customSize;
+    }
+
+    public void setMoveReset(int moveReset) {
+        this.moveReset = moveReset;
+    }
+
+    public int getMoveReset() {
+        return moveReset;
     }
 
 }

@@ -15,4 +15,7 @@ public class Constants {
     public static final int RESULT = 4;
     public static final int SELECT = 5;
 
+    public static final int CAPY = 0, GHOST = 1, MUSCLE = 2, NINJA = 3, ZOMBIE = 4;
+    public static final int RIGHTBTN = 1, LEFTBTN = 0, GOBTN = 2;
+
 }

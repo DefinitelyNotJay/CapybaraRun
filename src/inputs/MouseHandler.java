@@ -5,23 +5,31 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 
 import constant.Constants;
-import entity.Muscle;
+import entity.*;
 
 import static constant.Constants.*;
 
 import main.GamePanel;
 import methods.Animations;
 import methods.Utilz;
+import screen.ChooseCharacter;
+import screen.MenuGame;
+import screen.Result;
 
 import static main.GamePanel.GameState;
 import tiles.*;
 
 public class MouseHandler implements MouseListener {
     private GamePanel gp;
-   
+    private MenuGame mg;
+    private ChooseCharacter cc;
+    private Result r;
 
-    public MouseHandler(GamePanel gp) {
+    public MouseHandler(GamePanel gp, MenuGame mg, Result r, ChooseCharacter cc) {
         this.gp = gp;
+        this.mg = mg;
+        this.r = r;
+        this.cc = cc;
 
     }
 
@@ -56,10 +64,7 @@ public class MouseHandler implements MouseListener {
 
             if (yButtonArea) {
                 if (isInPlaybuttonArea) {
-                    gp.setPlayer(new Muscle(gp, 100, gp.tileSize * 2, Constants.GROUND, gp.tileSize, gp.tileSize));
-                    GamePanel.GameState = PLAYING;
-                    GamePanel.stopMusic();
-                    GamePanel.playMusic(2);
+                    GamePanel.GameState = SELECT;
                 } else if (isInQuitButtonArea) {
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
@@ -67,6 +72,54 @@ public class MouseHandler implements MouseListener {
                 }
             }
 
+        }
+
+        if (GameState == SELECT) {
+            boolean isInButtonYArea = cc.getLeftBtn().getY() <= e.getY() &&
+                    cc.getLeftBtn().getY() + cc.getLeftBtn().getWidth() >= e.getY();
+
+            boolean isInLeftBtnArea = e.getX() >= cc.getLeftBtn().getX()
+                    && e.getX() <= cc.getLeftBtn().getX() + cc.getLeftBtn().getWidth();
+
+            boolean isInRightBtnArea = e.getX() >= cc.getRightBtn().getX()
+                    && e.getX() <= cc.getRightBtn().getX() + cc.getRightBtn().getWidth();
+            boolean isInGoBtnArea = e.getY() >= cc.getGoBtn().getY()
+                    && e.getY() <= cc.getGoBtn().getY() + cc.getGoBtn().getHeight()
+                    && cc.getGoBtn().getX() >= cc.getGoBtn().getX()
+                    && e.getX() <= cc.getGoBtn().getX() + cc.getGoBtn().getWidth();
+
+            if (isInButtonYArea && isInLeftBtnArea) {
+                if (cc.getPage() == CAPY)
+                    cc.setPage(ZOMBIE);
+                else
+                    cc.setPage(cc.getPage() - 1);
+            } else if (isInButtonYArea && isInRightBtnArea) {
+                if (cc.getPage() == ZOMBIE) {
+                    cc.setPage(CAPY);
+                } else {
+                    cc.setPage(cc.getPage() + 1);
+                }
+            } else if (isInGoBtnArea) {
+                int player = cc.getPage();
+                switch (player) {
+                    case CAPY:
+                        gp.setPlayer(new Capybara(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        break;
+                    case GHOST:
+                        gp.setPlayer(new Ghost(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        break;
+                    case ZOMBIE:
+                        gp.setPlayer(new Zombie(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        break;
+                    case MUSCLE:
+                        gp.setPlayer(new Muscle(gp, 200, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        break;
+                    case NINJA:
+                        gp.setPlayer(new Ninja(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        break;
+                }
+                GameState = PLAYING;
+            }
         }
     }
 

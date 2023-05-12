@@ -1,12 +1,7 @@
 package entity;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import javax.imageio.ImageIO;
 import main.GamePanel;
-import methods.SpecialAbility;
 import methods.Utilz;
 import static constant.Constants.*;
 
@@ -47,22 +42,13 @@ public class Ghost extends Player {
     public void skillActivate() {
         if (timeCount == skillCooldown) {
             timeCount = 0;
-            System.out.println("Skill Activated");
             skill();
         }
-    }
-
-    @Override
-    public void updateEverySec() {
-        skillActivate();
-        super.updateEverySec();
-        // immortal before running
         if (skillDurationCount + 1 == skillDuration) {
             GAMESPEED -= 10;
             aniSpeed = 7;
         }
         if (skillDurationCount == skillDuration) {
-            System.out.println("No Skill!");
             skillReset();
         }
         if (skillOnUse) {
@@ -71,13 +57,19 @@ public class Ghost extends Player {
         if (!skillOnUse) {
             timeCount++;
         }
+    }
+
+    @Override
+    public void updateEverySec() {
+        super.updateEverySec();
+        skillActivate();
+        // immortal before running
 
     }
 
     @Override
     public void skillReset() {
         runningAni = normalAnirun;
-
         WALLDAMAGE = 10;
         // reset animation
         skillDurationCount = 0;

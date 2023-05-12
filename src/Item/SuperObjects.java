@@ -12,9 +12,9 @@ import main.GamePanel;
 import methods.Utilz;
 
 public abstract class SuperObjects {
-    private BufferedImage imageItem;
-    private String name;
-    private boolean collision = false;
+    protected BufferedImage imageItem;
+    protected String name;
+    protected boolean collision = false;
     public int mapX, mapY, sizeX, sizeY;
     protected GamePanel gp;
     public BufferedImage bloodItem;
@@ -23,12 +23,13 @@ public abstract class SuperObjects {
 
     public abstract void effect();
 
-    public SuperObjects(GamePanel gp, int x, int y, int sizeX, int sizeY) {
+    public SuperObjects(GamePanel gp, int x, int y, int sizeX, int sizeY, String name) {
         this.mapX = x;
         this.mapY = y;
         this.gp = gp;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
+        this.name = name;
         loadImages();
     }
 
@@ -78,7 +79,7 @@ public abstract class SuperObjects {
 
     public void draw(Graphics g2) {
 
-        mapX -= 8;
+        mapX -= GAMESPEED;
         if (!this.collision)
             g2.drawImage(imageItem, mapX, mapY, gp.tileSize, gp.tileSize, null);
     }
@@ -94,20 +95,16 @@ public abstract class SuperObjects {
     }
 
     public void crashItem() {
-        if (playerX + playerWidth + playerSolidAreaX >= this.mapX
-                && playerX + playerWidth + playerSolidAreaY <= this.mapX + sizeX) {
-            if (playerY + playerHeight - playerSolidAreaY >= this.mapY
-                    && playerY + playerHeight - playerSolidAreaY <= this.mapY + sizeY) {
-                    setCollision(true);
-                        
+        if (playerX + playerWidth >= this.mapX && playerX + playerWidth <= this.mapX + sizeX) {
+            if (playerY + playerHeight >= this.mapY && playerY + playerHeight <= this.mapY + sizeY) {
+                setCollision(true);
             }
         }
     }
 
     public void skillItem() {
-        if (collision) {
+        if (collision)
             effect();
-        }
-        
+
     }
 }
