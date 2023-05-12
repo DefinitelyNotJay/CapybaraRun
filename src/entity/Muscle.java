@@ -23,6 +23,9 @@ public class Muscle extends Player {
     @Override
     public void drawPlayerStatusBar(Graphics g2) {
         super.drawPlayerStatusBar(g2);
+        g2.drawImage(skillCooldownBar, (int) (x * 0.91), (int) (y * 0.88),
+                (int) ((90 / (skillCooldown - 1)) * (timeCount)), (int) (10 * 0.8), null);
+        g2.drawImage(skillBar, (int) (x * 0.9), (int) (y * 0.85), (int) (65 * 1.5), (int) (10 * 1.5), null);
         if (skillOnUse) {
             g2.drawImage(skillOnUseBar, (int) (x * 0.9), (int) (y * 0.845), (int) (5 * 2), (int) (5 * 2), null);
             g2.drawImage(skillDurationBar, (int) (x * 0.976), (int) (y * 0.85),

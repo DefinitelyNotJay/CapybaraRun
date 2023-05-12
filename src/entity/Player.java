@@ -87,9 +87,7 @@ public abstract class Player extends Entity implements Animations {
 
     public void drawPlayerStatusBar(Graphics g2) {
 
-        g2.drawImage(skillCooldownBar, (int) (x * 0.91), (int) (y * 0.88),
-                (int) ((90 / (skillCooldown - 1)) * (timeCount)), (int) (10 * 0.8), null);
-        g2.drawImage(skillBar, (int) (x * 0.9), (int) (y * 0.85), (int) (65 * 1.5), (int) (10 * 1.5), null);
+
         g2.drawImage(healthBar, (int) (gp.tileSize * 2.5), (int) (gp.tileSize /
                 1.18),
                 (int) (HP * healthMultiply * 1.75),

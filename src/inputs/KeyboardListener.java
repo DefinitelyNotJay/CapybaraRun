@@ -46,26 +46,20 @@ public class KeyboardListener implements KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-            // case KeyEvent.VK_SPACE:
-            // gp.getPlayer().setJump(false);
-            // break;
+
             case KeyEvent.VK_W:
+            case KeyEvent.VK_SPACE:
+            case KeyEvent.VK_UP:
                 GamePanel.playMusic(4);
                 // GamePanel.stopMusic();
                 gp.getPlayer().setJump(true);
                 break;
             case KeyEvent.VK_S:
+            case KeyEvent.VK_DOWN:
                 GamePanel.playMusic(5);
                 // GamePanel.stopMusic();
                 gp.getPlayer().setDown(false);
-                // gp.getPlayer().slideReset();
                 break;
-            // case KeyEvent.VK_A:
-            // gp.getPlayer().setLeft(false);
-            // break;
-            // case KeyEvent.VK_D:
-            // gp.getPlayer().setRight(false);
-            // break;
 
         }
     }
