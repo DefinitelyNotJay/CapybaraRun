@@ -14,7 +14,7 @@ public class WallGround extends Wall {
 
     public WallGround(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
-        img = Utilz.GetImage("");
+        img = Utilz.GetImage("/res/wall/rockblock.png");
     }
 
     @Override
@@ -50,8 +50,7 @@ public class WallGround extends Wall {
 
     @Override
     public void draw(Graphics g2) {
-        g2.setColor(Color.black);
-        g2.fillRect((int) x, (int) y, width, height);
+        g2.drawImage(img, x, y, gp.tileSize, gp.tileSize, null);
     }
 
 }
