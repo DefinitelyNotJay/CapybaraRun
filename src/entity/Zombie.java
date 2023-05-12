@@ -26,7 +26,7 @@ public class Zombie extends Player {
 
     public void drawPlayerStatusBar(Graphics g2) {
         for (int i = 0; i < lives; i++)
-            g2.drawImage(greenHeart, x + (i * 14), y - 20, (int) (gp.tileSize * 0.25),
+            g2.drawImage(greenHeart, x + (i * 20), y - 20, (int) (gp.tileSize * 0.25),
                     (int) (gp.tileSize * 0.25), null);
         super.drawPlayerStatusBar(g2);
     }

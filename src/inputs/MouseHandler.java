@@ -43,13 +43,13 @@ public class MouseHandler implements MouseListener {
 
             boolean isInRestartButtonArea = e.getX() >= 787 && e.getX() <= 787 + 125;
             if (isInBackButtonArea && yButtonArea) {
-                GamePanel.GameState = MENU;
+                GameState = MENU;
                 // GamePanel.stopMusic();
                 // GamePanel.playMusic(0);
             } else if (isInRestartButtonArea && yButtonArea) {
                 gp.gameReset();
                 gp.getPlayer().playerReset();
-                GamePanel.GameState = PLAYING;
+                GameState = PLAYING;
                 // GamePanel.stopMusic();
                 // GamePanel.playMusic(3);
             }
@@ -66,7 +66,7 @@ public class MouseHandler implements MouseListener {
 
             if (yButtonArea) {
                 if (isInPlaybuttonArea) {
-                    GamePanel.GameState = SELECT;
+                    GameState = SELECT;
                     GamePanel.stopMusic();
                     GamePanel.playMusic(1);
                 } else if (isInQuitButtonArea) {
@@ -75,7 +75,6 @@ public class MouseHandler implements MouseListener {
 
                 }
             }
-
         }
 
         if (GameState == SELECT) {

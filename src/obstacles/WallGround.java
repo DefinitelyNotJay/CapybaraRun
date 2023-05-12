@@ -2,15 +2,19 @@ package obstacles;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import static constant.Constants.*;
 import main.GamePanel;
+import methods.Utilz;
 
 public class WallGround extends Wall {
     private int times = 0;
+    private BufferedImage img;
 
     public WallGround(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
+        img = Utilz.GetImage("");
     }
 
     @Override
