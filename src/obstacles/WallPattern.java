@@ -115,7 +115,6 @@ public class WallPattern {
                 new WallHanging(gp, start + arr.get(9) + 170 + 150 + 150, 260, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(9) + 180 + 170 + 150 + 170, 342, gp.tileSize, gp.tileSize),
                 // 10
-                new WallHanging(gp, start + arr.get(10), 280, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(10) + 200, 342, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(10) + 200 + 250, 342, gp.tileSize, gp.tileSize),
                 // 11
