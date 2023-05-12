@@ -20,7 +20,7 @@ public class Sound {
         //effect
         soundURL[4] = getClass().getResource("/res/sound/zombie_jump.wav");
         soundURL[5] = getClass().getResource("/res/sound/zombie_slide.wav");
-        //soundURL[6] = getClass().getResource("/res/sound/Ending.wav");
+        soundURL[6] = getClass().getResource("/res/sound/Hit.wav");
     }
 
     public void setFiles(int i){
