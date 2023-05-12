@@ -25,7 +25,7 @@ public class KeyboardListener implements KeyListener {
                 gp.getPlayer().setJump(true);
                 break;
             case KeyEvent.VK_S:
-                GamePanel.playSE(5);
+                //GamePanel.playSE(5);
                 gp.getPlayer().setDown(true);
                 break;
 
