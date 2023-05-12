@@ -149,13 +149,19 @@ public class GamePanel extends JPanel {
     public static void playMusic(int i) {
         music.setFiles(i);
         music.playSound();
-        // music.setVolume(10);
+        music.setVolume(30);
         music.loopSound();
     }
 
     public static void playSE(int i) {
         effect.setFiles(i);
-        effect.setVolume(20);
+        effect.setVolume(15);
+        effect.playSound();
+    }
+
+    public static void playhit(int i) {
+        effect.setFiles(i);
+        effect.setVolume(50);
         effect.playSound();
     }
 
