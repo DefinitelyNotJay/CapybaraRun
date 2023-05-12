@@ -65,6 +65,8 @@ public class MouseHandler implements MouseListener {
             if (yButtonArea) {
                 if (isInPlaybuttonArea) {
                     GamePanel.GameState = SELECT;
+                    GamePanel.stopMusic();
+                    GamePanel.playMusic(1);
                 } else if (isInQuitButtonArea) {
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
@@ -119,6 +121,8 @@ public class MouseHandler implements MouseListener {
                         break;
                 }
                 GameState = PLAYING;
+                GamePanel.stopMusic();
+                GamePanel.playMusic(2);
             }
         }
     }
