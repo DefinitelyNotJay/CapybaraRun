@@ -1,13 +1,8 @@
 package Item;
-
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import static constant.Constants.*;
-import entity.Entity;
-import main.Game;
 import main.GamePanel;
 import methods.Utilz;
 
@@ -82,7 +77,6 @@ public abstract class SuperObjects {
         mapX -= GAMESPEED;
         if (!this.collision)
             g2.drawImage(imageItem, mapX, mapY, gp.tileSize, gp.tileSize, null);
-
     }
 
     public void update() {
