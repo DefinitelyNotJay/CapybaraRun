@@ -23,6 +23,7 @@ public class WallHanging extends Wall {
                     if (!gp.getPlayer().isImmune()) {
                         // getDamage
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
+                        GamePanel.playhit(6);
 
                         // flinching
                         gp.getPlayer().setFlinching(true);

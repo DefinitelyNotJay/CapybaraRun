@@ -2,14 +2,15 @@
 package entity;
 
 import main.GamePanel;
-import methods.SpecialAbility;
 import methods.Utilz;
 import static constant.Constants.*;
 
-import java.util.concurrent.TimeUnit;
+import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 public class Zombie extends Player {
     private int lives = 5;
+    private BufferedImage greenHeart;
 
     public Zombie(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
         super(gp, HP, x, y, xSize, ySize);
@@ -20,6 +21,14 @@ public class Zombie extends Player {
     public void loadImages() {
         runningAni = Utilz.getRunningImg("/res/player/zombie/runCapy.png");
         slideAni = Utilz.GetImage("/res/player/zombie/slideCapy.png");
+        greenHeart = Utilz.GetImage("/res/player/zombie/greenHeart.png");
+    }
+
+    public void drawPlayerStatusBar(Graphics g2) {
+        for (int i = 0; i < lives; i++)
+            g2.drawImage(greenHeart, x + (i * 14), y - 20, (int) (gp.tileSize * 0.25),
+                    (int) (gp.tileSize * 0.25), null);
+        super.drawPlayerStatusBar(g2);
     }
 
     @Override
@@ -54,6 +63,12 @@ public class Zombie extends Player {
     @Override
     public void skillReset() {
 
+    }
+
+    @Override
+    public void playerReset() {
+        this.HP = maxHP;
+        lives = 5;
     }
 
 }

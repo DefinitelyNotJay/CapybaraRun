@@ -48,7 +48,6 @@ public class GamePanel extends JPanel {
         cc = new ChooseCharacter();
         rs = new Result();
         // wall
-        wp = new WallPattern(this);
 
         t1 = new Tile(this);
         // listener
@@ -63,6 +62,14 @@ public class GamePanel extends JPanel {
 
     public void setUpGame() {
         aSetter.setObject();
+    }
+
+    public WallPattern getWp() {
+        return wp;
+    }
+
+    public void setWp(WallPattern wp) {
+        this.wp = wp;
     }
 
     @Override
@@ -142,13 +149,19 @@ public class GamePanel extends JPanel {
     public static void playMusic(int i) {
         music.setFiles(i);
         music.playSound();
-        // music.setVolume(10);
+        music.setVolume(30);
         music.loopSound();
     }
 
     public static void playSE(int i) {
         effect.setFiles(i);
-        effect.setVolume(20);
+        effect.setVolume(15);
+        effect.playSound();
+    }
+
+    public static void playhit(int i) {
+        effect.setFiles(i);
+        effect.setVolume(50);
         effect.playSound();
     }
 

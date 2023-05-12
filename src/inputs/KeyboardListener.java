@@ -14,9 +14,7 @@ public class KeyboardListener implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        // throw new UnsupportedOperationException("Not supported yet."); // Generated
-        // from
-        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
     }
 
     @Override
@@ -30,17 +28,8 @@ public class KeyboardListener implements KeyListener {
                 GamePanel.playSE(5);
                 gp.getPlayer().setDown(true);
                 break;
-            // case KeyEvent.VK_A:
-            // gp.getPlayer().setLeft(true);
-            // break;
-            // case KeyEvent.VK_D:
-            // gp.getPlayer().setRight(true);
-            // break;
 
         }
-        // throw new UnsupportedOperationException("Not supported yet."); // Generated
-        // from
-        // nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     @Override

@@ -12,6 +12,7 @@ import static constant.Constants.*;
 import main.GamePanel;
 import methods.Animations;
 import methods.Utilz;
+import obstacles.WallPattern;
 import screen.ChooseCharacter;
 import screen.MenuGame;
 import screen.Result;
@@ -47,6 +48,7 @@ public class MouseHandler implements MouseListener {
                 // GamePanel.playMusic(0);
             } else if (isInRestartButtonArea && yButtonArea) {
                 gp.gameReset();
+                gp.getPlayer().playerReset();
                 GamePanel.GameState = PLAYING;
                 // GamePanel.stopMusic();
                 // GamePanel.playMusic(3);
@@ -65,6 +67,8 @@ public class MouseHandler implements MouseListener {
             if (yButtonArea) {
                 if (isInPlaybuttonArea) {
                     GamePanel.GameState = SELECT;
+                    GamePanel.stopMusic();
+                    GamePanel.playMusic(1);
                 } else if (isInQuitButtonArea) {
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
@@ -87,7 +91,7 @@ public class MouseHandler implements MouseListener {
                     && e.getY() <= cc.getGoBtn().getY() + cc.getGoBtn().getHeight()
                     && cc.getGoBtn().getX() >= cc.getGoBtn().getX()
                     && e.getX() <= cc.getGoBtn().getX() + cc.getGoBtn().getWidth();
-
+            // Page slide methods
             if (isInButtonYArea && isInLeftBtnArea) {
                 if (cc.getPage() == CAPY)
                     cc.setPage(ZOMBIE);
@@ -118,7 +122,10 @@ public class MouseHandler implements MouseListener {
                         gp.setPlayer(new Ninja(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                 }
+                gp.setWp(new WallPattern(gp));
                 GameState = PLAYING;
+                GamePanel.stopMusic();
+                GamePanel.playMusic(2);
             }
         }
     }

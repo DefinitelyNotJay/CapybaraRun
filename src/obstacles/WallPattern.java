@@ -13,7 +13,7 @@ public class WallPattern {
     public ArrayList<Wall> wallPattern;
     private int start = 440;
     private List<Integer> arr;
-    private final int wallAmount = 51;
+    private final int wallAmount = 52;
     // private HashSet<WallPattern> wall_Set;
 
     public WallPattern(GamePanel gp) {
@@ -64,7 +64,6 @@ public class WallPattern {
                 new WallHanging(gp, start + arr.get(2) + 200 + 60 + 60 + 60 + 60 + 60 + 60 + 60 + 60 + 60, 280,gp.tileSize, gp.tileSize),
                 new WallHanging(gp, start + arr.get(2) + 200 + 60 + 60 + 60 + 60 + 60 + 60 + 60 + 60 + 60 + 60, 280,gp.tileSize, gp.tileSize),
                 // 3
-                new WallHanging(gp, start + arr.get(3), 280, gp.tileSize, gp.tileSize),
                 new WallGround(gp, start + arr.get(3) + 220, 342, gp.tileSize, gp.tileSize),
                 new WallHanging(gp, start + arr.get(3) + 200 + 200, 280, gp.tileSize, gp.tileSize),
                 new WallHanging(gp, start + arr.get(3) + 200 + 200 + 150, 280, gp.tileSize, gp.tileSize),
@@ -348,7 +347,14 @@ public class WallPattern {
                 new WallHanging(gp, start + arr.get(50), 280, gp.tileSize, gp.tileSize),
                 new WallHanging(gp, start + arr.get(50) + 250, 240, gp.tileSize, gp.tileSize),
                 new WallHanging(gp, start + arr.get(50) + 250 + 250, 280, gp.tileSize, gp.tileSize),
-                new WallHanging(gp, start + arr.get(50) + 250 + 250 +250, 240, gp.tileSize, gp.tileSize));
+                new WallHanging(gp, start + arr.get(50) + 250 + 250 +250, 240, gp.tileSize, gp.tileSize),
+                //51
+                new WallGround(gp, start + arr.get(51), 342, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(51) + 220, 260, gp.tileSize, gp.tileSize),
+                new WallGround(gp, start + arr.get(51) + 220 + 220, 342, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(51) + 220 + 220 + 220, 280, gp.tileSize, gp.tileSize),
+                new WallGround(gp, start + arr.get(51) + 220 + 220 + 220 + 220, 342, gp.tileSize, gp.tileSize),
+                new WallHanging(gp, start + arr.get(51) + 220 + 220 + 220 + 220 + 220, 280, gp.tileSize, gp.tileSize));
 
         wallPattern.addAll(wallPattern);
 

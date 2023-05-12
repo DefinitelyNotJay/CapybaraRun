@@ -75,4 +75,12 @@ public class Muscle extends Player {
         }
 
     }
+
+    @Override
+    public void playerReset() {
+        this.HP = maxHP;
+        skillOnUse = false;
+        timeCount = 0;
+        skillDurationCount = 0;
+    }
 }

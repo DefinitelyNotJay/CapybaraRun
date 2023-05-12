@@ -20,15 +20,11 @@ public class Capybara extends Player {
     @Override
     public void update() {
         super.update();
-
     }
-
-    
 
     @Override
     public void skill() {
-        if (rateDecreaseHP != 0)
-            rateDecreaseHP = 0;
+        rateDecreaseHP = 0;
     }
 
     @Override
@@ -39,5 +35,10 @@ public class Capybara extends Player {
     @Override
     public void skillReset() {
 
+    }
+
+    @Override
+    public void playerReset() {
+        this.HP = maxHP;
     }
 }
