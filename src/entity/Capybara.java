@@ -23,6 +23,8 @@ public class Capybara extends Player {
 
     }
 
+    
+
     @Override
     public void skill() {
         if (rateDecreaseHP != 0)
