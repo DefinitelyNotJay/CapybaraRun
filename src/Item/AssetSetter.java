@@ -3,7 +3,6 @@ package Item;
 import java.awt.image.BufferedImage;
 
 import main.GamePanel;
-import methods.Utilz;
 
 public class AssetSetter {
     GamePanel gp;

@@ -1,13 +1,8 @@
 package Item;
-
-import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 
 import static constant.Constants.*;
-import entity.Entity;
-import main.Game;
 import main.GamePanel;
 import methods.Utilz;
 
