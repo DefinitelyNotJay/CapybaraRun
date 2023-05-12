@@ -88,4 +88,12 @@ public class Ghost extends Player {
         setSkillOnUse(false);
         setImmune(false);
     }
+
+    @Override
+    public void playerReset() {
+        this.HP = maxHP;
+        skillOnUse = false;
+        timeCount = 0;
+        skillDurationCount = 0;
+    }
 }

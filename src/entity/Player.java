@@ -39,6 +39,8 @@ public abstract class Player extends Entity implements Animations {
 
     public abstract void skillReset();
 
+    public abstract void playerReset();
+
     public Player(GamePanel gp, int HP, int x, int y, int width, int height) {
         super(x, y);
         this.gp = gp;
@@ -86,7 +88,6 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void drawPlayerStatusBar(Graphics g2) {
-
 
         g2.drawImage(healthBar, (int) (gp.tileSize * 2.5), (int) (gp.tileSize /
                 1.18),

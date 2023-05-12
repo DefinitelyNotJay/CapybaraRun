@@ -48,7 +48,6 @@ public class GamePanel extends JPanel {
         cc = new ChooseCharacter();
         rs = new Result();
         // wall
-        wp = new WallPattern(this);
 
         t1 = new Tile(this);
         // listener
@@ -63,6 +62,14 @@ public class GamePanel extends JPanel {
 
     public void setUpGame() {
         aSetter.setObject();
+    }
+
+    public WallPattern getWp() {
+        return wp;
+    }
+
+    public void setWp(WallPattern wp) {
+        this.wp = wp;
     }
 
     @Override
