@@ -12,7 +12,7 @@ public class Flash extends SuperObjects {
     @Override
     public void effect() {
         if (getName().equals("fast")) {
-            if (mapX > -1500) {
+            if (mapX() > -1500) {
                 GAMESPEED = 13;
                 gp.getPlayer().setImmune(true);
                 System.out.println("fast item");
