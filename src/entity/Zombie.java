@@ -10,10 +10,11 @@ import java.awt.image.BufferedImage;
 
 public class Zombie extends Player {
     private int lives = 5;
-    private BufferedImage greenHeart;
+    private BufferedImage greenHeart, skillAniSlide, normalAniSlide;
+    private BufferedImage skillAniRun[], normalAnirun[];
 
-    public Zombie(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
-        super(gp, HP, x, y, xSize, ySize);
+    public Zombie(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
+        super(gp, character ,HP, x, y, xSize, ySize);
         loadImages();
     }
 

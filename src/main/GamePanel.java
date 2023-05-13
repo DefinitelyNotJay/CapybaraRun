@@ -53,7 +53,7 @@ public class GamePanel extends JPanel {
         // listener
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this, mg, rs, cc));
-        addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
+        addMouseMotionListener(new MouseMotionHandler(this, mg, rs, cc));
         // sound
         music = new Sound();
         effect = new Sound();

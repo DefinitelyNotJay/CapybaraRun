@@ -25,8 +25,6 @@ public class ChooseCharacter implements ScreenTools, Animations {
         frame = Utilz.GetImage("/res/screen/select/frame.png");
         skill = Utilz.GetImage("/res/screen/select/skill.png");
         characterFrame = Utilz.GetImage("/res/screen/select/character.png");
-        left = Utilz.GetImage("/res/screen/select/left.png");
-        right = Utilz.GetImage("/res/screen/select/right.png");
         getModelAndNameImage();
     }
 

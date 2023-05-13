@@ -24,7 +24,11 @@ public class WallGround extends Wall {
             if (playerY + playerHeight - playerSolidAreaY >= this.y) {
                 times++;
                 if (times == 1) {
-                    if (!gp.getPlayer().isImmune()) {
+                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getCharacter() == MUSCLE) {
+                        if (gp.getPlayer().getHP() + 5 <= gp.getPlayer().getMaxHP()) {
+                            gp.getPlayer().setHP(gp.getPlayer().getHP() + 5);
+                        }
+                    } else if (!gp.getPlayer().isImmune()) {
                         // getDamage
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                         GamePanel.playhit(6);
@@ -34,11 +38,7 @@ public class WallGround extends Wall {
                     }
                     System.out.println(gp.getPlayer().getClass().getName());
                     // special ability for muscle
-                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("entity.Muscle")) {
-                        if (gp.getPlayer().getHP() + 10 <= gp.getPlayer().getMaxHP()) {
-                            gp.getPlayer().setHP(gp.getPlayer().getHP() + 10);
-                        }
-                    }
+
                 }
 
             }

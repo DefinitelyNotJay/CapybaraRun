@@ -53,5 +53,13 @@ public class Result extends JPanel implements ScreenTools {
     public void setButton(Button[] button) {
         this.button = button;
     }
+    
+    public Button getBackBtn(){
+        return button[BACK];
+    }
+    
+    public Button getRestartBtn(){
+        return button[RESTART];
+    }
 
 }

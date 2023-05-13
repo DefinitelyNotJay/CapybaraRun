@@ -20,7 +20,11 @@ public class WallHanging extends Wall {
             if (playerY + playerSolidAreaY <= this.y + height) {
                 times++;
                 if (times == 1) {
-                    if (!gp.getPlayer().isImmune()) {
+                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getCharacter() == MUSCLE) {
+                        if (gp.getPlayer().getHP() + 5 <= gp.getPlayer().getMaxHP()) {
+                            gp.getPlayer().setHP(gp.getPlayer().getHP() + 5);
+                        }
+                    } else if (!gp.getPlayer().isImmune()) {
                         // getDamage
                         gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                         GamePanel.playhit(6);
@@ -30,16 +34,11 @@ public class WallHanging extends Wall {
                     }
 
                     // special ability for muscle
-                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getClass().getName().equals("entity.Muscle")) {
-                        if (gp.getPlayer().getHP() + 10 <= gp.getPlayer().getMaxHP()) {
-                            gp.getPlayer().setHP(gp.getPlayer().getHP() + 10);
-                        }
-                    }
+
                 }
             }
         } else {
             times = 0;
-            gp.getPlayer().setIsCrash(false);
         }
     }
 

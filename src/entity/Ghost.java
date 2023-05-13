@@ -10,8 +10,8 @@ public class Ghost extends Player {
     private BufferedImage skillAniRun[], normalAnirun[];
     private BufferedImage skillAniSlide, normalAniSlide;
 
-    public Ghost(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
-        super(gp, HP, x, y, xSize, ySize);
+    public Ghost(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
+        super(gp, character, HP, x, y, xSize, ySize);
         skillCooldown = 10;
         skillDuration = 5;
         skillDurationCount = 0;

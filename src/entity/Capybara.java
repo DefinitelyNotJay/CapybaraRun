@@ -4,8 +4,8 @@ import main.GamePanel;
 import methods.Utilz;
 
 public class Capybara extends Player {
-    public Capybara(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
-        super(gp, HP, x, y, xSize, ySize);
+    public Capybara(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
+        super(gp, character, HP, x, y, xSize, ySize);
         loadImages();
         skillActivate();
         skill();

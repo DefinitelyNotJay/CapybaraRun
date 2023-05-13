@@ -17,13 +17,12 @@ public class Flash extends SuperObjects {
                 gp.getPlayer().setImmune(true);
                 System.out.println("fast item");
             } else {
-                GAMESPEED = 6;
+                GAMESPEED = 4;
                 gp.getPlayer().setImmune(false);
                 gp.getPlayer().getImmune();
             }
         } else if (getName().equals("IncreaseHP")) {
             if (mapX() > -1) {
-                System.out.println("HItt");
                 gp.getPlayer().setHP(gp.getPlayer().getMaxHP());
                 System.out.println(gp.getPlayer().getMaxHP());
                 System.out.println("IncreaseHP");
@@ -37,15 +36,7 @@ public class Flash extends SuperObjects {
                 System.out.println("DecreaseHP");
             }
         } else if (getName().equals("Giant")) {
-            // if (mapX() > -1500) {
-            // gp.getPlayer().setCustomSize(3);
-            // gp.getPlayer().setImmune(true);
-            // gp.getPlayer().setMoveReset((int) (gp.tileSize * 2.45));
-            // } else {
-            // gp.getPlayer().setCustomSize(1);
-            // gp.getPlayer().setImmune(false);
-            // gp.getPlayer().setMoveReset(gp.tileSize * 5);
-            // }
+
         }
     }
 
