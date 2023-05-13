@@ -55,7 +55,7 @@ public class MouseHandler implements MouseListener {
             }
 
         }
-        if (GamePanel.GameState == MENU) {
+        else if (GamePanel.GameState == MENU) {
             boolean yButtonArea = e.getX() >= 570 && e.getX() <= 570 + 125;
 
             boolean isInPlaybuttonArea = e.getY() >= 170 && e.getY() <= 170 + 54;
@@ -79,8 +79,10 @@ public class MouseHandler implements MouseListener {
             }
         }
 
-        if (GameState == SELECT) {
+        else if (GameState == SELECT) {
             // Select
+            
+            
             boolean isInButtonYArea = cc.getLeftBtn().getY() <= e.getY() &&
                     cc.getLeftBtn().getY() + cc.getLeftBtn().getWidth() >= e.getY();
 
@@ -110,7 +112,7 @@ public class MouseHandler implements MouseListener {
                     cc.setPage(cc.getPage() + 1);
                 }
             } else if (isInGoBtnArea) {
-                GamePanel.playSE(9);
+                
                 int player = cc.getPage();
                 switch (player) {
                     case CAPY:
@@ -130,8 +132,9 @@ public class MouseHandler implements MouseListener {
                         break;
                 }
                 gp.setWp(new WallPattern(gp));
-                GameState = PLAYING;
+                GamePanel.playSE(9);
                 GamePanel.stopMusic();
+                GameState = PLAYING;
                 GamePanel.playMusic(2);
             }
         }
