@@ -44,7 +44,7 @@ public class Ghost extends Player {
     public void skill() {
         setImmune(true);
         setSkillOnUse(true);
-        GAMESPEED = 10;
+        GAMESPEED = 13;
         aniSpeed = 1;
 
     }
@@ -82,7 +82,6 @@ public class Ghost extends Player {
 
     @Override
     public void skillReset() {
-        WALLDAMAGE = 10;
         // reset animation
         skillDurationCount = 0;
         setSkillOnUse(false);

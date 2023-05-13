@@ -4,6 +4,7 @@ import main.GamePanel;
 import static constant.Constants.*;
 
 public class Flash extends SuperObjects {
+    private int times = 0;
 
     public Flash(GamePanel gp, int x, int y, int sizeX, int sizeY, String name) {
         super(gp, x, y, sizeX, sizeY, name);
@@ -12,14 +13,16 @@ public class Flash extends SuperObjects {
     @Override
     public void effect() {
         if (getName().equals("fast")) {
+            // System.out.println(mapX);
             if (mapX > -1500) {
-                System.out.println(11111);
                 GAMESPEED = 13;
                 gp.getPlayer().setImmune(true);
                 System.out.println("fast item");
-            } else {
+            } else if (mapX < -1500 && mapX > -1510 && times == 0) {
+                times++;
                 GAMESPEED = 4;
-                gp.getPlayer().setImmune(false);
+                if (!gp.getPlayer().isSkillOnUse())
+                    gp.getPlayer().setImmune(false);
 
             }
         } else if (getName().equals("IncreaseHP")) {
