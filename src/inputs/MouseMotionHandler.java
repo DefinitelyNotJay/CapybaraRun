@@ -62,10 +62,12 @@ public class MouseMotionHandler implements MouseMotionListener {
                     cc.getLeftBtn().getY() + cc.getLeftBtn().getWidth() >= e.getY();
 
             boolean isInLeftBtnArea = e.getX() >= cc.getLeftBtn().getX()
-                    && e.getX() <= cc.getLeftBtn().getX() + cc.getLeftBtn().getWidth();
+                    && e.getX() <= cc.getLeftBtn().getX() + cc.getLeftBtn().getWidth()
+                    && isInButtonYArea;
 
             boolean isInRightBtnArea = e.getX() >= cc.getRightBtn().getX()
-                    && e.getX() <= cc.getRightBtn().getX() + cc.getRightBtn().getWidth();
+                    && e.getX() <= cc.getRightBtn().getX() + cc.getRightBtn().getWidth()
+                    && isInButtonYArea;
             boolean isInGoBtnArea = e.getY() >= cc.getGoBtn().getY()
                     && e.getY() <= cc.getGoBtn().getY() + cc.getGoBtn().getHeight()
                     && e.getX() >= cc.getGoBtn().getX()
@@ -74,6 +76,8 @@ public class MouseMotionHandler implements MouseMotionListener {
             cc.getLeftBtn().setIsHover(isInLeftBtnArea && isInButtonYArea);
             cc.getRightBtn().setIsHover(isInRightBtnArea && isInButtonYArea);
             cc.getGoBtn().setIsHover(isInGoBtnArea);
+
+            
         }
     }
 
