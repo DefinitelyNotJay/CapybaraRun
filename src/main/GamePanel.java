@@ -89,8 +89,10 @@ public class GamePanel extends JPanel {
                 }
             }
         } else if (GameState == DEAD) {
+            stopMusic();
             Utilz.sleep(2);
             GameState = RESULT;
+            playMusic(3);
         } else if (GameState == MENU) {
             mg.paint(g2);
         } else if (GameState == RESULT) {
