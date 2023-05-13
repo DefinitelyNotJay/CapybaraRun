@@ -31,7 +31,7 @@ public class Flash extends SuperObjects {
         } else if (getName().equals("DecreaseHP")) {
             // System.out.println(mapX());
             if (mapX() == 0) {
-                gp.getPlayer().setHP(gp.getPlayer().getHP() - 20);
+                gp.getPlayer().setHP(gp.getPlayer().getHP() - 90);
                 System.out.println(gp.getPlayer().getHP());
                 System.out.println("DecreaseHP");
             }
