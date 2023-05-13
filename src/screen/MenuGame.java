@@ -70,4 +70,16 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
         g2.drawImage(runningCapy[aniIndex], 590, 380, (int) (32 * 2.5), (int) (34 * 2.5), null);
     }
 
+    public Button getPlayBtn() {
+        return button[PLAY];
+    }
+
+    public Button getCreditsBtn() {
+        return button[CREDITS];
+    }
+
+    public Button getQuitBtn() {
+        return button[QUIT];
+    }
+
 }

@@ -53,7 +53,7 @@ public class GamePanel extends JPanel {
         // listener
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this, mg, rs, cc));
-        addMouseMotionListener(new MouseMotionHandler(this, mg, rs));
+        addMouseMotionListener(new MouseMotionHandler(this, mg, rs, cc));
         // sound
         music = new Sound();
         effect = new Sound();
@@ -89,8 +89,10 @@ public class GamePanel extends JPanel {
                 }
             }
         } else if (GameState == DEAD) {
+            stopMusic();
             Utilz.sleep(2);
             GameState = RESULT;
+            playMusic(3);
         } else if (GameState == MENU) {
             mg.paint(g2);
         } else if (GameState == RESULT) {

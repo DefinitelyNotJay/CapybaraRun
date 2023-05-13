@@ -7,11 +7,9 @@ import methods.Utilz;
 import static constant.Constants.*;
 
 public class Ghost extends Player {
-    private BufferedImage skillAniRun[], normalAnirun[];
-    private BufferedImage skillAniSlide, normalAniSlide;
 
-    public Ghost(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
-        super(gp, HP, x, y, xSize, ySize);
+    public Ghost(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
+        super(gp, character, HP, x, y, xSize, ySize);
         skillCooldown = 10;
         skillDuration = 5;
         skillDurationCount = 0;
@@ -22,10 +20,12 @@ public class Ghost extends Player {
     public void loadImages() {
         normalAnirun = Utilz.getRunningImg("/res/player/ghost/capyrun.png");
         normalAniSlide = Utilz.GetImage("/res/player/ghost/capyslide.png");
-        skillAniRun = Utilz.getRunningImg("/res/player/ghost/capyskill.png");
-        // skillAniSlide = Utilz.GetImage("/res/player/ghost/capyrun.png");
-        runningAni = normalAnirun;
-        slideAni = normalAniSlide;
+
+        skillAniRun = Utilz.getRunningImg("/res/player/ghost/capySkillRun.png");
+        skillAniSlide = Utilz.GetImage("/res/player/ghost/capySkillSlide.png");
+
+        runningAni = Utilz.getRunningImg("/res/player/ghost/capyrun.png");
+        slideAni = Utilz.GetImage("/res/player/ghost/capyslide.png");
 
     }
 
@@ -44,8 +44,7 @@ public class Ghost extends Player {
     public void skill() {
         setImmune(true);
         setSkillOnUse(true);
-        runningAni = skillAniRun;
-        GAMESPEED = 30;
+        GAMESPEED = 10;
         aniSpeed = 1;
 
     }
@@ -56,32 +55,33 @@ public class Ghost extends Player {
             skill();
             timeCount = 0;
         }
-        if (skillDurationCount + 1 == skillDuration) {
-            GAMESPEED = 6;
-            aniSpeed = 7;
-        }
-        if (skillDurationCount == skillDuration) {
-            skillReset();
-        }
+
+    }
+
+    @Override
+    public void updateEverySec() {
+        super.updateEverySec();
         if (skillOnUse) {
             skillDurationCount++;
         }
         if (!skillOnUse) {
             timeCount++;
         }
-    }
-
-    @Override
-    public void updateEverySec() {
-        super.updateEverySec();
         skillActivate();
+        if (skillDurationCount + 1 == skillDuration) {
+            GAMESPEED = 4;
+            aniSpeed = 7;
+        }
+        if (skillDurationCount == skillDuration) {
+            skillReset();
+        }
+
         // immortal before running
 
     }
 
     @Override
     public void skillReset() {
-        runningAni = normalAnirun;
         WALLDAMAGE = 10;
         // reset animation
         skillDurationCount = 0;

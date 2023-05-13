@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import methods.Utilz;
 
 public class Constants {
-    public static int GAMESPEED = 6;
+    public static int GAMESPEED = 4;
     public static int WALLDAMAGE = 10;
     public static final int GROUND = 234;
     public static final int MENU = 1;

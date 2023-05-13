@@ -1,4 +1,5 @@
 package Item;
+
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
@@ -9,7 +10,7 @@ import methods.Utilz;
 public abstract class SuperObjects {
     protected BufferedImage imageItem;
     protected String name;
-    protected boolean collision = false;
+    protected boolean collision = false, skillUsed = false;
     public int mapX, mapY, sizeX, sizeY;
     protected GamePanel gp;
     public BufferedImage bloodItem;
@@ -75,7 +76,7 @@ public abstract class SuperObjects {
     public void draw(Graphics g2) {
 
         mapX -= GAMESPEED;
-        if (!this.collision)
+        if (!collision)
             g2.drawImage(imageItem, mapX, mapY, gp.tileSize, gp.tileSize, null);
     }
 
@@ -98,8 +99,10 @@ public abstract class SuperObjects {
     }
 
     public void skillItem() {
-        if (collision)
+        if (!skillUsed && collision) {
             effect();
+            System.out.println("James is here");
+        }
 
     }
 }

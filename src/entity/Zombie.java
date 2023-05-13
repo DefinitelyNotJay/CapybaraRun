@@ -10,18 +10,22 @@ import java.awt.image.BufferedImage;
 
 public class Zombie extends Player {
     private int lives = 5;
-    private BufferedImage greenHeart;
+    private BufferedImage greenHeart, skillAniSlide, normalAniSlide;
+    private BufferedImage skillAniRun[], normalAnirun[];
 
-    public Zombie(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
-        super(gp, HP, x, y, xSize, ySize);
+    public Zombie(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
+        super(gp, character ,HP, x, y, xSize, ySize);
         loadImages();
     }
 
     @Override
     public void loadImages() {
-        runningAni = Utilz.getRunningImg("/res/player/zombie/runCapy.png");
-        slideAni = Utilz.GetImage("/res/player/zombie/slideCapy.png");
-        greenHeart = Utilz.GetImage("/res/player/zombie/greenHeart.png");
+        normalAnirun = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
+        normalAniSlide = Utilz.GetImage("/res/player/muscle/capyslide.png");
+
+        skillAniRun = Utilz.getRunningImg("/res/player/muscle/capySkillRun.png");
+        skillAniSlide = Utilz.GetImage("/res/player/muscle/capySkillSlide.png");
+
     }
 
     public void drawPlayerStatusBar(Graphics g2) {

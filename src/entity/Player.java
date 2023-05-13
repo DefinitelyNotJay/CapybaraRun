@@ -13,9 +13,9 @@ public abstract class Player extends Entity implements Animations {
 
     protected GamePanel gp;
     protected int character;
-    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, isCrash = false, flinching = false,
+    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, flinching = false,
             appear = true, immune = false;
-    protected int width, height, HP, maxHP, rateDecreaseHP = 1, flinchingCount = 0, flinchPerSec = 10;
+    protected int width, height, HP, maxHP, rateDecreaseHP = 1, flinchingCount = 0, flinchPerSec = 8;
     protected int fps = 0;
     protected int timeCount = 0;
     protected int jumpHeight = 16;
@@ -27,6 +27,8 @@ public abstract class Player extends Entity implements Animations {
     protected int velocity = jumpHeight;
     protected int moveReset = 0;
     public BufferedImage[] runningAni;
+    protected BufferedImage skillAniRun[], normalAnirun[];
+    protected BufferedImage skillAniSlide, normalAniSlide;
     public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar,
             skillDurationBar;
     protected int aniTick, aniIndex, aniSpeed = 7;
@@ -41,9 +43,10 @@ public abstract class Player extends Entity implements Animations {
 
     public abstract void playerReset();
 
-    public Player(GamePanel gp, int HP, int x, int y, int width, int height) {
+    public Player(GamePanel gp, int character, int HP, int x, int y, int width, int height) {
         super(x, y);
         this.gp = gp;
+        this.character = character;
         this.HP = HP;
         this.width = width;
         this.height = height;
@@ -77,13 +80,33 @@ public abstract class Player extends Entity implements Animations {
 
     public void drawPlayer(Graphics g2) {
         if (down && !jump) {
-            if (appear)
-                g2.drawImage(slideAni, (int) x, (int) y, (int) (90 * 1.3 * customSize), (int) (40 * 1.3 * customSize),
-                        null);
+            if (appear) {
+                if (skillOnUse) {
+                    g2.drawImage(skillAniSlide, (int) x, (int) y, (int) (90 * 1.3 * customSize),
+                            (int) (40 * 1.3 * customSize),
+                            null);
+                }
+
+                else {
+                    g2.drawImage(normalAniSlide, (int) x, (int) y, (int) (90 * 1.3 * customSize),
+                            (int) (40 * 1.3 * customSize),
+                            null);
+                }
+            }
+
         } else {
-            if (appear)
-                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, (int) (Utilz.gp.tileSize * 1.3 * customSize),
-                        (int) (Utilz.gp.tileSize * 1.3 * customSize), null);
+            if (appear) {
+                if (skillOnUse) {
+                    g2.drawImage(skillAniRun[aniIndex], (int) x, (int) y + 5,
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize),
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize), null);
+                } else {
+                    g2.drawImage(normalAnirun[aniIndex], (int) x, (int) y + 5,
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize),
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize), null);
+                }
+            }
+
         }
     }
 
@@ -133,10 +156,11 @@ public abstract class Player extends Entity implements Animations {
 
     public void healthCheck() {
         if (HP <= 0) {
+            HP = 0;
             GamePanel.GameState = DEAD;
             // GamePanel.stopMusic();
             // GamePanel.playMusic(3);
-            HP = 0;
+
         } else if (HP >= maxHP) {
             HP = maxHP;
         }
@@ -172,6 +196,16 @@ public abstract class Player extends Entity implements Animations {
             immune = false;
         }
 
+    }
+
+    public void getSkillSprites() {
+        runningAni = skillAniRun;
+        slideAni = skillAniSlide;
+    }
+
+    public void getNormalSprites() {
+        runningAni = normalAnirun;
+        slideAni = normalAniSlide;
     }
 
     public void flinchingBlink() {
@@ -282,11 +316,6 @@ public abstract class Player extends Entity implements Animations {
         this.crashAreaHeight = crashAreaHeight;
     }
 
-    public void setIsCrash(boolean isCrash) {
-        this.isCrash = isCrash;
-
-    }
-
     public boolean isSkillOnUse() {
         return skillOnUse;
     }
@@ -341,6 +370,10 @@ public abstract class Player extends Entity implements Animations {
 
     public int getMoveReset() {
         return moveReset;
+    }
+
+    public int getCharacter() {
+        return character;
     }
 
 }

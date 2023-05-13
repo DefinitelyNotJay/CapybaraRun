@@ -44,18 +44,18 @@ public class MouseHandler implements MouseListener {
             boolean isInRestartButtonArea = e.getX() >= 787 && e.getX() <= 787 + 125;
             if (isInBackButtonArea && yButtonArea) {
                 GameState = MENU;
-                // GamePanel.stopMusic();
-                // GamePanel.playMusic(0);
+                GamePanel.stopMusic();
+                GamePanel.playMusic(0);
             } else if (isInRestartButtonArea && yButtonArea) {
                 gp.gameReset();
                 gp.getPlayer().playerReset();
                 GameState = PLAYING;
-                // GamePanel.stopMusic();
-                // GamePanel.playMusic(3);
+                GamePanel.stopMusic();
+                GamePanel.playMusic(2);
             }
 
         }
-        if (GamePanel.GameState == MENU) {
+        else if (GamePanel.GameState == MENU) {
             boolean yButtonArea = e.getX() >= 570 && e.getX() <= 570 + 125;
 
             boolean isInPlaybuttonArea = e.getY() >= 170 && e.getY() <= 170 + 54;
@@ -66,18 +66,23 @@ public class MouseHandler implements MouseListener {
 
             if (yButtonArea) {
                 if (isInPlaybuttonArea) {
+                    GamePanel.playSE(7);
                     GameState = SELECT;
                     GamePanel.stopMusic();
                     GamePanel.playMusic(1);
                 } else if (isInQuitButtonArea) {
+                    GamePanel.playSE(7);
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
-
+                    GamePanel.playSE(7);
                 }
             }
         }
 
-        if (GameState == SELECT) {
+        else if (GameState == SELECT) {
+            // Select
+            
+            
             boolean isInButtonYArea = cc.getLeftBtn().getY() <= e.getY() &&
                     cc.getLeftBtn().getY() + cc.getLeftBtn().getWidth() >= e.getY();
 
@@ -86,44 +91,50 @@ public class MouseHandler implements MouseListener {
 
             boolean isInRightBtnArea = e.getX() >= cc.getRightBtn().getX()
                     && e.getX() <= cc.getRightBtn().getX() + cc.getRightBtn().getWidth();
+
             boolean isInGoBtnArea = e.getY() >= cc.getGoBtn().getY()
                     && e.getY() <= cc.getGoBtn().getY() + cc.getGoBtn().getHeight()
                     && cc.getGoBtn().getX() >= cc.getGoBtn().getX()
                     && e.getX() <= cc.getGoBtn().getX() + cc.getGoBtn().getWidth();
+
             // Page slide methods
             if (isInButtonYArea && isInLeftBtnArea) {
+                GamePanel.playSE(7);
                 if (cc.getPage() == CAPY)
                     cc.setPage(ZOMBIE);
                 else
                     cc.setPage(cc.getPage() - 1);
             } else if (isInButtonYArea && isInRightBtnArea) {
+                GamePanel.playSE(7);
                 if (cc.getPage() == ZOMBIE) {
                     cc.setPage(CAPY);
                 } else {
                     cc.setPage(cc.getPage() + 1);
                 }
             } else if (isInGoBtnArea) {
+                
                 int player = cc.getPage();
                 switch (player) {
                     case CAPY:
-                        gp.setPlayer(new Capybara(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        gp.setPlayer(new Capybara(gp, CAPY, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                     case GHOST:
-                        gp.setPlayer(new Ghost(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        gp.setPlayer(new Ghost(gp, GHOST, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                     case ZOMBIE:
-                        gp.setPlayer(new Zombie(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        gp.setPlayer(new Zombie(gp, ZOMBIE, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                     case MUSCLE:
-                        gp.setPlayer(new Muscle(gp, 200, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        gp.setPlayer(new Muscle(gp, MUSCLE, 200, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                     case NINJA:
-                        gp.setPlayer(new Ninja(gp, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        gp.setPlayer(new Ninja(gp, NINJA, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                 }
                 gp.setWp(new WallPattern(gp));
-                GameState = PLAYING;
+                GamePanel.playSE(9);
                 GamePanel.stopMusic();
+                GameState = PLAYING;
                 GamePanel.playMusic(2);
             }
         }

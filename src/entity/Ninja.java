@@ -2,6 +2,7 @@
 package entity;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 
 import constant.Constants;
 import main.GamePanel;
@@ -9,9 +10,11 @@ import methods.SpecialAbility;
 import methods.Utilz;
 
 public class Ninja extends Player {
+    private BufferedImage skillAniRun[], normalAnirun[];
+    private BufferedImage skillAniSlide, normalAniSlide;
 
-    public Ninja(GamePanel gp, int HP, int x, int y, int xSize, int ySize) {
-        super(gp, HP, x, y, xSize, ySize);
+    public Ninja(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
+        super(gp, character, HP, x, y, xSize, ySize);
         loadImages();
     }
 

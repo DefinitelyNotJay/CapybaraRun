@@ -2,14 +2,17 @@ package screen;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import entity.Entity;
 import methods.Utilz;
 
 public class Button extends Entity {
     private double width, height;
-    public boolean isHover = false;
-    public BufferedImage defaultPic, hoverPic;
+    private boolean isHover = false;
+    private BufferedImage defaultPic, hoverPic;
 
     public Button(int x, int y, double width, double height) {
         super(x, y);
@@ -20,7 +23,11 @@ public class Button extends Entity {
 
     public void setImages(String fileName) {
         defaultPic = Utilz.GetImage(fileName + ".png");
-        // hoverPic = Utilz.GetImage(fileName + "_hover" + ".png");
+        try {
+            hoverPic = ImageIO.read(getClass().getResourceAsStream(fileName + "_hover.png"));
+        } catch (IOException ex) {
+            hoverPic = Utilz.GetImage(fileName + ".png");
+        }
 
     }
 
