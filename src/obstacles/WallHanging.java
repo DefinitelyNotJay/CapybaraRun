@@ -2,15 +2,20 @@ package obstacles;
 
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+
 import main.GamePanel;
+import methods.Utilz;
+
 import static constant.Constants.*;
 
 public class WallHanging extends Wall {
-
+    private BufferedImage img;
     private int times = 0;
 
     public WallHanging(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         super(gp, x, y, sizeX, sizeY);
+        img = Utilz.GetImage("/res/wall/rockblock.png");
     }
 
     @Override
@@ -44,7 +49,6 @@ public class WallHanging extends Wall {
 
     @Override
     public void draw(Graphics g2) {
-        g2.setColor(Color.black);
-        g2.fillRect((int) x, (int) y, width, height);
+        g2.drawImage(img, x, y, gp.tileSize, gp.tileSize, null);
     }
 }
