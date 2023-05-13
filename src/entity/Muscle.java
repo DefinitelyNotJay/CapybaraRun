@@ -11,8 +11,6 @@ import methods.Utilz;
 import static constant.Constants.*;
 
 public class Muscle extends Player {
-    private BufferedImage skillAniRun[], normalAnirun[];
-    private BufferedImage skillAniSlide, normalAniSlide;
 
     public Muscle(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
         super(gp, character, HP, x, y, xSize, ySize);
@@ -41,6 +39,11 @@ public class Muscle extends Player {
     @Override
     public void loadImages() {
         normalAnirun = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
+        normalAniSlide = Utilz.GetImage("/res/player/muscle/capyslide.png");
+
+        skillAniRun = Utilz.getRunningImg("/res/player/muscle/capySkillRun.png");
+        skillAniSlide = Utilz.GetImage("/res/player/muscle/capySkillSlide.png");
+
         runningAni = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
         slideAni = Utilz.GetImage("/res/player/muscle/capyslide.png");
     }

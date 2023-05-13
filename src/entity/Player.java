@@ -27,6 +27,8 @@ public abstract class Player extends Entity implements Animations {
     protected int velocity = jumpHeight;
     protected int moveReset = 0;
     public BufferedImage[] runningAni;
+    protected BufferedImage skillAniRun[], normalAnirun[];
+    protected BufferedImage skillAniSlide, normalAniSlide;
     public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar,
             skillDurationBar;
     protected int aniTick, aniIndex, aniSpeed = 7;
@@ -78,13 +80,33 @@ public abstract class Player extends Entity implements Animations {
 
     public void drawPlayer(Graphics g2) {
         if (down && !jump) {
-            if (appear)
-                g2.drawImage(slideAni, (int) x, (int) y, (int) (90 * 1.3 * customSize), (int) (40 * 1.3 * customSize),
-                        null);
+            if (appear) {
+                if (skillOnUse) {
+                    g2.drawImage(skillAniSlide, (int) x, (int) y, (int) (90 * 1.3 * customSize),
+                            (int) (40 * 1.3 * customSize),
+                            null);
+                }
+
+                else {
+                    g2.drawImage(normalAniSlide, (int) x, (int) y, (int) (90 * 1.3 * customSize),
+                            (int) (40 * 1.3 * customSize),
+                            null);
+                }
+            }
+
         } else {
-            if (appear)
-                g2.drawImage(runningAni[aniIndex], (int) x, (int) y + 5, (int) (Utilz.gp.tileSize * 1.3 * customSize),
-                        (int) (Utilz.gp.tileSize * 1.3 * customSize), null);
+            if (appear) {
+                if (skillOnUse) {
+                    g2.drawImage(skillAniRun[aniIndex], (int) x, (int) y + 5,
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize),
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize), null);
+                } else {
+                    g2.drawImage(normalAnirun[aniIndex], (int) x, (int) y + 5,
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize),
+                            (int) (Utilz.gp.tileSize * 1.3 * customSize), null);
+                }
+            }
+
         }
     }
 
@@ -174,6 +196,16 @@ public abstract class Player extends Entity implements Animations {
             immune = false;
         }
 
+    }
+
+    public void getSkillSprites() {
+        runningAni = skillAniRun;
+        slideAni = skillAniSlide;
+    }
+
+    public void getNormalSprites() {
+        runningAni = normalAnirun;
+        slideAni = normalAniSlide;
     }
 
     public void flinchingBlink() {
