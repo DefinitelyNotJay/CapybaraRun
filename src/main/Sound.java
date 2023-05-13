@@ -21,6 +21,9 @@ public class Sound {
         soundURL[4] = getClass().getResource("/res/sound/zombie_jump.wav");
         soundURL[5] = getClass().getResource("/res/sound/zombie_slide.wav");
         soundURL[6] = getClass().getResource("/res/sound/Hit.wav");
+        soundURL[7] = getClass().getResource("/res/sound/Click_Beep.wav");
+        soundURL[8] = getClass().getResource("/res/sound/Dead.wav");
+        soundURL[9] = getClass().getResource("/res/sound/Success_Select.wav");
     }
 
     public void setFiles(int i){

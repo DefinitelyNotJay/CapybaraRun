@@ -44,14 +44,14 @@ public class MouseHandler implements MouseListener {
             boolean isInRestartButtonArea = e.getX() >= 787 && e.getX() <= 787 + 125;
             if (isInBackButtonArea && yButtonArea) {
                 GameState = MENU;
-                // GamePanel.stopMusic();
-                // GamePanel.playMusic(0);
+                GamePanel.stopMusic();
+                GamePanel.playMusic(0);
             } else if (isInRestartButtonArea && yButtonArea) {
                 gp.gameReset();
                 gp.getPlayer().playerReset();
                 GameState = PLAYING;
-                // GamePanel.stopMusic();
-                // GamePanel.playMusic(3);
+                GamePanel.stopMusic();
+                GamePanel.playMusic(2);
             }
 
         }
@@ -66,13 +66,15 @@ public class MouseHandler implements MouseListener {
 
             if (yButtonArea) {
                 if (isInPlaybuttonArea) {
+                    GamePanel.playSE(7);
                     GameState = SELECT;
                     GamePanel.stopMusic();
                     GamePanel.playMusic(1);
                 } else if (isInQuitButtonArea) {
+                    GamePanel.playSE(7);
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
-
+                    GamePanel.playSE(7);
                 }
             }
         }
@@ -95,17 +97,20 @@ public class MouseHandler implements MouseListener {
 
             // Page slide methods
             if (isInButtonYArea && isInLeftBtnArea) {
+                GamePanel.playSE(7);
                 if (cc.getPage() == CAPY)
                     cc.setPage(ZOMBIE);
                 else
                     cc.setPage(cc.getPage() - 1);
             } else if (isInButtonYArea && isInRightBtnArea) {
+                GamePanel.playSE(7);
                 if (cc.getPage() == ZOMBIE) {
                     cc.setPage(CAPY);
                 } else {
                     cc.setPage(cc.getPage() + 1);
                 }
             } else if (isInGoBtnArea) {
+                GamePanel.playSE(9);
                 int player = cc.getPage();
                 switch (player) {
                     case CAPY:
