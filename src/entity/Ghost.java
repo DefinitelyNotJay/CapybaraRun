@@ -61,6 +61,9 @@ public class Ghost extends Player {
     @Override
     public void updateEverySec() {
         super.updateEverySec();
+        if (skillDurationCount == skillDuration) {
+            skillReset();
+        }
         if (skillOnUse) {
             skillDurationCount++;
         }
@@ -71,9 +74,6 @@ public class Ghost extends Player {
         if (skillDurationCount + 1 == skillDuration) {
             GAMESPEED = 4;
             aniSpeed = 7;
-        }
-        if (skillDurationCount == skillDuration) {
-            skillReset();
         }
 
         // immortal before running
@@ -86,6 +86,7 @@ public class Ghost extends Player {
         // reset animation
         skillDurationCount = 0;
         setSkillOnUse(false);
+        timeCount = 0;
         setImmune(false);
     }
 
