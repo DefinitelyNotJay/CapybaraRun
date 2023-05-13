@@ -70,7 +70,7 @@ public class MouseMotionHandler implements MouseMotionListener {
                     && e.getY() <= cc.getGoBtn().getY() + cc.getGoBtn().getHeight()
                     && e.getX() >= cc.getGoBtn().getX()
                     && e.getX() <= cc.getGoBtn().getX() + cc.getGoBtn().getWidth();
-
+            
             cc.getLeftBtn().setIsHover(isInLeftBtnArea && isInButtonYArea);
             cc.getRightBtn().setIsHover(isInRightBtnArea && isInButtonYArea);
             cc.getGoBtn().setIsHover(isInGoBtnArea);
