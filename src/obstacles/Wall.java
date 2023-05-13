@@ -43,4 +43,10 @@ public abstract class Wall extends Entity {
         this.wallDamage = wallDamage;
     }
 
+    public void wallOutScreen(){
+        if(x+width <= 0){
+            // this = null;
+        }
+    }
+
 }

@@ -13,8 +13,8 @@ public class Capybara extends Player {
 
     @Override
     public void loadImages() {
-        runningAni = Utilz.getRunningImg("/res/player/capybara/capyrun2.png");
-        slideAni = Utilz.GetImage("/res/player/capybara/slideCapy.png");
+        normalAnirun = Utilz.getRunningImg("/res/player/capybara/capyrun2.png");
+        normalAniSlide = Utilz.GetImage("/res/player/capybara/slideCapy.png");
     }
 
     @Override

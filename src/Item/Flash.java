@@ -12,14 +12,14 @@ public class Flash extends SuperObjects {
     @Override
     public void effect() {
         if (getName().equals("fast")) {
-            if (mapX() > -1500) {
+            if (mapX > -1500) {
                 GAMESPEED = 13;
                 gp.getPlayer().setImmune(true);
                 System.out.println("fast item");
             } else {
                 GAMESPEED = 4;
                 gp.getPlayer().setImmune(false);
-                gp.getPlayer().getImmune();
+
             }
         } else if (getName().equals("IncreaseHP")) {
             if (mapX() > -1) {
@@ -38,6 +38,7 @@ public class Flash extends SuperObjects {
         } else if (getName().equals("Giant")) {
 
         }
+        skillUsed = true;
     }
 
 }

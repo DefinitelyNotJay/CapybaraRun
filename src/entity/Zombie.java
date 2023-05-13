@@ -20,9 +20,12 @@ public class Zombie extends Player {
 
     @Override
     public void loadImages() {
-        runningAni = Utilz.getRunningImg("/res/player/zombie/runCapy.png");
-        slideAni = Utilz.GetImage("/res/player/zombie/slideCapy.png");
-        greenHeart = Utilz.GetImage("/res/player/zombie/greenHeart.png");
+        normalAnirun = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
+        normalAniSlide = Utilz.GetImage("/res/player/muscle/capyslide.png");
+
+        skillAniRun = Utilz.getRunningImg("/res/player/muscle/capySkillRun.png");
+        skillAniSlide = Utilz.GetImage("/res/player/muscle/capySkillSlide.png");
+
     }
 
     public void drawPlayerStatusBar(Graphics g2) {
