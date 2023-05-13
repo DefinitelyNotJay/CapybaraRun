@@ -41,7 +41,7 @@ public class Sound {
     }
 
     public void loopSound(){
-        clip.loop(Clip.LOOP_CONTINUOUSLY);
+        //clip.loop(Clip.LOOP_CONTINUOUSLY);
     }
 
     public void stopSound(){
