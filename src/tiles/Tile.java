@@ -11,7 +11,7 @@ public class Tile {
     public BufferedImage[] tiles;
     public BufferedImage bgImg;
     private GamePanel gp;
-    private int tileStage = NIGHT;
+    private int tileStage = FOREST;
 
     public Tile(GamePanel gp) {
         this.gp = gp;
