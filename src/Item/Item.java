@@ -26,6 +26,7 @@ public class Item extends SuperObjects {
             }
         } else if (getName().equals("IncreaseHP")) {
             if (mapX() > -1) {
+                //GamePanel.playSE(11);
                 gp.getPlayer().setHP(gp.getPlayer().getMaxHP());
                 System.out.println(gp.getPlayer().getMaxHP());
                 System.out.println("IncreaseHP");
