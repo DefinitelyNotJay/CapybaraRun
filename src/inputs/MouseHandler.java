@@ -132,7 +132,7 @@ public class MouseHandler implements MouseListener {
                 GamePanel.playSE(9);
                 GamePanel.stopMusic();
                 GameState = PLAYING;
-                GamePanel.playMusic(2);
+                GamePanel.playMusic(2); //theme song
             }
         }
     }

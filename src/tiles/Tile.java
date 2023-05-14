@@ -23,17 +23,16 @@ public class Tile {
         this.gp = gp;
         this.wp = wp;
         tiles = new BufferedImage[5];
-        init();
+        randomStage();
         tileUpdate();
 
     }
 
     public void update() {
         stageChange();
-        // System.out.println(tileStage);
     }
 
-    public void init() {
+    public void randomStage() {
         stateChangeEvery = (int) (wp.getWallSize() / 5);
         stateCheck = stateChangeEvery;
         Set<Integer> num = new HashSet<>();
@@ -43,7 +42,6 @@ public class Tile {
         stageOrder = new ArrayList<>(num);
         Collections.shuffle(stageOrder);
         tileStage = stageOrder.get(0);
-        System.out.println(stageOrder.toString());
     }
 
     private void stageChange() {
@@ -73,6 +71,8 @@ public class Tile {
                 tiles[0] = Utilz.GetImage("/res/tiles/tiles1-1.png");
                 break;
             case NIGHT:
+                bgImg = Utilz.GetImage("/res/tiles/01_bg.png");
+                tiles[0] = Utilz.GetImage("/res/tiles/03_ground.png");
                 break;
             case BEACH:
                 bgImg = Utilz.GetImage("/res/tiles/04_bg.png");
@@ -83,6 +83,8 @@ public class Tile {
                 tiles[0] = Utilz.GetImage("/res/tiles/03_ground.png");
                 break;
             case MOUNTAIN:
+                bgImg = Utilz.GetImage("/res/tiles/02_bg.png");
+                tiles[0] = Utilz.GetImage("/res/tiles/02_ground.png");
                 break;
         }
     }

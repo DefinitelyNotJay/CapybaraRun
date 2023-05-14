@@ -51,6 +51,7 @@ public class Zombie extends Player {
         HP = 10;
         lives--;
         rateDecreaseHP = 0;
+        GamePanel.playSE(13);
         setSkillOnUse(true);
     }
 

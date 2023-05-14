@@ -12,19 +12,32 @@ public class Sound {
     private FloatControl gainControl;
     
     public Sound(){
+        
         //sound
         soundURL[0] = getClass().getResource("/res/sound/MENU.wav");
         soundURL[1] = getClass().getResource("/res/sound/ChooseCharacter.wav");
-        soundURL[2] = getClass().getResource("/res/sound/Playing_Theme.wav");
+        soundURL[2] = getClass().getResource("/res/sound/Theme_Forest.wav");
         soundURL[3] = getClass().getResource("/res/sound/Ending.wav");
+
         //effect
-        soundURL[4] = getClass().getResource("/res/sound/zombie_jump.wav");
-        soundURL[5] = getClass().getResource("/res/sound/zombie_slide.wav");
+        soundURL[4] = getClass().getResource("/res/sound/capybara_jump.wav");
+        soundURL[5] = getClass().getResource("/res/sound/capybara_slide.wav");
         soundURL[6] = getClass().getResource("/res/sound/Hit.wav");
         soundURL[7] = getClass().getResource("/res/sound/Click_Beep.wav");
         soundURL[8] = getClass().getResource("/res/sound/Dead.wav");
         soundURL[9] = getClass().getResource("/res/sound/Success_Select.wav");
         soundURL[10] = getClass().getResource("/res/sound/getitem.wav");
+        soundURL[11] = getClass().getResource("/res/sound/IncreaseHP_item.wav");
+        soundURL[12] = getClass().getResource("/res/sound/slow_item.wav");
+        soundURL[13] = getClass().getResource("/res/sound/zombie_dead.wav");
+        soundURL[14] = getClass().getResource("/res/sound/ghost_skill.wav");
+        soundURL[15] = getClass().getResource("/res/sound/ninja_skill.wav");
+
+        //sound
+        soundURL[16] = getClass().getResource("/res/sound/Theme_Night.wav");
+        soundURL[17] = getClass().getResource("/res/sound/Theme_Beach.wav");
+        soundURL[18] = getClass().getResource("/res/sound/Theme_Village.wav");
+        soundURL[19] = getClass().getResource("/res/sound/Theme_Mountain.wav");
     }
 
     public void setFiles(int i){
