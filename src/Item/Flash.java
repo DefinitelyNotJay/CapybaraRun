@@ -38,7 +38,7 @@ public class Flash extends SuperObjects {
         } else if (getName().equals("Giant")) {
 
         }
-        skillUsed = true;
+        //skillUsed = true;
     }
 
 }
