@@ -16,6 +16,7 @@ public class Item extends SuperObjects {
             // System.out.println(mapX);
             if (mapX > -1500) {
                 GAMESPEED = 13;
+                GamePanel.playSE(20);
                 gp.getPlayer().setImmune(true);
             } else if (mapX < -1500 && times == 0) {
                 times++;
@@ -26,7 +27,7 @@ public class Item extends SuperObjects {
             }
         } else if (getName().equals("IncreaseHP")) {
             if (mapX() > -1) {
-                //GamePanel.playSE(11);
+                GamePanel.playSE(11);
                 gp.getPlayer().setHP(gp.getPlayer().getMaxHP());
                 System.out.println(gp.getPlayer().getMaxHP());
                 System.out.println("IncreaseHP");
