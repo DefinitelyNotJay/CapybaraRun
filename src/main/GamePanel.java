@@ -50,7 +50,7 @@ public class GamePanel extends JPanel {
         rs = new Result(this);
         // wall
 
-        t1 = new Tile(this);
+        // t1 = new Tile(this);
         // listener
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this, mg, rs, cc));
@@ -111,6 +111,7 @@ public class GamePanel extends JPanel {
     public void update() {
         if (GameState == PLAYING) {
             score += rateScore;
+            t1.update();
             player.update();
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
@@ -137,6 +138,7 @@ public class GamePanel extends JPanel {
         player.setHP(player.getMaxHP());
         this.wp = new WallPattern(this);
         wp.init();
+        t1 = new Tile(this, wp);
         score = 0;
 
         // waiting for reset obstacles method
