@@ -11,7 +11,7 @@ public class Tile {
     public BufferedImage[] tiles;
     public BufferedImage bgImg;
     private GamePanel gp;
-    private int tileStage = VILLAGE;
+    private int tileStage = NIGHT;
 
     public Tile(GamePanel gp) {
         this.gp = gp;
@@ -39,6 +39,8 @@ public class Tile {
                 tiles[0] = Utilz.GetImage("/res/tiles/tiles1-1.png");
                 break;
             case NIGHT:
+                bgImg = Utilz.GetImage("/res/tiles/01_bg.png");
+                tiles[0] = Utilz.GetImage("/res/tiles/03_ground.png");
                 break;
             case BEACH:
                 bgImg = Utilz.GetImage("/res/tiles/04_bg.png");
@@ -49,6 +51,8 @@ public class Tile {
                 tiles[0] = Utilz.GetImage("/res/tiles/03_ground.png");
                 break;
             case MOUNTAIN:
+                bgImg = Utilz.GetImage("/res/tiles/02_bg.png");
+                tiles[0] = Utilz.GetImage("/res/tiles/02_ground.png");
                 break;
         }
     }
