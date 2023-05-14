@@ -46,6 +46,7 @@ public class Ghost extends Player {
         setSkillOnUse(true);
         GAMESPEED = 13;
         aniSpeed = 1;
+        GamePanel.playSE(14);
 
     }
 
