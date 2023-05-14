@@ -24,8 +24,6 @@ public class Tile {
         this.wp = wp;
         tiles = new BufferedImage[5];
         randomStage();
-        
-
     }
 
     public void update() {
@@ -48,7 +46,6 @@ public class Tile {
         if (wp.getWallSize() - wp.getWallPattern().size() >= stateCheck) {
             stateCheck += stateChangeEvery;
             if (tileStage >= 4 || tileStage == 0) {
-
                 tileStage = 0;
             } else {
                 tileStage++;
@@ -94,7 +91,6 @@ public class Tile {
                 break;
 
         }
-        System.out.println("test");
     }
 
     public int getTileStage() {
