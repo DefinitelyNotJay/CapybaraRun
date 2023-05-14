@@ -65,24 +65,30 @@ public class Tile {
     }
 
     public void tileUpdate() {
+        GamePanel.stopMusic();
         switch (stageOrder.get(tileStage)) {
             case FOREST:
+                GamePanel.playMusic(2);
                 bgImg = Utilz.GetImage("/res/tiles/18.png");
                 tiles[0] = Utilz.GetImage("/res/tiles/tiles1-1.png");
                 break;
             case NIGHT:
+                GamePanel.playMusic(16);
                 bgImg = Utilz.GetImage("/res/tiles/01_bg.png");
                 tiles[0] = Utilz.GetImage("/res/tiles/03_ground.png");
                 break;
             case BEACH:
+                GamePanel.playMusic(17);
                 bgImg = Utilz.GetImage("/res/tiles/04_bg.png");
                 tiles[0] = Utilz.GetImage("/res/tiles/04_ground.png");
                 break;
             case VILLAGE:
+                GamePanel.playMusic(18);
                 bgImg = Utilz.GetImage("/res/tiles/03_bg.png");
                 tiles[0] = Utilz.GetImage("/res/tiles/03_ground.png");
                 break;
             case MOUNTAIN:
+                GamePanel.playMusic(19);
                 bgImg = Utilz.GetImage("/res/tiles/02_bg.png");
                 tiles[0] = Utilz.GetImage("/res/tiles/02_ground.png");
                 break;
