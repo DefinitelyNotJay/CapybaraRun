@@ -24,7 +24,7 @@ public class Tile {
         this.wp = wp;
         tiles = new BufferedImage[5];
         randomStage();
-        tileUpdate();
+        
 
     }
 
@@ -92,7 +92,9 @@ public class Tile {
                 bgImg = Utilz.GetImage("/res/tiles/02_bg.png");
                 tiles[0] = Utilz.GetImage("/res/tiles/02_ground.png");
                 break;
+
         }
+        System.out.println("test");
     }
 
     public int getTileStage() {

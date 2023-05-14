@@ -194,4 +194,8 @@ public class GamePanel extends JPanel {
     public void setRateScore(int rateScore) {
         this.rateScore = rateScore;
     }
+
+    public Tile getTile(){
+        return t1;
+    }
 }
