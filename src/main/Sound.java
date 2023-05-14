@@ -8,7 +8,7 @@ import javax.sound.sampled.FloatControl;
 public class Sound {
     private long pauseTime;
     private Clip clip;
-    private URL soundURL[] = new URL[20];
+    private URL soundURL[] = new URL[35];
     private FloatControl gainControl;
     
     public Sound(){
@@ -38,6 +38,10 @@ public class Sound {
         soundURL[17] = getClass().getResource("/res/sound/Theme_Beach.wav");
         soundURL[18] = getClass().getResource("/res/sound/Theme_Village.wav");
         soundURL[19] = getClass().getResource("/res/sound/Theme_Mountain.wav");
+
+        //effect
+        soundURL[20] = getClass().getResource("/res/sound/runfast_item.wav");
+        soundURL[21] = getClass().getResource("/res/sound/star.wav");
     }
 
     public void setFiles(int i){
