@@ -18,7 +18,7 @@ public class Ninja extends Player {
     }
 
     @Override
-    public void loadImages() {
+    public void loadImages() {   
         normalAnirun = Utilz.getRunningImg("/res/player/ninja/capyrun.png");
         normalAniSlide = Utilz.GetImage("/res/player/ninja/capyslide.png");
 
