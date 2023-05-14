@@ -34,9 +34,10 @@ public class GamePanel extends JPanel {
     private ChooseCharacter cc;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = MENU;
+    public static int GameState = RESULT;
     private static Sound music;
     private static Sound effect;
+    private int score = 0, rateScore = 1;
     public Tile t1;
 
     public GamePanel() {
@@ -46,7 +47,7 @@ public class GamePanel extends JPanel {
         // screen
         mg = new MenuGame();
         cc = new ChooseCharacter();
-        rs = new Result();
+        rs = new Result(this);
         // wall
 
         t1 = new Tile(this);
@@ -88,6 +89,9 @@ public class GamePanel extends JPanel {
                     obj[i].draw(g2);
                 }
             }
+            g2.setFont(new Font("Arcade Normal", Font.PLAIN, tileSize / 2));
+            g2.setColor(Color.WHITE);
+            g2.drawString(String.format("%06d", score), 1050, 65);
         } else if (GameState == DEAD) {
             stopMusic();
             Utilz.sleep(2);
@@ -106,6 +110,7 @@ public class GamePanel extends JPanel {
 
     public void update() {
         if (GameState == PLAYING) {
+            score += rateScore;
             player.update();
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
@@ -130,8 +135,9 @@ public class GamePanel extends JPanel {
 
     public void gameReset() {
         player.setHP(player.getMaxHP());
-        wp.randomWallSequence(wp.getWallAmount());
-        wp.loadWalls();
+        this.wp = new WallPattern(this);
+        wp.init();
+        score = 0;
 
         // waiting for reset obstacles method
     }
@@ -169,5 +175,21 @@ public class GamePanel extends JPanel {
 
     public static Sound getEffect() {
         return effect;
+    }
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    public int geteRateScore() {
+        return rateScore;
+    }
+
+    public void setRateScore(int rateScore) {
+        this.rateScore = rateScore;
     }
 }

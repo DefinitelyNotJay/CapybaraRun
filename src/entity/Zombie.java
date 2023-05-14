@@ -10,8 +10,7 @@ import java.awt.image.BufferedImage;
 
 public class Zombie extends Player {
     private int lives = 5;
-    private BufferedImage greenHeart, skillAniSlide, normalAniSlide;
-    private BufferedImage skillAniRun[], normalAnirun[];
+    private BufferedImage greenHeart;
 
     public Zombie(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
         super(gp, character, HP, x, y, xSize, ySize);
@@ -20,11 +19,16 @@ public class Zombie extends Player {
 
     @Override
     public void loadImages() {
+        greenHeart = Utilz.GetImage("/res/player/zombie/greenHeart.png");
+
         normalAnirun = Utilz.getRunningImg("/res/player/zombie/capyrun.png");
         normalAniSlide = Utilz.GetImage("/res/player/zombie/capyslide.png");
 
         skillAniRun = Utilz.getRunningImg("/res/player/zombie/capySkillRun.png");
         skillAniSlide = Utilz.GetImage("/res/player/zombie/capySkillSlide.png");
+
+        runningAni = Utilz.getRunningImg("/res/player/zombie/capyrun.png");
+        slideAni = Utilz.GetImage("/res/player/zombie/capyslide.png");
 
     }
 
@@ -47,7 +51,7 @@ public class Zombie extends Player {
         HP = 10;
         lives--;
         rateDecreaseHP = 0;
-
+        setSkillOnUse(true);
     }
 
     @Override

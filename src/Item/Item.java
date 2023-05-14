@@ -3,10 +3,10 @@ package Item;
 import main.GamePanel;
 import static constant.Constants.*;
 
-public class Flash extends SuperObjects {
+public class Item extends SuperObjects {
     private int times = 0;
 
-    public Flash(GamePanel gp, int x, int y, int sizeX, int sizeY, String name) {
+    public Item(GamePanel gp, int x, int y, int sizeX, int sizeY, String name) {
         super(gp, x, y, sizeX, sizeY, name);
     }
 
@@ -17,8 +17,7 @@ public class Flash extends SuperObjects {
             if (mapX > -1500) {
                 GAMESPEED = 13;
                 gp.getPlayer().setImmune(true);
-                System.out.println("fast item");
-            } else if (mapX < -1500 && mapX > -1510 && times == 0) {
+            } else if (mapX < -1500 && times == 0) {
                 times++;
                 GAMESPEED = 4;
                 if (!gp.getPlayer().isSkillOnUse())
