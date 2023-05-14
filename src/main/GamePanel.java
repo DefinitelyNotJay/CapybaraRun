@@ -34,7 +34,7 @@ public class GamePanel extends JPanel {
     private ChooseCharacter cc;
     public SuperObjects obj[] = new SuperObjects[10];
     public AssetSetter aSetter = new AssetSetter(this);
-    public static int GameState = RESULT;
+    public static int GameState = MENU;
     private static Sound music;
     private static Sound effect;
     private int score = 0, rateScore = 1;
