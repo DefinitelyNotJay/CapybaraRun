@@ -39,6 +39,7 @@ public class Ninja extends Player {
     @Override
     public void skill() {
         Constants.WALLDAMAGE = 0;
+        GamePanel.playSE(15);
     }
 
     @Override
