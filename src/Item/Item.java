@@ -38,7 +38,7 @@ public class Item extends SuperObjects {
 
         } else if (getName().equals("DecreaseHP")) {
             if (mapX() > -1 && !itemUsed) {
-                gp.getPlayer().setHP(gp.getPlayer().getHP() - 90);
+                gp.getPlayer().setHP(gp.getPlayer().getHP() - 20);
                 System.out.println(gp.getPlayer().getHP());
                 System.out.println("DecreaseHP");
                 itemUsed = true;
