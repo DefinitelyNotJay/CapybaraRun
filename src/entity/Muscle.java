@@ -46,6 +46,7 @@ public class Muscle extends Player {
     public void skill() {
         gp.getPlayer().setImmune(true);
         skillOnUse = true;
+        GamePanel.playhit(23);
     }
 
     @Override
