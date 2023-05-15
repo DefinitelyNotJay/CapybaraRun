@@ -121,6 +121,7 @@ public class GamePanel extends JPanel {
                     obj[i].update();
                 }
             }
+
         } else if (GameState == MENU) {
             mg.update();
         } else if (GameState == SELECT) {
@@ -131,7 +132,13 @@ public class GamePanel extends JPanel {
     public void updateEverySec() {
         if (GameState == PLAYING) {
             player.updateEverySec();
+            if (wp.getWallPattern().size() <= 0) {
+                wp.init();
+                t1.setStateCheck(0);
+                // set ค่า check ด้วย
+            }
         }
+
     }
 
     public void gameReset() {
@@ -187,7 +194,7 @@ public class GamePanel extends JPanel {
         this.score = score;
     }
 
-    public int geteRateScore() {
+    public int getRateScore() {
         return rateScore;
     }
 
@@ -195,7 +202,7 @@ public class GamePanel extends JPanel {
         this.rateScore = rateScore;
     }
 
-    public Tile getTile(){
+    public Tile getTile() {
         return t1;
     }
 }

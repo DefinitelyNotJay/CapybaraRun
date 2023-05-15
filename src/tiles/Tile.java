@@ -43,13 +43,13 @@ public class Tile {
     }
 
     private void stageChange() {
+        WALLDAMAGE = 0;
         if (wp.getWallSize() - wp.getWallPattern().size() >= stateCheck) {
             stateCheck += stateChangeEvery;
-            if (tileStage >= 4 || tileStage == 0) {
+            tileStage++;
+            if (tileStage > 4 || tileStage == 0)
                 tileStage = 0;
-            } else {
-                tileStage++;
-            }
+
             tileUpdate();
         }
     }
@@ -99,6 +99,10 @@ public class Tile {
 
     public void setTileStage(int tileStage) {
         this.tileStage = tileStage;
+    }
+
+    public void setStateCheck(int stateCheck) {
+        this.stateCheck = stateCheck;
     }
 
 }
