@@ -10,7 +10,7 @@ import methods.Utilz;
 public abstract class SuperObjects {
     protected BufferedImage imageItem;
     protected String name;
-    protected boolean collision = false, skillUsed = false;
+    protected boolean collision = false;
     public int mapX, mapY, sizeX, sizeY;
     protected GamePanel gp;
     public BufferedImage bloodItem;
@@ -93,15 +93,21 @@ public abstract class SuperObjects {
     public void crashItem() {
         if (playerX + playerWidth >= this.mapX && playerX + playerWidth <= this.mapX + sizeX) {
             if (playerY + playerHeight >= this.mapY && playerY + playerHeight <= this.mapY + sizeY) {
-                setCollision(true);
+                times++;
+                if (times == 1) {
+                    setCollision(true);
+                    GamePanel.playSE(10);
+                }
+
+            } else {
+                times = 0;
             }
         }
     }
 
     public void skillItem() {
-        if (!skillUsed && collision) {
+        if (collision) {
             effect();
-            System.out.println("James is here");
         }
 
     }

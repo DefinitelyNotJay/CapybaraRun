@@ -44,8 +44,9 @@ public class Ghost extends Player {
     public void skill() {
         setImmune(true);
         setSkillOnUse(true);
-        GAMESPEED = 10;
+        GAMESPEED = 13;
         aniSpeed = 1;
+        GamePanel.playSE(14);
 
     }
 
@@ -61,6 +62,9 @@ public class Ghost extends Player {
     @Override
     public void updateEverySec() {
         super.updateEverySec();
+        if (skillDurationCount == skillDuration) {
+            skillReset();
+        }
         if (skillOnUse) {
             skillDurationCount++;
         }
@@ -72,9 +76,6 @@ public class Ghost extends Player {
             GAMESPEED = 4;
             aniSpeed = 7;
         }
-        if (skillDurationCount == skillDuration) {
-            skillReset();
-        }
 
         // immortal before running
 
@@ -82,10 +83,10 @@ public class Ghost extends Player {
 
     @Override
     public void skillReset() {
-        WALLDAMAGE = 10;
         // reset animation
         skillDurationCount = 0;
         setSkillOnUse(false);
+        timeCount = 0;
         setImmune(false);
     }
 

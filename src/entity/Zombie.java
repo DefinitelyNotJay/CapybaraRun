@@ -10,21 +10,25 @@ import java.awt.image.BufferedImage;
 
 public class Zombie extends Player {
     private int lives = 5;
-    private BufferedImage greenHeart, skillAniSlide, normalAniSlide;
-    private BufferedImage skillAniRun[], normalAnirun[];
+    private BufferedImage greenHeart;
 
     public Zombie(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
-        super(gp, character ,HP, x, y, xSize, ySize);
+        super(gp, character, HP, x, y, xSize, ySize);
         loadImages();
     }
 
     @Override
     public void loadImages() {
-        normalAnirun = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
-        normalAniSlide = Utilz.GetImage("/res/player/muscle/capyslide.png");
+        greenHeart = Utilz.GetImage("/res/player/zombie/greenHeart.png");
 
-        skillAniRun = Utilz.getRunningImg("/res/player/muscle/capySkillRun.png");
-        skillAniSlide = Utilz.GetImage("/res/player/muscle/capySkillSlide.png");
+        normalAnirun = Utilz.getRunningImg("/res/player/zombie/capyrun.png");
+        normalAniSlide = Utilz.GetImage("/res/player/zombie/capyslide.png");
+
+        skillAniRun = Utilz.getRunningImg("/res/player/zombie/capySkillRun.png");
+        skillAniSlide = Utilz.GetImage("/res/player/zombie/capySkillSlide.png");
+
+        runningAni = Utilz.getRunningImg("/res/player/zombie/capyrun.png");
+        slideAni = Utilz.GetImage("/res/player/zombie/capyslide.png");
 
     }
 
@@ -47,7 +51,8 @@ public class Zombie extends Player {
         HP = 10;
         lives--;
         rateDecreaseHP = 0;
-
+        GamePanel.playSE(13);
+        setSkillOnUse(true);
     }
 
     @Override

@@ -1,6 +1,9 @@
 package screen;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import javax.swing.JPanel;
 import main.GamePanel;
@@ -14,7 +17,8 @@ public class Result extends JPanel implements ScreenTools {
     Button button[];
     final int BACK = 0, RESTART = 1;
 
-    public Result() {
+    public Result(GamePanel gp) {
+        this.gp = gp;
         buttonCreate();
         loadImages();
     }
@@ -29,12 +33,16 @@ public class Result extends JPanel implements ScreenTools {
         button[RESTART].setImages("/res/screen/result/restart");
     }
 
-    public void paint(Graphics g2) {
+    public void paint(Graphics g) {
+        Graphics2D g2 = (Graphics2D) g;
         g2.drawImage(bgImg, 0, 0, null);
         g2.drawImage(scoreFrame, 260, 25, null);
         for (int i = 0; i < button.length; i++) {
             button[i].draw(g2);
         }
+        g2.setFont(new Font("Arcade Normal", Font.PLAIN, (int) (gp.tileSize / 1.6)));
+        g2.setColor(Color.decode("#F2F3ED"));
+        g2.drawString(String.format("%06d", gp.getScore()), 510, 236);
     }
 
     @Override
@@ -53,12 +61,12 @@ public class Result extends JPanel implements ScreenTools {
     public void setButton(Button[] button) {
         this.button = button;
     }
-    
-    public Button getBackBtn(){
+
+    public Button getBackBtn() {
         return button[BACK];
     }
-    
-    public Button getRestartBtn(){
+
+    public Button getRestartBtn() {
         return button[RESTART];
     }
 

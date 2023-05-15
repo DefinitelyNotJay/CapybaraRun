@@ -10,16 +10,21 @@ import methods.SpecialAbility;
 import methods.Utilz;
 
 public class Ninja extends Player {
-    private BufferedImage skillAniRun[], normalAnirun[];
-    private BufferedImage skillAniSlide, normalAniSlide;
 
     public Ninja(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
         super(gp, character, HP, x, y, xSize, ySize);
         loadImages();
+        skillOnUse = true;
     }
 
     @Override
-    public void loadImages() {
+    public void loadImages() {   
+        normalAnirun = Utilz.getRunningImg("/res/player/ninja/capyrun.png");
+        normalAniSlide = Utilz.GetImage("/res/player/ninja/capyslide.png");
+
+        skillAniRun = Utilz.getRunningImg("/res/player/ninja/capySkillRun.png");
+        skillAniSlide = Utilz.GetImage("/res/player/ninja/capySkillSlide.png");
+
         runningAni = Utilz.getRunningImg("/res/player/ninja/capyrun.png");
         slideAni = Utilz.GetImage("/res/player/ninja/capyslide.png");
     }
@@ -34,6 +39,7 @@ public class Ninja extends Player {
     @Override
     public void skill() {
         Constants.WALLDAMAGE = 0;
+        GamePanel.playSE(15);
     }
 
     @Override

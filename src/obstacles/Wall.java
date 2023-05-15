@@ -10,15 +10,19 @@ public abstract class Wall extends Entity {
     protected GamePanel gp;
     // private static final int WALLSPEED = 6;
     protected int width, height, wallDamage = 10;
+    protected WallPattern wp;
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
+    public double firstSetupX;
 
     public abstract void crash();
 
     public abstract void draw(Graphics g2);
 
-    public Wall(GamePanel gp, int x, int y, int sizeX, int sizeY) {
+    public Wall(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(x, y);
+        this.firstSetupX = x;
         this.gp = gp;
+        this.wp = wp;
         this.width = sizeX;
         this.height = sizeY;
     }
@@ -31,7 +35,7 @@ public abstract class Wall extends Entity {
         playerHeight = gp.getPlayer().getHeight();
         playerSolidAreaY = gp.getPlayer().getCrashAreaHeight();
         x -= GAMESPEED;
-
+        wallOutScreen();
         crash();
     }
 
@@ -43,9 +47,9 @@ public abstract class Wall extends Entity {
         this.wallDamage = wallDamage;
     }
 
-    public void wallOutScreen(){
-        if(x+width <= 0){
-            // this = null;
+    public void wallOutScreen() {
+        if (x + width <= 0) {
+            wp.getWallPattern().remove(0);
         }
     }
 

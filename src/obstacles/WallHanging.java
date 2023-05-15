@@ -13,8 +13,8 @@ public class WallHanging extends Wall {
     private BufferedImage img;
     private int times = 0;
 
-    public WallHanging(GamePanel gp, int x, int y, int sizeX, int sizeY) {
-        super(gp, x, y, sizeX, sizeY);
+    public WallHanging(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
+        super(gp, wp, x, y, sizeX, sizeY);
         img = Utilz.GetImage("/res/wall/rockblock.png");
     }
 

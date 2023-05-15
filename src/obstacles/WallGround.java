@@ -12,8 +12,8 @@ public class WallGround extends Wall {
     private int times = 0;
     private BufferedImage img;
 
-    public WallGround(GamePanel gp, int x, int y, int sizeX, int sizeY) {
-        super(gp, x, y, sizeX, sizeY);
+    public WallGround(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
+        super(gp, wp, x, y, sizeX, sizeY);
         img = Utilz.GetImage("/res/wall/box.png");
     }
 
@@ -36,7 +36,6 @@ public class WallGround extends Wall {
                         // flinching
                         gp.getPlayer().setFlinching(true);
                     }
-                    System.out.println(gp.getPlayer().getClass().getName());
                     // special ability for muscle
 
                 }
