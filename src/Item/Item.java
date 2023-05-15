@@ -18,14 +18,15 @@ public class Item extends SuperObjects {
             if (mapX > -1500 && !itemUsed) {
                 GAMESPEED = 13;
                 gp.getPlayer().setImmune(true);
+                gp.getPlayer().setItemImmune(true);
                 itemUsed = true;
             } else if (mapX < -1500 && !itemReset) {
                 GAMESPEED = 4;
                 if (!gp.getPlayer().isSkillOnUse())
                     gp.getPlayer().setImmune(false);
                 itemReset = true;
+                gp.getPlayer().setItemImmune(false);
                 System.out.println("CHeck");
-
             }
         } else if (getName().equals("IncreaseHP")) {
             if (mapX() > -1 && !itemUsed) {

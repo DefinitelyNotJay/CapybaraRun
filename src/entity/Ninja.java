@@ -12,7 +12,7 @@ public class Ninja extends Player {
     public Ninja(GamePanel gp, int character, int HP, int x, int y, int xSize, int ySize) {
         super(gp, character, HP, x, y, xSize, ySize);
         loadImages();
-        skillOnUse = true;
+        
     }
 
     @Override

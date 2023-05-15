@@ -143,9 +143,11 @@ public class GamePanel extends JPanel {
 
     public void gameReset() {
         player.setHP(player.getMaxHP());
+        player.playerReset();
         this.wp = new WallPattern(this);
         wp.init();
         t1 = new Tile(this, wp);
+        GAMESPEED = 4;
         score = 0;
 
         // waiting for reset obstacles method
