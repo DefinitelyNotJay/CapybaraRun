@@ -22,7 +22,6 @@ public class KeyboardListener implements KeyListener {
     @Override
     public void keyPressed(KeyEvent e) {
         if (GameState == PLAYING) {
-
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
                     gp.getPlayer().setJump(true);
@@ -31,7 +30,15 @@ public class KeyboardListener implements KeyListener {
                 case KeyEvent.VK_S:
                     gp.getPlayer().setDown(true);
                     break;
+                case KeyEvent.VK_ESCAPE:
+                    GamePanel.GameState = PAUSE;
+                    // ใส่ method หยุดเพลง
+            }
+        }
 
+        else if (GameState == PAUSE) {
+            if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                GamePanel.GameState = PLAYING;
             }
         }
     }
