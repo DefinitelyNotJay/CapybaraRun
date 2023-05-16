@@ -48,6 +48,7 @@ public class ChooseCharacter implements ScreenTools, Animations {
         g.drawImage(frame, 380 + 23, 43, null);
         g.drawImage(characterFrame, -200 + 23, 57, (int) (320 * 3.2), (int) (180 * 2.9), null);
         g.drawImage(name, 563, 80, null);
+        g.drawImage(skill, 520, 180, null);
         g.drawImage(model, 228, 195, (int) (878 / 4.7), (int) (986 / 4.7), null);
         btn[LEFTBTN].draw(g);
         btn[RIGHTBTN].draw(g);

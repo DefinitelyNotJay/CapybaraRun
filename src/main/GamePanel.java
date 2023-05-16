@@ -1,10 +1,11 @@
 package main;
 
 import screen.ChooseCharacter;
+import screen.Credits;
 import screen.MenuGame;
+import screen.Pause;
 import screen.Result;
 import tiles.*;
-import entity.Muscle;
 import entity.Player;
 import obstacles.WallPattern;
 import inputs.KeyboardListener;
@@ -13,8 +14,6 @@ import java.awt.*;
 import javax.swing.*;
 
 import Item.AssetSetter;
-import Item.SuperObjects;
-import constant.Constants;
 import static constant.Constants.*;
 import inputs.MouseMotionHandler;
 import methods.Utilz;
@@ -33,7 +32,9 @@ public class GamePanel extends JPanel {
     private MenuGame mg;
     private Result rs;
     private ChooseCharacter cc;
+    private Pause p;
     private AssetSetter as;
+    private Credits cd;
     public static int GameState = MENU;
     private static Sound music, effect;
     private int score = 0, rateScore = 1, stageCountChange = 40, stageCount = 0;
@@ -47,14 +48,16 @@ public class GamePanel extends JPanel {
         mg = new MenuGame();
         cc = new ChooseCharacter();
         rs = new Result(this);
+        p = new Pause(this);
+        cd = new Credits(this);
         // item
         as = new AssetSetter(this);
 
         // t1 = new Tile(this);
         // listener
         addKeyListener(new KeyboardListener(this));
-        addMouseListener(new MouseHandler(this, mg, rs, cc));
-        addMouseMotionListener(new MouseMotionHandler(this, mg, rs, cc));
+        addMouseListener(new MouseHandler(this, mg, rs, cc, p, cd));
+        addMouseMotionListener(new MouseMotionHandler(this, mg, rs, cc, p, cd));
         // sound
         music = new Sound();
         effect = new Sound();
@@ -65,21 +68,21 @@ public class GamePanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-        if (GameState == PLAYING) {
+        if (GameState == PLAYING || GameState == PAUSE) {
             t1.draw(g2);
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).draw(g2);
             }
             player.draw(g2);
             for (int i = 0; i < as.getAllItems().size(); i++) {
-                if (as.getAllItems().get(i) != null) {
-                    // if (SuperObjects.getCollision() != true)
-                    as.getAllItems().get(i).draw(g2);
-                }
+                as.getAllItems().get(i).draw(g2);
             }
             g2.setFont(new Font("Arcade Normal", Font.PLAIN, tileSize / 2));
             g2.setColor(Color.WHITE);
             g2.drawString(String.format("%06d", score), 1050, 65);
+            if (GameState == PAUSE) {
+                p.paint(g2);
+            }
         } else if (GameState == DEAD) {
             stopMusic();
             Utilz.sleep(2);
@@ -91,6 +94,8 @@ public class GamePanel extends JPanel {
             rs.paint(g2);
         } else if (GameState == SELECT) {
             cc.paint(g2);
+        } else if (GameState == CREDITS) {
+            cd.paint(g2);
         }
 
         g2.dispose();
@@ -99,15 +104,12 @@ public class GamePanel extends JPanel {
     public void update() {
         if (GameState == PLAYING) {
             score += rateScore;
-            t1.update();
             player.update();
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
             }
             for (int i = 0; i < as.getAllItems().size(); i++) {
-                if (as.getAllItems().get(i) != null) {
-                    as.getAllItems().get(i).update();
-                }
+                as.getAllItems().get(i).update();
             }
 
         } else if (GameState == MENU) {
@@ -128,6 +130,9 @@ public class GamePanel extends JPanel {
             if (stageCount >= stageCountChange) {
                 t1.stageChange();
                 t1.tileUpdate();
+                for (int i = 0; i < wp.getWallPattern().size(); i++) {
+                    wp.getWallPattern().get(i).updateWallSkin();
+                }
                 stageCount = 0;
             }
         }
@@ -141,6 +146,9 @@ public class GamePanel extends JPanel {
         wp.init();
         t1 = new Tile(this, wp);
         GAMESPEED = 4;
+        for (int i = 0; i < wp.getWallPattern().size(); i++) {
+            wp.getWallPattern().get(i).updateWallSkin();
+        }
         score = 0;
 
         // waiting for reset obstacles method

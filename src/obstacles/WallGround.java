@@ -9,12 +9,31 @@ import main.GamePanel;
 import methods.Utilz;
 
 public class WallGround extends Wall {
-    private int times = 0;
     private BufferedImage img;
 
     public WallGround(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
-        img = Utilz.GetImage("/res/tiles/02_ground.png");
+    }
+
+    @Override
+    public void updateWallSkin() {
+        switch (gp.getTile().getTileStage()) {
+            case BEACH:
+                img = Utilz.GetImage("/res/wall/Stone_3.png");
+                break;
+            case MOUNTAIN:
+                img = Utilz.GetImage("/res/wall/Fire_12_.png");
+                break;
+            case FOREST:
+                img = Utilz.GetImage("/res/wall/Green_22.png");
+                break;
+            case VILLAGE:
+                img = Utilz.GetImage("/res/wall/crate-stack.png");
+                break;
+            case NIGHT:
+                img = Utilz.GetImage("/res/wall/DarkCastle.png");
+                break;
+        }
     }
 
     @Override

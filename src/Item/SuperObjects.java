@@ -66,12 +66,12 @@ public abstract class SuperObjects {
     public abstract void specificItemSound();
 
     public void draw(Graphics g2) {
-        mapX -= GAMESPEED;
         if (!collision)
             g2.drawImage(imageItem, mapX, mapY, gp.tileSize, gp.tileSize, null);
     }
 
     public void update() {
+        mapX -= GAMESPEED;
         playerX = gp.getPlayer().getX();
         playerWidth = gp.getPlayer().getWidth();
         playerSolidAreaX = gp.getPlayer().getCrashAreaWidth();

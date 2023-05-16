@@ -1,5 +1,6 @@
 package inputs;
 
+import java.awt.Menu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -14,24 +15,29 @@ import methods.Animations;
 import methods.Utilz;
 import obstacles.WallPattern;
 import screen.ChooseCharacter;
+import screen.Credits;
 import screen.MenuGame;
+import screen.Pause;
 import screen.Result;
 
 import static main.GamePanel.GameState;
 import tiles.*;
 
 public class MouseHandler implements MouseListener {
-    private GamePanel gp;
-    private MenuGame mg;
-    private ChooseCharacter cc;
-    private Result r;
+    GamePanel gp;
+    MenuGame mg;
+    ChooseCharacter cc;
+    Result r;
+    Pause p;
+    Credits cd;
 
-    public MouseHandler(GamePanel gp, MenuGame mg, Result r, ChooseCharacter cc) {
+    public MouseHandler(GamePanel gp, MenuGame mg, Result r, ChooseCharacter cc, Pause p, Credits cd) {
         this.gp = gp;
         this.mg = mg;
         this.r = r;
         this.cc = cc;
-
+        this.p = p;
+        this.cd = cd;
     }
 
     @Override
@@ -73,6 +79,7 @@ public class MouseHandler implements MouseListener {
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
                     GamePanel.playSE(7);
+                    GamePanel.GameState = CREDITS;
                 }
             }
         }
@@ -135,6 +142,42 @@ public class MouseHandler implements MouseListener {
                 GameState = PLAYING;
                 // GamePanel.playMusic(2); //theme song
             }
+        }
+
+        else if (GameState == PAUSE) {
+            boolean isInButtonXArea = p.getButton()[0].getX() <= e.getX() &&
+                    p.getButton()[0].getX() + p.getButton()[0].getWidth() >= e.getX();
+
+            boolean isInResumeBtnArea = e.getY() >= p.getButton()[0].getY()
+                    && e.getY() <= p.getButton()[0].getY() + p.getButton()[0].getHeight()
+                    && isInButtonXArea;
+
+            boolean isInBackBtnArea = e.getY() >= p.getButton()[1].getY()
+                    && e.getY() <= p.getButton()[1].getY() + p.getButton()[1].getHeight()
+                    && isInButtonXArea;
+
+            boolean isInRestartBtnArea = e.getY() >= p.getButton()[2].getY()
+                    && e.getY() <= p.getButton()[2].getY() + p.getButton()[2].getHeight()
+                    && isInButtonXArea;
+
+            if (isInResumeBtnArea) {
+                GamePanel.GameState = PLAYING;
+            } else if (isInBackBtnArea) {
+                GamePanel.GameState = MENU;
+            } else if (isInRestartBtnArea) {
+                GamePanel.GameState = SELECT;
+            }
+
+        } else if (GameState == CREDITS) {
+            boolean isInBackBtnArea = e.getX() >= cd.getBackBtn().getX()
+                    && e.getX() <= cd.getBackBtn().getX() + cd.getBackBtn().getWidth()
+                    && e.getY() >= cd.getBackBtn().getY()
+                    && e.getY() <= cd.getBackBtn().getY() + cd.getBackBtn().getHeight();
+
+            if (isInBackBtnArea) {
+                GamePanel.GameState = MENU;
+            }
+
         }
     }
 

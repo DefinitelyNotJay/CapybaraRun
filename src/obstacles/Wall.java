@@ -21,6 +21,8 @@ public abstract class Wall extends Entity {
 
     public abstract void draw(Graphics g2);
 
+    public abstract void updateWallSkin();
+
     public Wall(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(x, y);
         this.firstSetupX = x;
