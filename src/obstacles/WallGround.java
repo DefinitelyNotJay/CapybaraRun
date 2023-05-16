@@ -16,7 +16,7 @@ public class WallGround extends Wall {
 
     @Override
     public void updateWallSkin() {
-        switch (gp.getTile().getTileStage()) {
+        switch ((int) (gp.getTile().getStageOrder().get(gp.getTile().getTileStage()))) {
             case BEACH:
                 img = Utilz.GetImage("/res/wall/Stone_3.png");
                 break;

@@ -111,6 +111,8 @@ public class GamePanel extends JPanel {
             for (int i = 0; i < as.getAllItems().size(); i++) {
                 as.getAllItems().get(i).update();
             }
+
+            // อาจจะ bug
             if (stageCount >= stageCountChange) {
                 t1.stageChange();
                 t1.tileUpdate();
@@ -217,4 +219,9 @@ public class GamePanel extends JPanel {
     public Tile getTile() {
         return t1;
     }
+
+    public Sound getMusic() {
+        return music;
+    }
+
 }

@@ -134,13 +134,11 @@ public class MouseHandler implements MouseListener {
                         gp.setPlayer(new Ninja(gp, NINJA, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                 }
-                // gp.setWp(new WallPattern(gp));
-                gp.gameReset();
                 GamePanel.playSE(9);
+                gp.gameReset();
                 GamePanel.stopMusic();
                 gp.getTile().tileUpdate();
                 GameState = PLAYING;
-                // GamePanel.playMusic(2); //theme song
             }
         }
 
@@ -162,9 +160,12 @@ public class MouseHandler implements MouseListener {
 
             if (isInResumeBtnArea) {
                 GamePanel.GameState = PLAYING;
+                gp.getMusic().resumeSound();
             } else if (isInBackBtnArea) {
+                GamePanel.playMusic(0);
                 GamePanel.GameState = MENU;
             } else if (isInRestartBtnArea) {
+                GamePanel.playMusic(1);
                 GamePanel.GameState = SELECT;
             }
 

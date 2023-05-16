@@ -14,7 +14,7 @@ public class WallHanging extends Wall {
     }
 
     public void updateWallSkin() {
-        switch (gp.getTile().getTileStage()) {
+        switch ((int) (gp.getTile().getStageOrder().get(gp.getTile().getTileStage()))) {
             case FOREST:
                 img = Utilz.GetImage("/res/wall/Bramble_1.png");
                 break;
@@ -22,7 +22,7 @@ public class WallHanging extends Wall {
                 img = Utilz.GetImage("/res/wall/Fire_12_.png");
                 break;
             case BEACH:
-                img = Utilz.GetImage("/res/wall/Stone_3.png");//yes
+                img = Utilz.GetImage("/res/wall/Stone_3.png");// yes
                 break;
             case NIGHT:
                 img = Utilz.GetImage("/res/wall/DarkCastle_24.png");//

@@ -27,7 +27,7 @@ public class KeyboardListener implements KeyListener {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
                     gp.getPlayer().setJump(true);
-                    switch(gp.getPlayer().getCharacter()){
+                    switch (gp.getPlayer().getCharacter()) {
                         case CAPY:
                             GamePanel.playSE(4);
                             break;
@@ -49,6 +49,7 @@ public class KeyboardListener implements KeyListener {
                     gp.getPlayer().setDown(true);
                     break;
                 case KeyEvent.VK_ESCAPE:
+                    gp.getMusic().pauseSound();
                     GamePanel.GameState = PAUSE;
                     // ใส่ method หยุดเพลง
             }
@@ -56,6 +57,7 @@ public class KeyboardListener implements KeyListener {
 
         else if (GameState == PAUSE) {
             if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+                gp.getMusic().resumeSound();
                 GamePanel.GameState = PLAYING;
             }
         }

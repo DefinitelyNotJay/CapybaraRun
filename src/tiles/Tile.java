@@ -28,7 +28,6 @@ public class Tile {
         tileUpdate();
     }
 
-
     public void randomStage() {
         stateChangeEvery = (int) (wp.getWallSize() / 3);
         stateCheck = stateChangeEvery;
@@ -96,6 +95,10 @@ public class Tile {
 
     public void setStateCheck(int stateCheck) {
         this.stateCheck = stateCheck;
+    }
+
+    public List getStageOrder() {
+        return stageOrder;
     }
 
 }
