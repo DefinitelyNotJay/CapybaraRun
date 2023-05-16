@@ -1,6 +1,7 @@
 package main;
 
 import screen.ChooseCharacter;
+import screen.Credits;
 import screen.MenuGame;
 import screen.Pause;
 import screen.Result;
@@ -33,6 +34,7 @@ public class GamePanel extends JPanel {
     private ChooseCharacter cc;
     private Pause p;
     private AssetSetter as;
+    private Credits cd;
     public static int GameState = MENU;
     private static Sound music, effect;
     private int score = 0, rateScore = 1, stageCountChange = 40, stageCount = 0;
@@ -47,14 +49,15 @@ public class GamePanel extends JPanel {
         cc = new ChooseCharacter();
         rs = new Result(this);
         p = new Pause(this);
+        cd = new Credits(this);
         // item
         as = new AssetSetter(this);
 
         // t1 = new Tile(this);
         // listener
         addKeyListener(new KeyboardListener(this));
-        addMouseListener(new MouseHandler(this, mg, rs, cc, p));
-        addMouseMotionListener(new MouseMotionHandler(this, mg, rs, cc, p));
+        addMouseListener(new MouseHandler(this, mg, rs, cc, p, cd));
+        addMouseMotionListener(new MouseMotionHandler(this, mg, rs, cc, p, cd));
         // sound
         music = new Sound();
         effect = new Sound();
@@ -91,6 +94,8 @@ public class GamePanel extends JPanel {
             rs.paint(g2);
         } else if (GameState == SELECT) {
             cc.paint(g2);
+        } else if (GameState == CREDITS) {
+            cd.paint(g2);
         }
 
         g2.dispose();

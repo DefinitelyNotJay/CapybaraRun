@@ -1,5 +1,6 @@
 package inputs;
 
+import java.awt.Menu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
@@ -14,6 +15,7 @@ import methods.Animations;
 import methods.Utilz;
 import obstacles.WallPattern;
 import screen.ChooseCharacter;
+import screen.Credits;
 import screen.MenuGame;
 import screen.Pause;
 import screen.Result;
@@ -27,14 +29,15 @@ public class MouseHandler implements MouseListener {
     ChooseCharacter cc;
     Result r;
     Pause p;
+    Credits cd;
 
-    public MouseHandler(GamePanel gp, MenuGame mg, Result r, ChooseCharacter cc, Pause p) {
+    public MouseHandler(GamePanel gp, MenuGame mg, Result r, ChooseCharacter cc, Pause p, Credits cd) {
         this.gp = gp;
         this.mg = mg;
         this.r = r;
         this.cc = cc;
         this.p = p;
-
+        this.cd = cd;
     }
 
     @Override
@@ -76,6 +79,7 @@ public class MouseHandler implements MouseListener {
                     System.exit(0);
                 } else if (isInCreditsButtonArea) {
                     GamePanel.playSE(7);
+                    GamePanel.GameState = CREDITS;
                 }
             }
         }
@@ -162,6 +166,16 @@ public class MouseHandler implements MouseListener {
                 GamePanel.GameState = MENU;
             } else if (isInRestartBtnArea) {
                 GamePanel.GameState = SELECT;
+            }
+
+        } else if (GameState == CREDITS) {
+            boolean isInBackBtnArea = e.getX() >= cd.getBackBtn().getX()
+                    && e.getX() <= cd.getBackBtn().getX() + cd.getBackBtn().getWidth()
+                    && e.getY() >= cd.getBackBtn().getY()
+                    && e.getY() <= cd.getBackBtn().getY() + cd.getBackBtn().getHeight();
+
+            if (isInBackBtnArea) {
+                GamePanel.GameState = MENU;
             }
 
         }
