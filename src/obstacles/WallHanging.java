@@ -1,9 +1,7 @@
 package obstacles;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.net.InetSocketAddress;
 
 import main.GamePanel;
 import methods.Utilz;
@@ -15,20 +13,25 @@ public class WallHanging extends Wall {
 
     public WallHanging(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
-        img = Utilz.GetImage("/res/wall/wall.png");
+
     }
 
     public void updateWallSkin() {
         switch (gp.getTile().getTileStage()) {
             case FOREST:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case MOUNTAIN:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case BEACH:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case NIGHT:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case VILLAGE:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
         }
     }

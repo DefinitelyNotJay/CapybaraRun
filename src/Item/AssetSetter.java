@@ -24,7 +24,7 @@ public class AssetSetter {
     public void setItems() {
         int recentlyX = 0;
         for (int i = 0; i < AMOUNT; i++) {
-            int randomItem = random.nextInt(SCOREBOOST - FAST) + FAST;
+            int randomItem = random.nextInt(SMALLHP - FAST) + FAST;
             int wide = random.nextInt(4 - 1) + 1; // ห่าง 1-4 หน้าจอ
             int wideSize = random.nextInt(1200 - 1000) + 1000;
             int itemHeight = 250;

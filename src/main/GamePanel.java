@@ -104,7 +104,6 @@ public class GamePanel extends JPanel {
     public void update() {
         if (GameState == PLAYING) {
             score += rateScore;
-            t1.update();
             player.update();
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
@@ -131,6 +130,9 @@ public class GamePanel extends JPanel {
             if (stageCount >= stageCountChange) {
                 t1.stageChange();
                 t1.tileUpdate();
+                for (int i = 0; i < wp.getWallPattern().size(); i++) {
+                    wp.getWallPattern().get(i).updateWallSkin();
+                }
                 stageCount = 0;
             }
         }
@@ -144,6 +146,9 @@ public class GamePanel extends JPanel {
         wp.init();
         t1 = new Tile(this, wp);
         GAMESPEED = 4;
+        for (int i = 0; i < wp.getWallPattern().size(); i++) {
+            wp.getWallPattern().get(i).updateWallSkin();
+        }
         score = 0;
 
         // waiting for reset obstacles method

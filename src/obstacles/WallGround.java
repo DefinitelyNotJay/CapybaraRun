@@ -13,21 +13,25 @@ public class WallGround extends Wall {
 
     public WallGround(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
-        img = Utilz.GetImage("/res/wall/wall.png");
     }
 
     @Override
     public void updateWallSkin() {
         switch (gp.getTile().getTileStage()) {
             case FOREST:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case MOUNTAIN:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case BEACH:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case NIGHT:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
             case VILLAGE:
+                img = Utilz.GetImage("/res/wall/wall.png");
                 break;
         }
     }
