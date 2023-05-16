@@ -15,7 +15,7 @@ public class WallHanging extends Wall {
 
     public WallHanging(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
-        img = Utilz.GetImage("/res/wall/wall3.png");
+        img = Utilz.GetImage("/res/wall/wall.png");
     }
 
     @Override
