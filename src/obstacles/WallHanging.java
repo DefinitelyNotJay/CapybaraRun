@@ -18,6 +18,21 @@ public class WallHanging extends Wall {
         img = Utilz.GetImage("/res/wall/rockblock.png");
     }
 
+    public void updateWallSkin() {
+        switch (gp.getTile().getTileStage()) {
+            case FOREST:
+                break;
+            case MOUNTAIN:
+                break;
+            case BEACH:
+                break;
+            case NIGHT:
+                break;
+            case VILLAGE:
+                break;
+        }
+    }
+
     @Override
     public void crash() {
         boolean isPlayerCollide = (playerX - playerSolidAreaX >= this.x && playerX + playerSolidAreaX <= this.x + width)

@@ -128,6 +128,7 @@ public class GamePanel extends JPanel {
             if (stageCount >= stageCountChange) {
                 t1.stageChange();
                 t1.tileUpdate();
+                
                 stageCount = 0;
             }
         }

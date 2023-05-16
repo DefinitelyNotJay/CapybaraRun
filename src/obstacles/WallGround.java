@@ -18,6 +18,22 @@ public class WallGround extends Wall {
     }
 
     @Override
+    public void updateWallSkin() {
+        switch (gp.getTile().getTileStage()) {
+            case FOREST:
+                break;
+            case MOUNTAIN:
+                break;
+            case BEACH:
+                break;
+            case NIGHT:
+                break;
+            case VILLAGE:
+                break;
+        }
+    }
+
+    @Override
     public void crash() {
         boolean isPlayerCollide = (playerX - playerSolidAreaX >= this.x && playerX + playerSolidAreaX <= this.x + width)
                 && (playerY + playerHeight - playerSolidAreaY >= this.y);
