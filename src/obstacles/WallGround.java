@@ -14,7 +14,7 @@ public class WallGround extends Wall {
 
     public WallGround(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
-        img = Utilz.GetImage("/res/wall/wall.png");
+        img = Utilz.GetImage("/res/tiles/02_ground.png");
     }
 
     @Override
