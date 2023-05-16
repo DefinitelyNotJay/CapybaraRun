@@ -2,11 +2,11 @@ package main;
 
 import javax.swing.*;
 
-
 public class GameWindow {
     private JFrame jframe;
     private GamePanel gamePanel;
-    public GameWindow(GamePanel gamePanel){
+
+    public GameWindow(GamePanel gamePanel) {
         jframe = new JFrame();
         this.gamePanel = gamePanel;
         jframe.add(gamePanel);
@@ -17,6 +17,5 @@ public class GameWindow {
         gamePanel.requestFocus();
         jframe.setVisible(true);
         jframe.setLocationRelativeTo(null);
-        gamePanel.setUpGame();
     }
 }
