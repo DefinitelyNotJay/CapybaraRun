@@ -70,7 +70,6 @@ public abstract class Player extends Entity implements Animations {
         updateAnimations();
         healthCheck();
         getImmune();
-
     }
 
     public void draw(Graphics g2) {

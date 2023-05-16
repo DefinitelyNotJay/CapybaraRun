@@ -25,7 +25,7 @@ public class AssetSetter {
         int recentlyX = 0;
         for (int i = 0; i < AMOUNT; i++) {
             int randomItem = random.nextInt(SCOREBOOST - FAST) + FAST;
-            int wide = random.nextInt(4 - 1) + 1;
+            int wide = random.nextInt(4 - 1) + 1; // ห่าง 1-4 หน้าจอ
             int wideSize = random.nextInt(1200 - 1000) + 1000;
             int itemHeight = 250;
             if (i == 0) {
@@ -34,7 +34,6 @@ public class AssetSetter {
             } else {
                 recentlyX += (wide * wideSize);
                 allItems.add(new Item(gp, recentlyX, itemHeight, randomItem));
-
             }
 
         }
