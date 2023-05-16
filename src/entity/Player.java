@@ -14,7 +14,7 @@ public abstract class Player extends Entity implements Animations {
     protected GamePanel gp;
     protected int character;
     protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, flinching = false,
-            appear = true, immune = false;
+            appear = true, immune = false, itemImmune = false;
     protected int width, height, HP, maxHP, rateDecreaseHP = 1, flinchingCount = 0, flinchPerSec = 8;
     protected int fps = 0;
     protected int timeCount = 0;
@@ -69,6 +69,8 @@ public abstract class Player extends Entity implements Animations {
         move();
         updateAnimations();
         healthCheck();
+        getImmune();
+
     }
 
     public void draw(Graphics g2) {
@@ -178,8 +180,6 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void getFlinching() {
-        // immune
-        getImmune();
 
         // immune state start
         if (flinching) {
@@ -193,9 +193,9 @@ public abstract class Player extends Entity implements Animations {
             appear = true;
             flinching = false;
             flinchingCount = 0;
-            immune = false;
+            if (!skillOnUse && !itemImmune)
+                immune = false;
         }
-
     }
 
     public void getSkillSprites() {
@@ -374,6 +374,15 @@ public abstract class Player extends Entity implements Animations {
 
     public int getCharacter() {
         return character;
+    }
+
+    public boolean getItemImmune() {
+        return itemImmune;
+    }
+
+    public void setItemImmune(boolean itemImmune) {
+        this.itemImmune = itemImmune;
+
     }
 
 }

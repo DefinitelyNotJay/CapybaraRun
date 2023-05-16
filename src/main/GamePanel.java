@@ -27,16 +27,15 @@ public class GamePanel extends JPanel {
     public final int maxScreenRow = 8;
     public final int screenWidth = tileSize * maxScreenCol; // 1280 px
     public final int screenHeight = tileSize * maxScreenRow; // 512 px
+
     private Player player;
     private WallPattern wp;
     private MenuGame mg;
     private Result rs;
     private ChooseCharacter cc;
-    public SuperObjects obj[] = new SuperObjects[10];
-    public AssetSetter aSetter = new AssetSetter(this);
+    private AssetSetter as;
     public static int GameState = MENU;
-    private static Sound music;
-    private static Sound effect;
+    private static Sound music, effect;
     private int score = 0, rateScore = 1;
     public Tile t1;
 
@@ -48,7 +47,8 @@ public class GamePanel extends JPanel {
         mg = new MenuGame();
         cc = new ChooseCharacter();
         rs = new Result(this);
-        // wall
+        // item
+        as = new AssetSetter(this);
 
         // t1 = new Tile(this);
         // listener
@@ -59,10 +59,6 @@ public class GamePanel extends JPanel {
         music = new Sound();
         effect = new Sound();
         playMusic(0);
-    }
-
-    public void setUpGame() {
-        aSetter.setObject();
     }
 
     public WallPattern getWp() {
@@ -83,10 +79,10 @@ public class GamePanel extends JPanel {
                 wp.getWallPattern().get(i).draw(g2);
             }
             player.draw(g2);
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
+            for (int i = 0; i < as.getAllItems().size(); i++) {
+                if (as.getAllItems().get(i) != null) {
                     // if (SuperObjects.getCollision() != true)
-                    obj[i].draw(g2);
+                    as.getAllItems().get(i).draw(g2);
                 }
             }
             g2.setFont(new Font("Arcade Normal", Font.PLAIN, tileSize / 2));
@@ -116,9 +112,9 @@ public class GamePanel extends JPanel {
             for (int i = 0; i < wp.getWallPattern().size(); i++) {
                 wp.getWallPattern().get(i).update();
             }
-            for (int i = 0; i < obj.length; i++) {
-                if (obj[i] != null) {
-                    obj[i].update();
+            for (int i = 0; i < as.getAllItems().size(); i++) {
+                if (as.getAllItems().get(i) != null) {
+                    as.getAllItems().get(i).update();
                 }
             }
 
@@ -143,9 +139,11 @@ public class GamePanel extends JPanel {
 
     public void gameReset() {
         player.setHP(player.getMaxHP());
+        player.playerReset();
         this.wp = new WallPattern(this);
         wp.init();
         t1 = new Tile(this, wp);
+        GAMESPEED = 4;
         score = 0;
 
         // waiting for reset obstacles method
@@ -178,7 +176,7 @@ public class GamePanel extends JPanel {
 
     public static void playhit(int i) {
         effect.setFiles(i);
-        effect.setVolume(50);
+        effect.setVolume(60);
         effect.playSound();
     }
 

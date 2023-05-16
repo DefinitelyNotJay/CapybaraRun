@@ -1,7 +1,6 @@
 package entity;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 import main.GamePanel;
 import methods.Utilz;
 import static constant.Constants.*;
@@ -38,7 +37,6 @@ public class Ghost extends Player {
 
     public void update() {
         super.update();
-        HP = 100;
     }
 
     @Override
@@ -48,7 +46,6 @@ public class Ghost extends Player {
         GAMESPEED = 13;
         aniSpeed = 1;
         GamePanel.playSE(14);
-
     }
 
     @Override
@@ -94,8 +91,7 @@ public class Ghost extends Player {
     @Override
     public void playerReset() {
         this.HP = maxHP;
-        skillOnUse = false;
-        timeCount = 0;
-        skillDurationCount = 0;
+        skillReset();
+
     }
 }

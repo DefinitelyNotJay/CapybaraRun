@@ -9,10 +9,13 @@ public abstract class Wall extends Entity {
 
     protected GamePanel gp;
     // private static final int WALLSPEED = 6;
-    protected int width, height, wallDamage = 10;
+    protected int width, height, character, wallDamage = 10;
     protected WallPattern wp;
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
     public double firstSetupX;
+    protected boolean isDestroy = false, isPlayerSkillOnUse = false;
+    protected int playerCharacter;
+    protected boolean crashingEffect = false;
 
     public abstract void crash();
 
@@ -34,6 +37,8 @@ public abstract class Wall extends Entity {
         playerY = gp.getPlayer().getY();
         playerHeight = gp.getPlayer().getHeight();
         playerSolidAreaY = gp.getPlayer().getCrashAreaHeight();
+        playerCharacter = gp.getPlayer().getCharacter();
+        isPlayerSkillOnUse = gp.getPlayer().isSkillOnUse();
         x -= GAMESPEED;
         wallOutScreen();
         crash();

@@ -19,37 +19,43 @@ public class WallGround extends Wall {
 
     @Override
     public void crash() {
-        if (playerX + playerWidth + playerSolidAreaX >= this.x
-                && playerX + playerWidth + playerSolidAreaY <= this.x + width) {
-            if (playerY + playerHeight - playerSolidAreaY >= this.y) {
-                times++;
-                if (times == 1) {
-                    if (gp.getPlayer().isSkillOnUse() && gp.getPlayer().getCharacter() == MUSCLE) {
-                        if (gp.getPlayer().getHP() + 5 <= gp.getPlayer().getMaxHP()) {
-                            gp.getPlayer().setHP(gp.getPlayer().getHP() + 5);
-                        }
-                    } else if (!gp.getPlayer().isImmune()) {
-                        // getDamage
-                        gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
-                        GamePanel.playhit(6);
-
-                        // flinching
-                        gp.getPlayer().setFlinching(true);
+        boolean isPlayerCollide = (playerX - playerSolidAreaX >= this.x && playerX + playerSolidAreaX <= this.x + width)
+                && (playerY + playerHeight - playerSolidAreaY >= this.y);
+        if (isPlayerCollide) {
+            if (!crashingEffect) {
+                // case NINJA && MUSCLE
+                if (isPlayerSkillOnUse && (playerCharacter == MUSCLE || playerCharacter == NINJA)) {
+                    switch (playerCharacter) {
+                        case MUSCLE:
+                            if (gp.getPlayer().getHP() + 5 <= gp.getPlayer().getMaxHP()) {
+                                gp.getPlayer().setHP(gp.getPlayer().getHP() + 5);
+                                GamePanel.playSE(22);
+                            }
+                            isDestroy = true;
+                            break;
+                        case NINJA:
+                            gp.setScore(gp.getScore() + 500);
+                            isDestroy = true;
+                            break;
                     }
-                    // special ability for muscle
-
+                } else if (!gp.getPlayer().isImmune()) {
+                    // getDamage
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
+                    GamePanel.playhit(6);
+                    // flinching
+                    gp.getPlayer().setFlinching(true);
                 }
-
             }
+            crashingEffect = true;
+            // special ability for muscle
 
-        } else {
-            times = 0;
         }
     }
 
     @Override
     public void draw(Graphics g2) {
-        g2.drawImage(img, x, y, gp.tileSize, gp.tileSize, null);
+        if (!isDestroy)
+            g2.drawImage(img, x, y, gp.tileSize, gp.tileSize, null);
     }
 
 }
