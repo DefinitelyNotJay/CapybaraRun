@@ -22,13 +22,13 @@ public class WallHanging extends Wall {
                 img = Utilz.GetImage("/res/wall/Fire_12_.png");
                 break;
             case BEACH:
-                img = Utilz.GetImage("/res/wall/Stone_3.png");// yes
+                img = Utilz.GetImage("/res/wall/Stone_3.png");
                 break;
             case NIGHT:
-                img = Utilz.GetImage("/res/wall/DarkCastle_24.png");//
+                img = Utilz.GetImage("/res/wall/DarkCastle_24.png");
                 break;
             case VILLAGE:
-                img = Utilz.GetImage("/res/wall/crate.png"); //
+                img = Utilz.GetImage("/res/wall/crate.png");
                 break;
         }
     }
