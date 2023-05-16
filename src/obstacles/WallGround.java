@@ -9,7 +9,6 @@ import main.GamePanel;
 import methods.Utilz;
 
 public class WallGround extends Wall {
-    private int times = 0;
     private BufferedImage img;
 
     public WallGround(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
