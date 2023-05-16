@@ -73,8 +73,9 @@ public abstract class SuperObjects {
 
     }
 
-    public void draw(Graphics g2) {
+    public abstract void specificItemSound();
 
+    public void draw(Graphics g2) {
         mapX -= GAMESPEED;
         if (!collision)
             g2.drawImage(imageItem, mapX, mapY, gp.tileSize, gp.tileSize, null);
@@ -97,8 +98,8 @@ public abstract class SuperObjects {
                 if (times == 1) {
                     setCollision(true);
                     GamePanel.playSE(10);
+                    specificItemSound();
                 }
-
             } else {
                 times = 0;
             }
@@ -111,4 +112,5 @@ public abstract class SuperObjects {
         }
 
     }
+
 }

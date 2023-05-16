@@ -2,11 +2,9 @@
 package entity;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
 
 import constant.Constants;
 import main.GamePanel;
-import methods.SpecialAbility;
 import methods.Utilz;
 
 public class Ninja extends Player {
@@ -18,7 +16,7 @@ public class Ninja extends Player {
     }
 
     @Override
-    public void loadImages() {   
+    public void loadImages() {
         normalAnirun = Utilz.getRunningImg("/res/player/ninja/capyrun.png");
         normalAniSlide = Utilz.GetImage("/res/player/ninja/capyslide.png");
 

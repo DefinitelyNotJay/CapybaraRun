@@ -38,6 +38,7 @@ public class Ghost extends Player {
 
     public void update() {
         super.update();
+        HP = 100;
     }
 
     @Override

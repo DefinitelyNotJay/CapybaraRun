@@ -131,8 +131,9 @@ public class MouseHandler implements MouseListener {
                 gp.gameReset();
                 GamePanel.playSE(9);
                 GamePanel.stopMusic();
+                gp.getTile().tileUpdate();
                 GameState = PLAYING;
-                GamePanel.playMusic(2);
+                // GamePanel.playMusic(2); //theme song
             }
         }
     }
