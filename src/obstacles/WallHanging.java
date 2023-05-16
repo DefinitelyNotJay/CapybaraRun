@@ -2,10 +2,8 @@ package obstacles;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import main.GamePanel;
 import methods.Utilz;
-
 import static constant.Constants.*;
 
 public class WallHanging extends Wall {
@@ -13,7 +11,6 @@ public class WallHanging extends Wall {
 
     public WallHanging(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
-
     }
 
     public void updateWallSkin() {
