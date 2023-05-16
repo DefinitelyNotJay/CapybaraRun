@@ -104,7 +104,7 @@ public class Item extends SuperObjects {
     public void setItemAsset() {
         switch (whichItem) {
             case FAST:
-                imageItem = Utilz.GetImage("/res/item/boots_01d.png");
+                imageItem = Utilz.GetImage("/res/item/fast.png");
                 break;
             case DECREASEHP:
                 imageItem = Utilz.GetImage("/res/item/posion.png");
@@ -116,8 +116,10 @@ public class Item extends SuperObjects {
                 imageItem = Utilz.GetImage("/res/item/heart.png");
                 break;
             case SLOW:
+                imageItem = Utilz.GetImage("/res/item/slow.png");
                 break;
             case SMALLHP:
+                imageItem = Utilz.GetImage("/res/item/icon1.png");
                 break;
         }
     }

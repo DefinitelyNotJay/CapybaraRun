@@ -21,7 +21,7 @@ public class Ninja extends Player {
     public void skill() {
         setSkillOnUse(true);
         setImmune(true);
-        // GamePanel.playSE(15);
+        GamePanel.playSE(15);
     }
 
     @Override

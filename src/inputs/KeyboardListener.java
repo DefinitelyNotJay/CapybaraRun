@@ -3,6 +3,8 @@ package inputs;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import entity.Ninja;
 import main.GamePanel;
 import static main.GamePanel.GameState;
 import static constant.Constants.*;
@@ -25,7 +27,23 @@ public class KeyboardListener implements KeyListener {
             switch (e.getKeyCode()) {
                 case KeyEvent.VK_W:
                     gp.getPlayer().setJump(true);
-                    GamePanel.playSE(4);
+                    switch(gp.getPlayer().getCharacter()){
+                        case CAPY:
+                            GamePanel.playSE(4);
+                            break;
+                        case NINJA:
+                            GamePanel.playSE(23);
+                            break;
+                        case MUSCLE:
+                            GamePanel.playSE(24);
+                            break;
+                        case GHOST:
+                            GamePanel.playSE(25);
+                            break;
+                        case ZOMBIE:
+                            GamePanel.playSE(26);
+                            break;
+                    }
                     break;
                 case KeyEvent.VK_S:
                     gp.getPlayer().setDown(true);
