@@ -3,7 +3,6 @@ package obstacles;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-
 import static constant.Constants.*;
 import main.GamePanel;
 import methods.Utilz;
@@ -66,8 +65,6 @@ public class WallGround extends Wall {
                 }
             }
             crashingEffect = true;
-            // special ability for muscle
-
         }
     }
 
