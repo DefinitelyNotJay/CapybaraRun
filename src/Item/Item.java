@@ -30,17 +30,13 @@ public class Item extends SuperObjects {
             }
         } else if (getName().equals("IncreaseHP")) {
             if (mapX() > -1 && !itemUsed) {
-                gp.getPlayer().setHP(gp.getPlayer().getMaxHP());
-                System.out.println(gp.getPlayer().getMaxHP());
-                System.out.println("IncreaseHP");
+                gp.getPlayer().setHP(gp.getPlayer().getHP()+50);
                 itemUsed = true;
             }
 
         } else if (getName().equals("DecreaseHP")) {
             if (mapX() > -1 && !itemUsed) {
                 gp.getPlayer().setHP(gp.getPlayer().getHP() - 20);
-                System.out.println(gp.getPlayer().getHP());
-                System.out.println("DecreaseHP");
                 itemUsed = true;
             }
         } else if (getName().equals("ScoreBoost")) {
