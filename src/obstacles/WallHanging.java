@@ -30,6 +30,7 @@ public class WallHanging extends Wall {
                         case MUSCLE:
                             if (gp.getPlayer().getHP() + 5 <= gp.getPlayer().getMaxHP()) {
                                 gp.getPlayer().setHP(gp.getPlayer().getHP() + 5);
+                                GamePanel.playSE(22);
                             }
                             isDestroy = true;
                             break;

@@ -14,7 +14,7 @@ public class Sound {
     public Sound(){
         
         //sound
-        soundURL[0] = getClass().getResource("/res/sound/MENU.wav");
+        soundURL[0] = getClass().getResource("/res/sound/Menu.wav");
         soundURL[1] = getClass().getResource("/res/sound/ChooseCharacter.wav");
         soundURL[2] = getClass().getResource("/res/sound/Theme_Forest.wav");
         soundURL[3] = getClass().getResource("/res/sound/Ending.wav");
@@ -41,7 +41,9 @@ public class Sound {
 
         //effect
         soundURL[20] = getClass().getResource("/res/sound/runfast_item.wav");
-        soundURL[21] = getClass().getResource("/res/sound/star.wav");
+        soundURL[21] = getClass().getResource("/res/sound/star_item.wav");
+        soundURL[22] = getClass().getResource("/res/sound/Punch_Muscle.wav");
+        soundURL[23] = getClass().getResource("/res/sound/muscle_skill.wav");
     }
 
     public void setFiles(int i){
