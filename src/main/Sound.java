@@ -44,6 +44,10 @@ public class Sound {
         soundURL[21] = getClass().getResource("/res/sound/star_item.wav");
         soundURL[22] = getClass().getResource("/res/sound/Punch_Muscle.wav");
         soundURL[23] = getClass().getResource("/res/sound/muscle_skill.wav");
+        soundURL[23] = getClass().getResource("/res/sound/ninja_jump.wav");
+        soundURL[24] = getClass().getResource("/res/sound/muscle_jump.wav");
+        soundURL[25] = getClass().getResource("/res/sound/ghost_jump.wav");
+        soundURL[26] = getClass().getResource("/res/sound/zombie_jump.wav");
     }
 
     public void setFiles(int i){

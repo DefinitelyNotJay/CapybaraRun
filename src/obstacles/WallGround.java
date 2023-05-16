@@ -34,7 +34,7 @@ public class WallGround extends Wall {
                             isDestroy = true;
                             break;
                         case NINJA:
-                            gp.setScore(gp.getScore() + 500);
+                            gp.setScore(gp.getScore() + 100);
                             isDestroy = true;
                             break;
                     }

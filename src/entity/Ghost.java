@@ -33,6 +33,11 @@ public class Ghost extends Player {
         g2.drawImage(skillCooldownBar, (int) (x * 0.91), (int) (y * 0.88),
                 (int) ((90 / (skillCooldown - 1)) * (timeCount)), (int) (10 * 0.8), null);
         g2.drawImage(skillBar, (int) (x * 0.9), (int) (y * 0.85), (int) (65 * 1.5), (int) (10 * 1.5), null);
+        if (skillOnUse) {
+            g2.drawImage(skillOnUseBar, (int) (x * 0.9), (int) (y * 0.845), (int) (5 * 2), (int) (5 * 2), null);
+            g2.drawImage(skillDurationBar, (int) (x * 0.976), (int) (y * 0.85),
+                    (int) ((90 / skillDuration) * (skillDuration - skillDurationCount)), (int) (4 * 2), null);
+        }
     }
 
     public void update() {
@@ -74,9 +79,6 @@ public class Ghost extends Player {
             GAMESPEED = 4;
             aniSpeed = 7;
         }
-
-        // immortal before running
-
     }
 
     @Override
@@ -92,6 +94,5 @@ public class Ghost extends Player {
     public void playerReset() {
         this.HP = maxHP;
         skillReset();
-
     }
 }

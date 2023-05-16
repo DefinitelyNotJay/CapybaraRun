@@ -175,7 +175,7 @@ public class GamePanel extends JPanel {
 
     public static void playSE(int i) {
         effect.setFiles(i);
-        effect.setVolume(15);
+        effect.setVolume(25);
         effect.playSound();
     }
 

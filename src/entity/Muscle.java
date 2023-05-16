@@ -15,34 +15,6 @@ public class Muscle extends Player {
     }
 
     @Override
-    public void drawPlayerStatusBar(Graphics g2) {
-        super.drawPlayerStatusBar(g2);
-        if (HP <= maxHP / 2) {
-            g2.drawImage(skillCooldownBar, (int) (x * 0.91), (int) (y * 0.88),
-                    (int) ((90 / (skillCooldown - 1)) * (timeCount)), (int) (10 * 0.8), null);
-            g2.drawImage(skillBar, (int) (x * 0.9), (int) (y * 0.85), (int) (65 * 1.5), (int) (10 * 1.5), null);
-
-        }
-        if (skillOnUse) {
-            g2.drawImage(skillOnUseBar, (int) (x * 0.9), (int) (y * 0.845), (int) (5 * 2), (int) (5 * 2), null);
-            g2.drawImage(skillDurationBar, (int) (x * 0.976), (int) (y * 0.85),
-                    (int) ((90 / skillDuration) * (skillDuration - skillDurationCount)), (int) (4 * 2), null);
-        }
-    }
-
-    @Override
-    public void loadImages() {
-        normalAnirun = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
-        normalAniSlide = Utilz.GetImage("/res/player/muscle/capyslide.png");
-
-        skillAniRun = Utilz.getRunningImg("/res/player/muscle/capySkillRun.png");
-        skillAniSlide = Utilz.GetImage("/res/player/muscle/capySkillSlide.png");
-
-        runningAni = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
-        slideAni = Utilz.GetImage("/res/player/muscle/capyslide.png");
-    }
-
-    @Override
     public void skill() {
         gp.getPlayer().setImmune(true);
         skillOnUse = true;
@@ -88,4 +60,33 @@ public class Muscle extends Player {
         timeCount = 0;
         skillDurationCount = 0;
     }
+
+    @Override
+    public void drawPlayerStatusBar(Graphics g2) {
+        super.drawPlayerStatusBar(g2);
+        if (HP <= maxHP / 2) {
+            g2.drawImage(skillCooldownBar, (int) (x * 0.91), (int) (y * 0.88),
+                    (int) ((90 / (skillCooldown - 1)) * (timeCount)), (int) (10 * 0.8), null);
+            g2.drawImage(skillBar, (int) (x * 0.9), (int) (y * 0.85), (int) (65 * 1.5), (int) (10 * 1.5), null);
+
+        }
+        if (skillOnUse) {
+            g2.drawImage(skillOnUseBar, (int) (x * 0.9), (int) (y * 0.845), (int) (5 * 2), (int) (5 * 2), null);
+            g2.drawImage(skillDurationBar, (int) (x * 0.976), (int) (y * 0.85),
+                    (int) ((90 / skillDuration) * (skillDuration - skillDurationCount)), (int) (4 * 2), null);
+        }
+    }
+
+    @Override
+    public void loadImages() {
+        normalAnirun = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
+        normalAniSlide = Utilz.GetImage("/res/player/muscle/capyslide.png");
+
+        skillAniRun = Utilz.getRunningImg("/res/player/muscle/capySkillRun.png");
+        skillAniSlide = Utilz.GetImage("/res/player/muscle/capySkillSlide.png");
+
+        runningAni = Utilz.getRunningImg("/res/player/muscle/capyrun.png");
+        slideAni = Utilz.GetImage("/res/player/muscle/capyslide.png");
+    }
+
 }

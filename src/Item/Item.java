@@ -98,7 +98,6 @@ public class Item extends SuperObjects {
                 break;
             case SLOW:
                 break;
-
         }
     }
 
