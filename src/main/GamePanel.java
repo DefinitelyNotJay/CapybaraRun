@@ -36,7 +36,7 @@ public class GamePanel extends JPanel {
     private AssetSetter as;
     public static int GameState = MENU;
     private static Sound music, effect;
-    private int score = 0, rateScore = 1;
+    private int score = 0, rateScore = 1, stageCountChange = 40, stageCount = 0;
     public Tile t1;
 
     public GamePanel() {
@@ -59,14 +59,6 @@ public class GamePanel extends JPanel {
         music = new Sound();
         effect = new Sound();
         playMusic(0);
-    }
-
-    public WallPattern getWp() {
-        return wp;
-    }
-
-    public void setWp(WallPattern wp) {
-        this.wp = wp;
     }
 
     @Override
@@ -127,11 +119,16 @@ public class GamePanel extends JPanel {
 
     public void updateEverySec() {
         if (GameState == PLAYING) {
+            stageCount++;
             player.updateEverySec();
             if (wp.getWallPattern().size() <= 0) {
+                this.wp = new WallPattern(this);
                 wp.init();
-                t1.setStateCheck(0);
-                // set ค่า check ด้วย
+            }
+            if (stageCount >= stageCountChange) {
+                t1.stageChange();
+                t1.tileUpdate();
+                stageCount = 0;
             }
         }
 
@@ -147,6 +144,14 @@ public class GamePanel extends JPanel {
         score = 0;
 
         // waiting for reset obstacles method
+    }
+
+    public WallPattern getWp() {
+        return wp;
+    }
+
+    public void setWp(WallPattern wp) {
+        this.wp = wp;
     }
 
     public Player getPlayer() {

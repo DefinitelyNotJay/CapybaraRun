@@ -37,6 +37,15 @@ public class Item extends SuperObjects {
                     gp.getPlayer().setItemImmune(false);
                 }
                 break;
+            case SLOW:
+                if (mapX > -1500 && !itemUsed) {
+                    GAMESPEED = 3;
+                    itemUsed = true;
+                } else if (mapX < -1500 && !itemReset) {
+                    GAMESPEED = 4;
+                    if (!gp.getPlayer().isSkillOnUse())
+                        itemReset = true;
+                }
             case DECREASEHP:
                 if (mapX() > -1 && !itemUsed) {
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - 20);
@@ -64,6 +73,12 @@ public class Item extends SuperObjects {
                     itemUsed = true;
                     break;
                 }
+            case SMALLHP:
+                if (mapX() > -1 && !itemUsed) {
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() + 20);
+                    itemUsed = true;
+                    break;
+                }
         }
 
     }
@@ -75,9 +90,13 @@ public class Item extends SuperObjects {
                 GamePanel.playSE(20);
                 break;
             case DECREASEHP:
+                break;
             case MANABOOST:
+                break;
             case INCREASEHP:
                 GamePanel.playSE(11);
+                break;
+            case SLOW:
                 break;
 
         }
@@ -96,6 +115,10 @@ public class Item extends SuperObjects {
                 break;
             case INCREASEHP:
                 imageItem = Utilz.GetImage("/res/item/heart.png");
+                break;
+            case SLOW:
+                break;
+            case SMALLHP:
                 break;
         }
     }

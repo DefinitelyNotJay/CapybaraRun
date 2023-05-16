@@ -24,14 +24,16 @@ public class Tile {
         this.wp = wp;
         tiles = new BufferedImage[5];
         randomStage();
+        tileStage = stageOrder.get(0);
+        tileUpdate();
     }
 
     public void update() {
-        stageChange();
+
     }
 
     public void randomStage() {
-        stateChangeEvery = (int) (wp.getWallSize() / 5);
+        stateChangeEvery = (int) (wp.getWallSize() / 3);
         stateCheck = stateChangeEvery;
         Set<Integer> num = new HashSet<>();
         while (num.size() != 5) {
@@ -39,19 +41,13 @@ public class Tile {
         }
         stageOrder = new ArrayList<>(num);
         Collections.shuffle(stageOrder);
-        tileStage = stageOrder.get(0);
+        // tileStage = stageOrder.get(0);
     }
 
-    private void stageChange() {
-        WALLDAMAGE = 0;
-        if (wp.getWallSize() - wp.getWallPattern().size() >= stateCheck) {
-            stateCheck += stateChangeEvery;
-            tileStage++;
-            if (tileStage > 4 || tileStage == 0)
-                tileStage = 0;
-
-            tileUpdate();
-        }
+    public void stageChange() {
+        tileStage++;
+        if (tileStage > 4 || tileStage == 0)
+            tileStage = 0;
     }
 
     public void draw(Graphics2D g2) {

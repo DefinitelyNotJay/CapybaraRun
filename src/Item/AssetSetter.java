@@ -2,6 +2,8 @@ package Item;
 
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
+import java.util.Random;
+
 import static constant.Constants.*;
 
 import main.GamePanel;
@@ -10,7 +12,8 @@ public class AssetSetter {
     GamePanel gp;
     public BufferedImage bloodItem, fastItem;
     private ArrayList<Item> allItems;
-    private final int AMOUNT = 20;
+    private final int AMOUNT = 50;
+    Random random = new Random();
 
     public AssetSetter(GamePanel gp) {
         this.gp = gp;
@@ -19,11 +22,24 @@ public class AssetSetter {
     }
 
     public void setItems() {
-        // for (int i = 0; i < AMOUNT; i++) {
-        // allItems.add(new Item(gp, i, i, i, i, FAST));
-        // }
+        int recentlyX = 0;
+        for (int i = 0; i < AMOUNT; i++) {
+            int randomItem = random.nextInt(SCOREBOOST - FAST) + FAST;
+            int wide = random.nextInt(4 - 1) + 1;
+            int wideSize = random.nextInt(1200 - 1000) + 1000;
+            int itemHeight = 250;
+            if (i == 0) {
+                allItems.add(new Item(gp, wideSize, itemHeight, randomItem));
+                recentlyX = wideSize;
+            } else {
+                recentlyX += (wide * wideSize);
+                allItems.add(new Item(gp, recentlyX, itemHeight, randomItem));
 
-        allItems.add(new Item(gp, 1000, 260, FAST));
+            }
+
+        }
+
+        // allItems.add(new Item(gp, 1000, 260, FAST));
 
         // gp.obj[0] = new Item(gp, 1800, 260, gp.tileSize, gp.tileSize, "Fast");
         // gp.obj[0].setItemImage("/res/item/boots_01d.png");
