@@ -23,8 +23,6 @@ public class AssetSetter {
         gp.obj[3].setItemImage("/res/item/heart.png");
         gp.obj[4] = new Item(gp, 18200, 260, gp.tileSize, gp.tileSize, "DecreaseHP");
         gp.obj[4].setItemImage("/res/item/posion.png");
-        gp.obj[5] = new Item(gp, 800, 280, gp.tileSize, gp.tileSize, "Giant");
-        gp.obj[5].setItemImage("/res/item/bigger.png");
         gp.obj[6] = new Item(gp, 1000, 280, gp.tileSize, gp.tileSize, "ManaBoost");
         gp.obj[6].setItemImage("/res/item/mana.png");
         gp.obj[7] = new Item(gp, 500, 280, gp.tileSize, gp.tileSize, "ScoreBoost");
