@@ -180,7 +180,7 @@ public class GamePanel extends JPanel {
 
     public static void playhit(int i) {
         effect.setFiles(i);
-        effect.setVolume(60);
+        effect.setVolume(80);
         effect.playSound();
     }
 
