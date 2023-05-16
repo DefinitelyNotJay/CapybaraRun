@@ -19,4 +19,6 @@ public class Constants {
     public static final int RIGHTBTN = 1, LEFTBTN = 0, GOBTN = 2;
     public static final int NIGHT = 0, MOUNTAIN = 1, VILLAGE = 2, BEACH = 3, FOREST = 4;
 
+    public static final int FAST = 0, INCREASEHP = 1, DECREASEHP = 2, MANABOOST = 3, SCOREBOOST = 4;
+
 }

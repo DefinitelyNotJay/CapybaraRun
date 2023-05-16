@@ -9,7 +9,6 @@ import methods.Utilz;
 
 public abstract class SuperObjects {
     protected BufferedImage imageItem;
-    protected String name;
     protected boolean collision = false;
     public int mapX, mapY, sizeX, sizeY;
     protected GamePanel gp;
@@ -19,22 +18,13 @@ public abstract class SuperObjects {
 
     public abstract void effect();
 
-    public SuperObjects(GamePanel gp, int x, int y, int sizeX, int sizeY, String name) {
+    public SuperObjects(GamePanel gp, int x, int y, int sizeX, int sizeY) {
         this.mapX = x;
         this.mapY = y;
         this.gp = gp;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        this.name = name;
         loadImages();
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void mapX(int mapX) {
