@@ -10,7 +10,7 @@ public class Muscle extends Player {
         super(gp, character, HP, x, y, xSize, ySize);
         loadImages();
         skillCooldown = 10;
-        skillDuration = 5;
+        skillDuration = 6;
         skillDurationCount = 0;
     }
 
