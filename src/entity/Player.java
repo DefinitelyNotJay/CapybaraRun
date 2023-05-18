@@ -13,7 +13,7 @@ public abstract class Player extends Entity implements Animations {
 
     protected GamePanel gp;
     protected int character;
-    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, flinching = false,
+    protected boolean jump, down, skillOnUse = false, isSlide = false, flinching = false,
             appear = true, immune = false, itemImmune = false;
     protected int width, height, HP, maxHP, rateDecreaseHP = 1, flinchingCount = 0, flinchPerSec = 8;
     protected int fps = 0;
@@ -251,23 +251,7 @@ public abstract class Player extends Entity implements Animations {
     public void setDown(boolean down) {
         this.down = down;
     }
-
-    public boolean isLeft() {
-        return left;
-    }
-
-    public void setLeft(boolean left) {
-        this.left = left;
-    }
-
-    public boolean isRight() {
-        return right;
-    }
-
-    public void setRight(boolean right) {
-        this.right = right;
-    }
-
+    
     public int getWidth() {
         return width;
     }
