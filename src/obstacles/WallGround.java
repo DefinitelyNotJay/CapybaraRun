@@ -17,19 +17,19 @@ public class WallGround extends Wall {
     public void updateWallSkin() {
         switch ((int) (gp.getTile().getStageOrder().get(gp.getTile().getTileStage()))) {
             case BEACH:
-                img = Utilz.GetImage("/res/wall/Stone_3.png");
+                img = Utilz.GetImage("/res/wall/Idle_giblin.png");//
                 break;
             case MOUNTAIN:
-                img = Utilz.GetImage("/res/wall/Fire_12_.png");
+                img = Utilz.GetImage("/res/wall/Idle_skeleton.png");//
                 break;
             case FOREST:
-                img = Utilz.GetImage("/res/wall/Green_22.png");
+                img = Utilz.GetImage("/res/wall/Idle.png");//
                 break;
             case VILLAGE:
-                img = Utilz.GetImage("/res/wall/crate-stack.png");
+                img = Utilz.GetImage("/res/wall/barrel.png");
                 break;
             case NIGHT:
-                img = Utilz.GetImage("/res/wall/DarkCastle.png");
+                img = Utilz.GetImage("/res/wall/ghost.png"); //
                 break;
         }
     }
