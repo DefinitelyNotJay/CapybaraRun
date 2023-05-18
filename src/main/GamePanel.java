@@ -113,14 +113,6 @@ public class GamePanel extends JPanel {
             }
 
             // อาจจะ bug
-            if (stageCount >= stageCountChange) {
-                t1.stageChange();
-                t1.tileUpdate();
-                for (int i = 0; i < wp.getWallPattern().size(); i++) {
-                    wp.getWallPattern().get(i).updateWallSkin();
-                }
-                stageCount = 0;
-            }
 
         } else if (GameState == MENU) {
             mg.update();
@@ -132,10 +124,22 @@ public class GamePanel extends JPanel {
     public void updateEverySec() {
         if (GameState == PLAYING) {
             stageCount++;
+            if (stageCount >= stageCountChange) {
+                t1.stageChange();
+                for (int i = 0; i < wp.getWallPattern().size(); i++) {
+                    wp.getWallPattern().get(i).updateWallSkin();
+                }
+                t1.tileUpdate();
+                stageCount = 0;
+            }
             player.updateEverySec();
             if (wp.getWallPattern().size() <= 0) {
                 this.wp = new WallPattern(this);
                 wp.init();
+                for (int i = 0; i < wp.getWallPattern().size(); i++) {
+                    wp.getWallPattern().get(i).updateWallSkin();
+                }
+                as = new AssetSetter(this);
             }
 
         }
