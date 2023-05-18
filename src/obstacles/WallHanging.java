@@ -13,6 +13,10 @@ public class WallHanging extends Wall {
         super(gp, wp, x, y, sizeX, sizeY);
     }
 
+    public WallHanging(GamePanel gp, WallPattern wp, int x, int y) {
+        this(gp, wp, x, y, gp.tileSize, gp.tileSize);
+    }
+
     public void updateWallSkin() {
         switch ((int) (gp.getTile().getStageOrder().get(gp.getTile().getTileStage()))) {
             case FOREST:

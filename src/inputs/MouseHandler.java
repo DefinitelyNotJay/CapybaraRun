@@ -1,19 +1,13 @@
 package inputs;
 
-import java.awt.Menu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 
-import constant.Constants;
 import entity.*;
 
 import static constant.Constants.*;
 
 import main.GamePanel;
-import methods.Animations;
-import methods.Utilz;
-import obstacles.WallPattern;
 import screen.ChooseCharacter;
 import screen.Credits;
 import screen.MenuGame;
@@ -21,7 +15,6 @@ import screen.Pause;
 import screen.Result;
 
 import static main.GamePanel.GameState;
-import tiles.*;
 
 public class MouseHandler implements MouseListener {
     GamePanel gp;

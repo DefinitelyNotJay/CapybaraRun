@@ -9,6 +9,10 @@ import methods.Utilz;
 public class WallGround extends Wall {
     private BufferedImage img;
 
+    public WallGround(GamePanel gp, WallPattern wp, int x, int y) {
+        this(gp, wp, x, y, gp.tileSize, gp.tileSize);
+    }
+
     public WallGround(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
     }
