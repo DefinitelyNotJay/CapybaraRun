@@ -70,11 +70,12 @@ public abstract class Player extends Entity implements Animations {
         updateAnimations();
         healthCheck();
         getImmune();
+        getFlinching();
     }
 
     public void draw(Graphics g2) {
         // 60FPS
-        getFlinching();
+
         drawPlayerStatusBar(g2);
         drawPlayer(g2);
     }
@@ -192,7 +193,7 @@ public abstract class Player extends Entity implements Animations {
             appear = true;
             flinching = false;
             flinchingCount = 0;
-            if (!skillOnUse && !itemImmune)
+            if ((!skillOnUse && !itemImmune) || character == ZOMBIE)
                 immune = false;
         }
     }

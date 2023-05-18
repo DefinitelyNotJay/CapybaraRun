@@ -15,7 +15,6 @@ public class Tile {
     public BufferedImage bgImg;
     private GamePanel gp;
     private int tileStage;
-    private int stateChangeEvery, stateCheck;
     List<Integer> stageOrder;
     WallPattern wp;
 
@@ -29,8 +28,6 @@ public class Tile {
     }
 
     public void randomStage() {
-        stateChangeEvery = (int) (wp.getWallSize() / 3);
-        stateCheck = stateChangeEvery;
         Set<Integer> num = new HashSet<>();
         while (num.size() != 5) {
             num.add((int) Math.floor(Math.random() * (4 - 0 + 1) + 0));
@@ -91,10 +88,6 @@ public class Tile {
 
     public void setTileStage(int tileStage) {
         this.tileStage = tileStage;
-    }
-
-    public void setStateCheck(int stateCheck) {
-        this.stateCheck = stateCheck;
     }
 
     public List getStageOrder() {

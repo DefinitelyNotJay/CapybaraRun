@@ -28,7 +28,6 @@ public class Button extends Entity {
         } catch (IOException ex) {
             hoverPic = Utilz.GetImage(fileName + ".png");
         }
-
     }
 
     public BufferedImage getImage() {

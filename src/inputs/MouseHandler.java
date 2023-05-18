@@ -118,7 +118,7 @@ public class MouseHandler implements MouseListener {
                 int player = cc.getPage();
                 switch (player) {
                     case CAPY:
-                        gp.setPlayer(new Capybara(gp, CAPY, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        gp.setPlayer(new Capybara(gp, CAPY, 150, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                     case GHOST:
                         gp.setPlayer(new Ghost(gp, GHOST, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
@@ -127,15 +127,15 @@ public class MouseHandler implements MouseListener {
                         gp.setPlayer(new Zombie(gp, ZOMBIE, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                     case MUSCLE:
-                        gp.setPlayer(new Muscle(gp, MUSCLE, 200, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
+                        gp.setPlayer(new Muscle(gp, MUSCLE, 170, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                     case NINJA:
                         gp.setPlayer(new Ninja(gp, NINJA, 100, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
                         break;
                 }
+                GamePanel.stopMusic();
                 GamePanel.playSE(9);
                 gp.gameReset();
-                GamePanel.stopMusic();
                 gp.getTile().tileUpdate();
                 GameState = PLAYING;
             }

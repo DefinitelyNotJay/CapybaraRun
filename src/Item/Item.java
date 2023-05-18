@@ -67,7 +67,7 @@ public class Item extends SuperObjects {
                 break;
             case INCREASEHP:
                 if (mapX() > -1 && !itemUsed) {
-                    gp.getPlayer().setHP(gp.getPlayer().getMaxHP());
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() + 30);
                     System.out.println(gp.getPlayer().getMaxHP());
                     System.out.println("IncreaseHP");
                     itemUsed = true;
@@ -75,7 +75,7 @@ public class Item extends SuperObjects {
                 }
             case SMALLHP:
                 if (mapX() > -1 && !itemUsed) {
-                    gp.getPlayer().setHP(gp.getPlayer().getHP() + 20);
+                    gp.getPlayer().setHP(gp.getPlayer().getHP() + 15);
                     itemUsed = true;
                     break;
                 }

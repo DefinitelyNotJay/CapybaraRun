@@ -43,16 +43,16 @@ public class Zombie extends Player {
     public void update() {
         super.update();
         skillActivate();
-
     }
 
     @Override
     public void skill() {
-        HP = 10;
+        HP = 30;
         lives--;
         rateDecreaseHP = 0;
         GamePanel.playSE(13);
         setSkillOnUse(true);
+        System.out.println(isImmune());
     }
 
     @Override
@@ -60,12 +60,17 @@ public class Zombie extends Player {
         if (HP <= 0 && lives < 1) {
             GamePanel.GameState = DEAD;
         }
+        if (HP >= maxHP) {
+            HP = maxHP;
+        }
     }
 
     @Override
     public void skillActivate() {
         if (HP <= 0 && lives >= 1) {
             skill();
+            immune = false;
+
         }
     }
 
