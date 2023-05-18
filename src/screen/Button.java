@@ -30,7 +30,7 @@ public class Button extends Entity {
         }
     }
 
-    public BufferedImage getImage() {
+    public BufferedImage getImage() { 
         if (isHover) {
             return hoverPic;
         } else {
