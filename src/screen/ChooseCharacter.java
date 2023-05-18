@@ -2,7 +2,6 @@ package screen;
 
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.UTFDataFormatException;
 
 import methods.Animations;
 import methods.ScreenTools;

@@ -21,9 +21,9 @@ public class Pause implements ScreenTools {
 
     @Override
     public void loadImages() {
-        // bgImg = Utilz.GetImage("/res/screen/pause/bgImg;");
-        button[BACK].setImages("/res/screen/pause/back");
+        bgImg = Utilz.GetImage("/res/screen/pause/bgImg.png");
         button[RESUME].setImages("/res/screen/pause/back");
+        button[BACK].setImages("/res/screen/pause/resume");
         button[RESTART].setImages("/res/screen/pause/restart");
     }
 
@@ -37,7 +37,7 @@ public class Pause implements ScreenTools {
 
     @Override
     public void paint(Graphics g) {
-        // g.drawImage(bgImg, 0, 0, null);
+        g.drawImage(bgImg, 0, 0, null);
         for (int i = 0; i < button.length; i++) {
             button[i].draw(g);
         }

@@ -1,15 +1,10 @@
 package main;
 
-import screen.ChooseCharacter;
-import screen.Credits;
-import screen.MenuGame;
-import screen.Pause;
-import screen.Result;
+import screen.*;
 import tiles.*;
 import entity.Player;
 import obstacles.WallPattern;
-import inputs.KeyboardListener;
-import inputs.MouseHandler;
+import inputs.*;
 import java.awt.*;
 import javax.swing.*;
 
@@ -19,7 +14,7 @@ import inputs.MouseMotionHandler;
 import methods.Utilz;
 
 public class GamePanel extends JPanel {
-    final int originalTileSize = 32;
+    public final int originalTileSize = 32;
     public final int scale = 2;
     public final int tileSize = originalTileSize * scale;
     public final int maxScreenCol = 20;
@@ -53,7 +48,6 @@ public class GamePanel extends JPanel {
         // item
         as = new AssetSetter(this);
 
-        // t1 = new Tile(this);
         // listener
         addKeyListener(new KeyboardListener(this));
         addMouseListener(new MouseHandler(this, mg, rs, cc, p, cd));
@@ -69,17 +63,7 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
         if (GameState == PLAYING || GameState == PAUSE) {
-            t1.draw(g2);
-            for (int i = 0; i < wp.getWallPattern().size(); i++) {
-                wp.getWallPattern().get(i).draw(g2);
-            }
-            player.draw(g2);
-            for (int i = 0; i < as.getAllItems().size(); i++) {
-                as.getAllItems().get(i).draw(g2);
-            }
-            g2.setFont(new Font("Arcade Normal", Font.PLAIN, tileSize / 2));
-            g2.setColor(Color.WHITE);
-            g2.drawString(String.format("%06d", score), 1050, 65);
+            paintGamePlay(g2);
             if (GameState == PAUSE) {
                 p.paint(g2);
             }
@@ -97,7 +81,6 @@ public class GamePanel extends JPanel {
         } else if (GameState == CREDITS) {
             cd.paint(g2);
         }
-
         g2.dispose();
     }
 
@@ -111,9 +94,6 @@ public class GamePanel extends JPanel {
             for (int i = 0; i < as.getAllItems().size(); i++) {
                 as.getAllItems().get(i).update();
             }
-
-            // อาจจะ bug
-
         } else if (GameState == MENU) {
             mg.update();
         } else if (GameState == SELECT) {
@@ -123,27 +103,44 @@ public class GamePanel extends JPanel {
 
     public void updateEverySec() {
         if (GameState == PLAYING) {
-            stageCount++;
-            if (stageCount >= stageCountChange) {
-                t1.stageChange();
-                for (int i = 0; i < wp.getWallPattern().size(); i++) {
-                    wp.getWallPattern().get(i).updateWallSkin();
-                }
-                t1.tileUpdate();
-                stageCount = 0;
-            }
-            player.updateEverySec();
-            if (wp.getWallPattern().size() <= 0) {
-                this.wp = new WallPattern(this);
-                wp.init();
-                for (int i = 0; i < wp.getWallPattern().size(); i++) {
-                    wp.getWallPattern().get(i).updateWallSkin();
-                }
-                as = new AssetSetter(this);
-            }
-
+            playScreenUpdate();
         }
 
+    }
+
+    public void paintGamePlay(Graphics2D g2) {
+        t1.draw(g2);
+        for (int i = 0; i < wp.getWallPattern().size(); i++) {
+            wp.getWallPattern().get(i).draw(g2);
+        }
+        player.draw(g2);
+        for (int i = 0; i < as.getAllItems().size(); i++) {
+            as.getAllItems().get(i).draw(g2);
+        }
+        g2.setFont(new Font("Arcade Normal", Font.PLAIN, tileSize / 2));
+        g2.setColor(Color.WHITE);
+        g2.drawString(String.format("%06d", score), 1050, 65);
+    }
+
+    public void playScreenUpdate() {
+        stageCount++;
+        if (stageCount >= stageCountChange) {
+            t1.stageChange();
+            for (int i = 0; i < wp.getWallPattern().size(); i++) {
+                wp.getWallPattern().get(i).updateWallSkin();
+            }
+            t1.tileUpdate();
+            stageCount = 0;
+        }
+        player.updateEverySec();
+        if (wp.getWallPattern().size() <= 0) {
+            this.wp = new WallPattern(this);
+            wp.init();
+            for (int i = 0; i < wp.getWallPattern().size(); i++) {
+                wp.getWallPattern().get(i).updateWallSkin();
+            }
+            as = new AssetSetter(this);
+        }
     }
 
     public void gameReset() {
@@ -156,9 +153,8 @@ public class GamePanel extends JPanel {
         for (int i = 0; i < wp.getWallPattern().size(); i++) {
             wp.getWallPattern().get(i).updateWallSkin();
         }
+        stageCount = 0;
         score = 0;
-
-        // waiting for reset obstacles method
     }
 
     public WallPattern getWp() {

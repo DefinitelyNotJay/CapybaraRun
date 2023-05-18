@@ -159,12 +159,15 @@ public class MouseHandler implements MouseListener {
                     && isInButtonXArea;
 
             if (isInResumeBtnArea) {
+                GamePanel.playSE(7);
                 GamePanel.GameState = PLAYING;
                 gp.getMusic().resumeSound();
             } else if (isInBackBtnArea) {
+                GamePanel.playSE(7);
                 GamePanel.playMusic(0);
                 GamePanel.GameState = MENU;
             } else if (isInRestartBtnArea) {
+                GamePanel.playSE(7);
                 GamePanel.playMusic(1);
                 GamePanel.GameState = SELECT;
             }

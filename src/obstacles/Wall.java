@@ -8,7 +8,6 @@ import static constant.Constants.*;
 public abstract class Wall extends Entity {
 
     protected GamePanel gp;
-    // private static final int WALLSPEED = 6;
     protected int width, height, character, wallDamage = 10;
     protected WallPattern wp;
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
