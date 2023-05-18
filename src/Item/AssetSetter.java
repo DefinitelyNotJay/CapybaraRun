@@ -1,6 +1,4 @@
 package Item;
-
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -10,7 +8,6 @@ import main.GamePanel;
 
 public class AssetSetter {
     GamePanel gp;
-    public BufferedImage bloodItem, fastItem;
     private ArrayList<Item> allItems;
     private final int AMOUNT = 50;
     Random random = new Random();

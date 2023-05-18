@@ -21,7 +21,6 @@ import screen.Pause;
 import screen.Result;
 
 import static main.GamePanel.GameState;
-import tiles.*;
 
 public class MouseHandler implements MouseListener {
     GamePanel gp;

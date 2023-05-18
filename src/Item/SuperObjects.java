@@ -12,7 +12,6 @@ public abstract class SuperObjects {
     protected boolean collision = false;
     public int mapX, mapY, sizeX, sizeY;
     protected GamePanel gp;
-    public BufferedImage bloodItem;
     public int speed, times = 0;
     public double playerX, playerY, playerWidth, playerHeight, playerSolidAreaX, playerSolidAreaY;
 
@@ -24,7 +23,7 @@ public abstract class SuperObjects {
         this.gp = gp;
         this.sizeX = sizeX;
         this.sizeY = sizeY;
-        loadImages();
+        //loadImages();
     }
 
     public void mapX(int mapX) {
@@ -59,9 +58,9 @@ public abstract class SuperObjects {
         return collision;
     }
 
-    public void loadImages() {
+    // public void loadImages() {
 
-    }
+    // }
 
     public abstract void specificItemSound();
 
