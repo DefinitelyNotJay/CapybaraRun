@@ -52,6 +52,7 @@ public class WallHanging extends Wall {
                         case NINJA:
                             gp.setScore(gp.getScore() + 100);
                             isDestroy = true;
+                            GamePanel.playSE(27);
                             break;
                     }
                 } else if (!gp.getPlayer().isImmune()) {
