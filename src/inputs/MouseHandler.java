@@ -1,19 +1,13 @@
 package inputs;
 
-import java.awt.Menu;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 
-import constant.Constants;
 import entity.*;
 
 import static constant.Constants.*;
 
 import main.GamePanel;
-import methods.Animations;
-import methods.Utilz;
-import obstacles.WallPattern;
 import screen.ChooseCharacter;
 import screen.Credits;
 import screen.MenuGame;
@@ -42,45 +36,57 @@ public class MouseHandler implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         if (GamePanel.GameState == RESULT) {
-            boolean yButtonArea = e.getY() >= 290 && e.getY() <= 290 + 50;
+            boolean yButtonYArea = r.getBackBtn().getY() <= e.getY() &&
+                    r.getBackBtn().getY() + r.getBackBtn().getWidth() >= e.getY();
 
-            boolean isInBackButtonArea = e.getX() >= 365 && e.getX() <= 365 + 125;
+            boolean isInBackButtonArea = e.getX() >= r.getBackBtn().getX()
+                    && e.getX() <= r.getBackBtn().getX() + r.getBackBtn().getWidth()
+                    && yButtonYArea;
 
-            boolean isInRestartButtonArea = e.getX() >= 787 && e.getX() <= 787 + 125;
-            if (isInBackButtonArea && yButtonArea) {
+            boolean isInRestartButtonArea = e.getX() >= r.getRestartBtn().getX()
+                    && e.getX() <= r.getRestartBtn().getX() + r.getRestartBtn().getWidth()
+                    && yButtonYArea;
+            if (isInBackButtonArea) {
                 GameState = MENU;
                 // gp.gameReset();
                 GamePanel.stopMusic();
                 GamePanel.playMusic(0);
-            } else if (isInRestartButtonArea && yButtonArea) {
+            } else if (isInRestartButtonArea) {
                 GameState = SELECT;
                 GamePanel.stopMusic();
                 GamePanel.playMusic(1);
             }
 
         } else if (GamePanel.GameState == MENU) {
-            boolean yButtonArea = e.getX() >= 570 && e.getX() <= 570 + 125;
+            boolean yButtonArea = mg.getPlayBtn().getX() <= e.getX() &&
+                    mg.getPlayBtn().getX() + mg.getPlayBtn().getWidth() >= e.getX();
 
-            boolean isInPlaybuttonArea = e.getY() >= 170 && e.getY() <= 170 + 54;
+            boolean isInPlaybuttonArea = e.getY() >= mg.getPlayBtn().getY()
+                    && e.getY() <= mg.getPlayBtn().getY() + mg.getPlayBtn().getHeight()
+                    && yButtonArea;
 
-            boolean isInCreditsButtonArea = e.getY() >= 230 && e.getY() <= 230 + 54;
+            boolean isInCreditsButtonArea = e.getY() >= mg.getCreditsBtn().getY()
+                    && e.getY() <= mg.getCreditsBtn().getY() + mg.getCreditsBtn().getHeight()
+                    && yButtonArea;
 
-            boolean isInQuitButtonArea = e.getY() >= 290 && e.getY() <= 290 + 54;
+            boolean isInQuitButtonArea = e.getY() >= mg.getQuitBtn().getY()
+                    && e.getY() <= mg.getQuitBtn().getY() + mg.getQuitBtn().getHeight()
+                    && yButtonArea;
 
-            if (yButtonArea) {
-                if (isInPlaybuttonArea) {
-                    GamePanel.playSE(7);
-                    GameState = SELECT;
-                    GamePanel.stopMusic();
-                    GamePanel.playMusic(1);
-                } else if (isInQuitButtonArea) {
-                    GamePanel.playSE(7);
-                    System.exit(0);
-                } else if (isInCreditsButtonArea) {
-                    GamePanel.playSE(7);
-                    GamePanel.GameState = CREDITS;
-                }
+            if (isInPlaybuttonArea) {
+                GamePanel.playSE(7);
+                GameState = SELECT;
+                GamePanel.stopMusic();
+                GamePanel.playMusic(1);
+            } else if (isInQuitButtonArea) {
+                GamePanel.playSE(7);
+                gp.getLeaderboard().writeData();
+                System.exit(0);
+            } else if (isInCreditsButtonArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = CREDITS;
             }
+
         }
 
         else if (GameState == SELECT) {
@@ -90,30 +96,41 @@ public class MouseHandler implements MouseListener {
                     cc.getLeftBtn().getY() + cc.getLeftBtn().getWidth() >= e.getY();
 
             boolean isInLeftBtnArea = e.getX() >= cc.getLeftBtn().getX()
-                    && e.getX() <= cc.getLeftBtn().getX() + cc.getLeftBtn().getWidth();
+                    && e.getX() <= cc.getLeftBtn().getX() + cc.getLeftBtn().getWidth()
+                    && isInButtonYArea;
 
             boolean isInRightBtnArea = e.getX() >= cc.getRightBtn().getX()
-                    && e.getX() <= cc.getRightBtn().getX() + cc.getRightBtn().getWidth();
+                    && e.getX() <= cc.getRightBtn().getX() + cc.getRightBtn().getWidth()
+                    && isInButtonYArea;
 
             boolean isInGoBtnArea = e.getY() >= cc.getGoBtn().getY()
                     && e.getY() <= cc.getGoBtn().getY() + cc.getGoBtn().getHeight()
-                    && cc.getGoBtn().getX() >= cc.getGoBtn().getX()
+                    && e.getX() >= cc.getGoBtn().getX()
                     && e.getX() <= cc.getGoBtn().getX() + cc.getGoBtn().getWidth();
+            boolean isInBackBtnArea = e.getY() >= cc.getBackBtn().getY()
+                    && e.getY() <= cc.getBackBtn().getY() + cc.getBackBtn().getHeight()
+                    && e.getX() >= cc.getBackBtn().getX()
+                    && e.getX() <= cc.getBackBtn().getX() + cc.getBackBtn().getWidth();
 
             // Page slide methods
-            if (isInButtonYArea && isInLeftBtnArea) {
+            if (isInLeftBtnArea) {
                 GamePanel.playSE(7);
                 if (cc.getPage() == CAPY)
                     cc.setPage(ZOMBIE);
                 else
                     cc.setPage(cc.getPage() - 1);
-            } else if (isInButtonYArea && isInRightBtnArea) {
+            } else if (isInRightBtnArea) {
                 GamePanel.playSE(7);
                 if (cc.getPage() == ZOMBIE) {
                     cc.setPage(CAPY);
                 } else {
                     cc.setPage(cc.getPage() + 1);
                 }
+            } else if (isInBackBtnArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = MENU;
+                GamePanel.stopMusic();
+                GamePanel.playMusic(0);
             } else if (isInGoBtnArea) {
                 int player = cc.getPage();
                 switch (player) {
@@ -158,12 +175,15 @@ public class MouseHandler implements MouseListener {
                     && isInButtonXArea;
 
             if (isInResumeBtnArea) {
+                GamePanel.playSE(7);
                 GamePanel.GameState = PLAYING;
                 gp.getMusic().resumeSound();
             } else if (isInBackBtnArea) {
+                GamePanel.playSE(7);
                 GamePanel.playMusic(0);
                 GamePanel.GameState = MENU;
             } else if (isInRestartBtnArea) {
+                GamePanel.playSE(7);
                 GamePanel.playMusic(1);
                 GamePanel.GameState = SELECT;
             }
@@ -175,6 +195,7 @@ public class MouseHandler implements MouseListener {
                     && e.getY() <= cd.getBackBtn().getY() + cd.getBackBtn().getHeight();
 
             if (isInBackBtnArea) {
+                GamePanel.playSE(7);
                 GamePanel.GameState = MENU;
             }
 

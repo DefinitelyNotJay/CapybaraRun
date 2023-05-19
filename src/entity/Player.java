@@ -13,13 +13,10 @@ public abstract class Player extends Entity implements Animations {
 
     protected GamePanel gp;
     protected int character;
-    protected boolean jump, down, left, right, skillOnUse = false, isSlide = false, flinching = false,
+    protected boolean jump, down, skillOnUse = false, isSlide = false, flinching = false,
             appear = true, immune = false, itemImmune = false;
     protected int width, height, HP, maxHP, rateDecreaseHP = 1, flinchingCount = 0, flinchPerSec = 8;
-    protected int fps = 0;
-    protected int timeCount = 0;
-    protected int jumpHeight = 16;
-    protected int customSize = 1;
+    protected int fps = 0, timeCount = 0, jumpHeight = 16, customSize = 1;
     protected int crashAreaWidth = 1, crashAreaHeight = 3;
     protected int skillCooldown, skillDuration, skillDurationCount;
     protected final int gravity = 1;
@@ -28,13 +25,11 @@ public abstract class Player extends Entity implements Animations {
     protected int moveReset = 0;
     public BufferedImage[] runningAni;
     protected BufferedImage skillAniRun[], normalAnirun[];
-    protected BufferedImage skillAniSlide, normalAniSlide;
-    public BufferedImage slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar, skillCooldownBar,
+    protected BufferedImage skillAniSlide, normalAniSlide, slideAni, healthBar, emptyHealthBar, skillBar, skillOnUseBar,
+            skillCooldownBar,
             skillDurationBar;
     protected int aniTick, aniIndex, aniSpeed = 7;
 
-    // public abstract void updateAnimations();
-    // public abstract void draw(Graphics g2);
     public abstract void skill();
 
     public abstract void skillActivate();
@@ -74,8 +69,6 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void draw(Graphics g2) {
-        // 60FPS
-
         drawPlayerStatusBar(g2);
         drawPlayer(g2);
     }
@@ -250,22 +243,6 @@ public abstract class Player extends Entity implements Animations {
 
     public void setDown(boolean down) {
         this.down = down;
-    }
-
-    public boolean isLeft() {
-        return left;
-    }
-
-    public void setLeft(boolean left) {
-        this.left = left;
-    }
-
-    public boolean isRight() {
-        return right;
-    }
-
-    public void setRight(boolean right) {
-        this.right = right;
     }
 
     public int getWidth() {

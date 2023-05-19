@@ -3,7 +3,6 @@ package entity;
 
 import java.awt.Graphics;
 
-import constant.Constants;
 import main.GamePanel;
 import methods.Utilz;
 

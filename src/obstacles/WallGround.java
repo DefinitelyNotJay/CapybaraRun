@@ -9,6 +9,10 @@ import methods.Utilz;
 public class WallGround extends Wall {
     private BufferedImage img;
 
+    public WallGround(GamePanel gp, WallPattern wp, int x, int y) {
+        this(gp, wp, x, y, gp.tileSize, gp.tileSize);
+    }
+
     public WallGround(GamePanel gp, WallPattern wp, int x, int y, int sizeX, int sizeY) {
         super(gp, wp, x, y, sizeX, sizeY);
     }
@@ -53,10 +57,10 @@ public class WallGround extends Wall {
                         case NINJA:
                             gp.setScore(gp.getScore() + 100);
                             isDestroy = true;
+                            GamePanel.playSE(27);
                             break;
                     }
                 } else if (!gp.getPlayer().isImmune()) {
-                    System.out.println("Zombie check");
                     // getDamage
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                     GamePanel.playhit(6);

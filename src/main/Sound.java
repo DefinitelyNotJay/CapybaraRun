@@ -48,6 +48,7 @@ public class Sound {
         soundURL[24] = getClass().getResource("/res/sound/muscle_jump.wav");
         soundURL[25] = getClass().getResource("/res/sound/ghost_jump.wav");
         soundURL[26] = getClass().getResource("/res/sound/zombie_jump.wav");
+        soundURL[27] = getClass().getResource("/res/sound/ninja_useskill.wav");
     }
 
     public void setFiles(int i){

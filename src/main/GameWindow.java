@@ -2,20 +2,27 @@ package main;
 
 import javax.swing.*;
 
+import inputs.WindowHandler;
+
 public class GameWindow {
-    private JFrame jframe;
+    private JFrame frame;
     private GamePanel gamePanel;
 
     public GameWindow(GamePanel gamePanel) {
-        jframe = new JFrame();
+        frame = new JFrame();
         this.gamePanel = gamePanel;
-        jframe.add(gamePanel);
-        jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jframe.setResizable(false);
-        jframe.pack();
-        jframe.setLocation(0, 50);
+        frame.add(gamePanel);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setResizable(false);
+        frame.pack();
+        frame.setLocation(0, 50);
+        frame.addWindowListener(new WindowHandler(gamePanel));
         gamePanel.requestFocus();
-        jframe.setVisible(true);
-        jframe.setLocationRelativeTo(null);
+        frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
+    }
+
+    public JFrame getFrame() {
+        return frame;
     }
 }
