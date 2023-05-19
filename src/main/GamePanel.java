@@ -30,6 +30,8 @@ public class GamePanel extends JPanel {
     private Pause p;
     private AssetSetter as;
     private Credits cd;
+    // test
+    private Leaderboard lb;
     public static int GameState = MENU;
     private static Sound music, effect;
     private int score = 0, rateScore = 1, stageCountChange = 40, stageCount = 0;
@@ -45,6 +47,8 @@ public class GamePanel extends JPanel {
         rs = new Result(this);
         p = new Pause(this);
         cd = new Credits(this);
+        lb = new Leaderboard(this);
+
         // item
         as = new AssetSetter(this);
 
@@ -67,11 +71,7 @@ public class GamePanel extends JPanel {
             if (GameState == PAUSE) {
                 p.paint(g2);
             }
-        } else if (GameState == DEAD) {
-            stopMusic();
-            Utilz.sleep(2);
-            GameState = RESULT;
-            playMusic(3);
+
         } else if (GameState == MENU) {
             mg.paint(g2);
         } else if (GameState == RESULT) {
@@ -80,6 +80,15 @@ public class GamePanel extends JPanel {
             cc.paint(g2);
         } else if (GameState == CREDITS) {
             cd.paint(g2);
+        } else if (GameState == DEAD) {
+            stopMusic();
+            Utilz.sleep(2);
+            lb.addData(new Score(score, player.getCharacter()));
+            lb.writeData();
+            GameState = RESULT;
+            playMusic(3);
+        } else if (GameState == LEADERBOARD) {
+            lb.paint(g2);
         }
         g2.dispose();
     }
@@ -222,6 +231,10 @@ public class GamePanel extends JPanel {
 
     public Sound getMusic() {
         return music;
+    }
+
+    public Leaderboard getLeaderboard() {
+        return lb;
     }
 
 }

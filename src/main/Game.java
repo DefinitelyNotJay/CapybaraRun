@@ -1,5 +1,7 @@
 package main;
 
+import inputs.WindowHandler;
+
 public class Game implements Runnable {
     GameWindow gameWindow;
     GamePanel gamePanel;
@@ -27,7 +29,7 @@ public class Game implements Runnable {
         long lastCheck = System.currentTimeMillis();
         double deltaF = 0;
         double deltaU = 0;
-        while (true) {  
+        while (true) {
             long currentTime = System.nanoTime();
             deltaF += (currentTime - previousTime) / timePerFrame;
             deltaU += (currentTime - previousTime) / timePerUpdate;

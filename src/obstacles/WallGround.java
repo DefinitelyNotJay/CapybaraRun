@@ -60,7 +60,6 @@ public class WallGround extends Wall {
                             break;
                     }
                 } else if (!gp.getPlayer().isImmune()) {
-                    System.out.println("Zombie check");
                     // getDamage
                     gp.getPlayer().setHP(gp.getPlayer().getHP() - WALLDAMAGE);
                     GamePanel.playhit(6);

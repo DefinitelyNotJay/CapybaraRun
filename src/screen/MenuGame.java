@@ -19,7 +19,6 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
     public MenuGame() {
         buttonCreate();
         loadImages();
-
     }
 
     public void update() {
@@ -27,10 +26,11 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
     }
 
     public void buttonCreate() {
-        button = new Button[3];
+        button = new Button[4];
         button[CREDITS] = new Button(570, 230, 125, 54);
         button[PLAY] = new Button(570, 170, 125, 54);
         button[QUIT] = new Button(570, 290, 125, 54);
+        button[3] = new Button(520, 240, 30, 30);
     }
 
     @Override
@@ -58,6 +58,8 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
 
         button[QUIT].setImages("/res/screen/menu/quit");
 
+        button[3].setImages("/res/screen/menu/star");
+
         // comment hover button in Button
 
     }
@@ -80,6 +82,10 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
 
     public Button getQuitBtn() {
         return button[QUIT];
+    }
+
+    public Button getStarBtn() {
+        return button[3];
     }
 
 }
