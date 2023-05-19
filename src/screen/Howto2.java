@@ -18,21 +18,19 @@ public class Howto2 implements ScreenTools {
 
     public void buttonCreate() {
         button = new Button[2];
-        button[0] = new Button(570, 230, 125, 54);
-        button[1] = new Button(570, 170, 125, 54);
+        button[0] = new Button(50, 450, 125, 54);
+        button[1] = new Button(1110, 450, 125, 54);
 
     }
 
     @Override
     public void loadImages() {
 
-        bgImg = Utilz.GetImage("/res/screen/menu/Menu.png"); //screen 2 images
-
         button[0].setImages("/res/screen/howto/back"); // back
 
         button[1].setImages("/res/screen/howto/Menu"); // Menu
 
-        bgImg = Utilz.GetImage("res/screen/howto/bgImg.png");
+        bgImg = Utilz.GetImage("/res/screen/howto/Skill.png");
 
     }
 

@@ -170,6 +170,23 @@ public class MouseMotionHandler implements MouseMotionListener {
 
                         gp.getHowto1().getBackBtn().setIsHover(isInBackBtnArea);
                         gp.getHowto1().getNextBtn().setIsHover(isInNextBtnArea);
+                } else if (GameState == HOWTO2) {
+                        boolean isInBackBtnArea = e.getX() >= gp.getHowto2().getBackBtn().getX()
+                                        && e.getX() <= gp.getHowto2().getBackBtn().getX()
+                                                        + gp.getHowto2().getBackBtn().getWidth()
+                                        && e.getY() >= gp.getHowto2().getBackBtn().getY()
+                                        && e.getY() <= gp.getHowto2().getBackBtn().getY()
+                                                        + gp.getHowto2().getBackBtn().getHeight();
+
+                        boolean isInMenuBtnArea = e.getX() >= gp.getHowto2().getMenuBtn().getX()
+                                        && e.getX() <= gp.getHowto2().getMenuBtn().getX()
+                                                        + gp.getHowto2().getMenuBtn().getWidth()
+                                        && e.getY() >= gp.getHowto2().getMenuBtn().getY()
+                                        && e.getY() <= gp.getHowto2().getMenuBtn().getY()
+                                                        + gp.getHowto2().getMenuBtn().getHeight();
+
+                        gp.getHowto2().getBackBtn().setIsHover(isInBackBtnArea);
+                        gp.getHowto2().getMenuBtn().setIsHover(isInMenuBtnArea);
                 }
 
         }

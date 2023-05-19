@@ -246,6 +246,28 @@ public class MouseHandler implements MouseListener {
                 GamePanel.playSE(7);
                 GamePanel.GameState = HOWTO2;
             }
+        } else if (GameState == HOWTO2) {
+            boolean isInBackBtnArea = e.getX() >= gp.getHowto2().getBackBtn().getX()
+                    && e.getX() <= gp.getHowto2().getBackBtn().getX()
+                            + gp.getHowto2().getBackBtn().getWidth()
+                    && e.getY() >= gp.getHowto2().getBackBtn().getY()
+                    && e.getY() <= gp.getHowto2().getBackBtn().getY()
+                            + gp.getHowto2().getBackBtn().getHeight();
+
+            boolean isInNextBtnArea = e.getX() >= gp.getHowto1().getNextBtn().getX()
+                    && e.getX() <= gp.getHowto1().getNextBtn().getX()
+                            + gp.getHowto1().getNextBtn().getWidth()
+                    && e.getY() >= gp.getHowto1().getNextBtn().getY()
+                    && e.getY() <= gp.getHowto1().getNextBtn().getY()
+                            + gp.getHowto1().getNextBtn().getHeight();
+
+            if (isInBackBtnArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = HOWTO1;
+            } else if (isInNextBtnArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = MENU;
+            }
         }
     }
 

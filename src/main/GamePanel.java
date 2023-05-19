@@ -95,6 +95,8 @@ public class GamePanel extends JPanel {
             lb.paint(g2);
         } else if (GameState == HOWTO1) {
             ht1.paint(g2);
+        } else if (GameState == HOWTO2) {
+            ht2.paint(g2);
         }
         g2.dispose();
     }
@@ -265,6 +267,10 @@ public class GamePanel extends JPanel {
 
     public Howto1 getHowto1() {
         return ht1;
+    }
+
+    public Howto2 getHowto2() {
+        return ht2;
     }
 
 }
