@@ -9,7 +9,7 @@ import main.GamePanel;
 public class AssetSetter {
     GamePanel gp;
     private ArrayList<Item> allItems;
-    private final int AMOUNT = 50;
+    private final int AMOUNT = 50; //จำนวน
     Random random = new Random();
 
     public AssetSetter(GamePanel gp) {
@@ -21,7 +21,7 @@ public class AssetSetter {
     public void setItems() {
         int recentlyX = 0;
         for (int i = 0; i < AMOUNT; i++) {
-            int randomItem = random.nextInt(SMALLHP - FAST) + FAST;
+            int randomItem = random.nextInt(SMALLHP - FAST + 1) + FAST;
             int wide = random.nextInt(4 - 1) + 1; // ห่าง 1-4 หน้าจอ
             int wideSize = random.nextInt(1200 - 1000) + 1000;
             int itemHeight = 250;
