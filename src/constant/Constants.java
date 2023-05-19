@@ -8,7 +8,7 @@ public class Constants {
     public static final int GROUND = 234;
 
     public static final int MENU = 1, PLAYING = 2, DEAD = 3, RESULT = 4, SELECT = 5, PAUSE = 6, CREDITS = 7,
-            LEADERBOARD = 8;
+            LEADERBOARD = 8, HOWTO1 = 9, HOWTO2 = 10;
 
     public static final int CAPY = 0, GHOST = 1, MUSCLE = 2, NINJA = 3, ZOMBIE = 4;
 

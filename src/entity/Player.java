@@ -111,7 +111,6 @@ public abstract class Player extends Entity implements Animations {
                 1.18),
                 (int) (HP * healthMultiply * 1.75),
                 (int) (gp.tileSize / 5.33), null);
-        // System.out.println(healthMultiply);
         g2.drawImage(emptyHealthBar, (int) (gp.tileSize * 1.61), (int) (gp.tileSize / 2.37), (int) (gp.tileSize * 3.75),
                 (int) (gp.tileSize / 1.06), null);
     }
@@ -153,8 +152,6 @@ public abstract class Player extends Entity implements Animations {
         if (HP <= 0) {
             HP = 0;
             GamePanel.GameState = DEAD;
-            // GamePanel.stopMusic();
-            // GamePanel.playMusic(3);
 
         } else if (HP >= maxHP) {
             HP = maxHP;
@@ -173,15 +170,11 @@ public abstract class Player extends Entity implements Animations {
     }
 
     public void getFlinching() {
-
-        // immune state start
         if (flinching) {
             flinchingCount++;
             flinchingBlink();
             immune = true;
         }
-
-        // immune state end
         if (flinchingCount >= 80) {
             appear = true;
             flinching = false;

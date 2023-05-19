@@ -26,11 +26,12 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
     }
 
     public void buttonCreate() {
-        button = new Button[4];
-        button[CREDITS] = new Button(570, 230, 125, 54);
-        button[PLAY] = new Button(570, 170, 125, 54);
-        button[QUIT] = new Button(570, 290, 125, 54);
-        button[3] = new Button(520, 240, 30, 30);
+        button = new Button[5];
+        button[0] = new Button(570 + 160, 210, 125, 54);
+        button[1] = new Button(250, 210, 125, 54);
+        button[2] = new Button(730 + 160, 210, 125, 54);
+        button[3] = new Button(410 + 160, 210, 125, 54);
+        button[4] = new Button(250 + 160, 210, 125, 54);
     }
 
     @Override
@@ -52,15 +53,15 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
 
         bgImg = Utilz.GetImage("/res/screen/menu/Menu.png");
 
-        button[PLAY].setImages("/res/screen/menu/start");
+        button[0].setImages("/res/screen/menu/credits");
 
-        button[CREDITS].setImages("/res/screen/menu/credits");
+        button[1].setImages("/res/screen/menu/start");
 
-        button[QUIT].setImages("/res/screen/menu/quit");
+        button[2].setImages("/res/screen/menu/quit");
 
-        button[3].setImages("/res/screen/menu/star");
+        button[3].setImages("/res/screen/menu/score"); // score
 
-        // comment hover button in Button
+        button[4].setImages("/res/screen/menu/howto"); // how to
 
     }
 
@@ -72,20 +73,24 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
         g2.drawImage(runningCapy[aniIndex], 590, 380, (int) (32 * 2.5), (int) (34 * 2.5), null);
     }
 
-    public Button getPlayBtn() {
-        return button[PLAY];
+    public Button getCreditsBtn() {
+        return button[0];
     }
 
-    public Button getCreditsBtn() {
-        return button[CREDITS];
+    public Button getPlayBtn() {
+        return button[1];
     }
 
     public Button getQuitBtn() {
-        return button[QUIT];
+        return button[2];
     }
 
-    public Button getStarBtn() {
+    public Button getScoreBtn() {
         return button[3];
+    }
+
+    public Button getHowToBtn() {
+        return button[4];
     }
 
 }

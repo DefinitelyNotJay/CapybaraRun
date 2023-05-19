@@ -24,27 +24,22 @@ public class MouseHandler implements MouseListener {
     Pause p;
     Credits cd;
 
-    public MouseHandler(GamePanel gp, MenuGame mg, Result r, ChooseCharacter cc, Pause p, Credits cd) {
+    public MouseHandler(GamePanel gp) {
         this.gp = gp;
-        this.mg = mg;
-        this.r = r;
-        this.cc = cc;
-        this.p = p;
-        this.cd = cd;
     }
 
     @Override
     public void mouseClicked(MouseEvent e) {
         if (GamePanel.GameState == RESULT) {
-            boolean yButtonYArea = r.getBackBtn().getY() <= e.getY() &&
-                    r.getBackBtn().getY() + r.getBackBtn().getWidth() >= e.getY();
+            boolean yButtonYArea = gp.getResult().getBackBtn().getY() <= e.getY() &&
+                    gp.getResult().getBackBtn().getY() + gp.getResult().getBackBtn().getWidth() >= e.getY();
 
-            boolean isInBackButtonArea = e.getX() >= r.getBackBtn().getX()
-                    && e.getX() <= r.getBackBtn().getX() + r.getBackBtn().getWidth()
+            boolean isInBackButtonArea = e.getX() >= gp.getResult().getBackBtn().getX()
+                    && e.getX() <= gp.getResult().getBackBtn().getX() + gp.getResult().getBackBtn().getWidth()
                     && yButtonYArea;
 
-            boolean isInRestartButtonArea = e.getX() >= r.getRestartBtn().getX()
-                    && e.getX() <= r.getRestartBtn().getX() + r.getRestartBtn().getWidth()
+            boolean isInRestartButtonArea = e.getX() >= gp.getResult().getRestartBtn().getX()
+                    && e.getX() <= gp.getResult().getRestartBtn().getX() + gp.getResult().getRestartBtn().getWidth()
                     && yButtonYArea;
             if (isInBackButtonArea) {
                 GameState = MENU;
@@ -58,19 +53,27 @@ public class MouseHandler implements MouseListener {
             }
 
         } else if (GamePanel.GameState == MENU) {
-            boolean yButtonArea = mg.getPlayBtn().getX() <= e.getX() &&
-                    mg.getPlayBtn().getX() + mg.getPlayBtn().getWidth() >= e.getX();
+            boolean yButtonArea = gp.getMenuGame().getPlayBtn().getY() <= e.getY() &&
+                    gp.getMenuGame().getPlayBtn().getY() + gp.getMenuGame().getPlayBtn().getHeight() >= e.getY();
 
-            boolean isInPlaybuttonArea = e.getY() >= mg.getPlayBtn().getY()
-                    && e.getY() <= mg.getPlayBtn().getY() + mg.getPlayBtn().getHeight()
+            boolean isInPlaybuttonArea = e.getX() >= gp.getMenuGame().getPlayBtn().getX()
+                    && e.getX() <= gp.getMenuGame().getPlayBtn().getX() + gp.getMenuGame().getPlayBtn().getWidth()
                     && yButtonArea;
 
-            boolean isInCreditsButtonArea = e.getY() >= mg.getCreditsBtn().getY()
-                    && e.getY() <= mg.getCreditsBtn().getY() + mg.getCreditsBtn().getHeight()
+            boolean isInCreditsButtonArea = e.getX() >= gp.getMenuGame().getCreditsBtn().getX()
+                    && e.getX() <= gp.getMenuGame().getCreditsBtn().getX() + gp.getMenuGame().getCreditsBtn().getWidth()
                     && yButtonArea;
 
-            boolean isInQuitButtonArea = e.getY() >= mg.getQuitBtn().getY()
-                    && e.getY() <= mg.getQuitBtn().getY() + mg.getQuitBtn().getHeight()
+            boolean isInQuitButtonArea = e.getX() >= gp.getMenuGame().getQuitBtn().getX()
+                    && e.getX() <= gp.getMenuGame().getQuitBtn().getX() + gp.getMenuGame().getQuitBtn().getWidth()
+                    && yButtonArea;
+
+            boolean isInScoreButtonArea = e.getX() >= gp.getMenuGame().getScoreBtn().getX()
+                    && e.getX() <= gp.getMenuGame().getScoreBtn().getX() + gp.getMenuGame().getScoreBtn().getWidth()
+                    && yButtonArea;
+
+            boolean isInHowToButtonArea = e.getX() >= gp.getMenuGame().getHowToBtn().getX()
+                    && e.getX() <= gp.getMenuGame().getHowToBtn().getX() + gp.getMenuGame().getHowToBtn().getWidth()
                     && yButtonArea;
 
             if (isInPlaybuttonArea) {
@@ -85,32 +88,43 @@ public class MouseHandler implements MouseListener {
             } else if (isInCreditsButtonArea) {
                 GamePanel.playSE(7);
                 GamePanel.GameState = CREDITS;
+            } else if (isInScoreButtonArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = LEADERBOARD;
+            } else if (isInHowToButtonArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = HOWTO1;
             }
 
         }
 
         else if (GameState == SELECT) {
-            // Select
+            boolean isInButtonYArea = gp.getChooseCharacter().getLeftBtn().getY() <= e.getY() &&
+                    gp.getChooseCharacter().getLeftBtn().getY() + gp.getChooseCharacter().getLeftBtn().getWidth() >= e
+                            .getY();
 
-            boolean isInButtonYArea = cc.getLeftBtn().getY() <= e.getY() &&
-                    cc.getLeftBtn().getY() + cc.getLeftBtn().getWidth() >= e.getY();
-
-            boolean isInLeftBtnArea = e.getX() >= cc.getLeftBtn().getX()
-                    && e.getX() <= cc.getLeftBtn().getX() + cc.getLeftBtn().getWidth()
+            boolean isInLeftBtnArea = e.getX() >= gp.getChooseCharacter().getLeftBtn().getX()
+                    && e.getX() <= gp.getChooseCharacter().getLeftBtn().getX()
+                            + gp.getChooseCharacter().getLeftBtn().getWidth()
                     && isInButtonYArea;
 
-            boolean isInRightBtnArea = e.getX() >= cc.getRightBtn().getX()
-                    && e.getX() <= cc.getRightBtn().getX() + cc.getRightBtn().getWidth()
+            boolean isInRightBtnArea = e.getX() >= gp.getChooseCharacter().getRightBtn().getX()
+                    && e.getX() <= gp.getChooseCharacter().getRightBtn().getX()
+                            + gp.getChooseCharacter().getRightBtn().getWidth()
                     && isInButtonYArea;
 
-            boolean isInGoBtnArea = e.getY() >= cc.getGoBtn().getY()
-                    && e.getY() <= cc.getGoBtn().getY() + cc.getGoBtn().getHeight()
-                    && e.getX() >= cc.getGoBtn().getX()
-                    && e.getX() <= cc.getGoBtn().getX() + cc.getGoBtn().getWidth();
-            boolean isInBackBtnArea = e.getY() >= cc.getBackBtn().getY()
-                    && e.getY() <= cc.getBackBtn().getY() + cc.getBackBtn().getHeight()
-                    && e.getX() >= cc.getBackBtn().getX()
-                    && e.getX() <= cc.getBackBtn().getX() + cc.getBackBtn().getWidth();
+            boolean isInGoBtnArea = e.getY() >= gp.getChooseCharacter().getGoBtn().getY()
+                    && e.getY() <= gp.getChooseCharacter().getGoBtn().getY()
+                            + gp.getChooseCharacter().getGoBtn().getHeight()
+                    && e.getX() >= gp.getChooseCharacter().getGoBtn().getX()
+                    && e.getX() <= gp.getChooseCharacter().getGoBtn().getX()
+                            + gp.getChooseCharacter().getGoBtn().getWidth();
+            boolean isInBackBtnArea = e.getY() >= gp.getChooseCharacter().getBackBtn().getY()
+                    && e.getY() <= gp.getChooseCharacter().getBackBtn().getY()
+                            + gp.getChooseCharacter().getBackBtn().getHeight()
+                    && e.getX() >= gp.getChooseCharacter().getBackBtn().getX()
+                    && e.getX() <= gp.getChooseCharacter().getBackBtn().getX()
+                            + gp.getChooseCharacter().getBackBtn().getWidth();
 
             // Page slide methods
             if (isInLeftBtnArea) {
@@ -159,19 +173,19 @@ public class MouseHandler implements MouseListener {
         }
 
         else if (GameState == PAUSE) {
-            boolean isInButtonXArea = p.getButton()[0].getX() <= e.getX() &&
-                    p.getButton()[0].getX() + p.getButton()[0].getWidth() >= e.getX();
+            boolean isInButtonXArea = gp.getPause().getButton()[0].getX() <= e.getX() &&
+                    gp.getPause().getButton()[0].getX() + gp.getPause().getButton()[0].getWidth() >= e.getX();
 
-            boolean isInResumeBtnArea = e.getY() >= p.getButton()[0].getY()
-                    && e.getY() <= p.getButton()[0].getY() + p.getButton()[0].getHeight()
+            boolean isInResumeBtnArea = e.getY() >= gp.getPause().getButton()[0].getY()
+                    && e.getY() <= gp.getPause().getButton()[0].getY() + gp.getPause().getButton()[0].getHeight()
                     && isInButtonXArea;
 
-            boolean isInBackBtnArea = e.getY() >= p.getButton()[1].getY()
-                    && e.getY() <= p.getButton()[1].getY() + p.getButton()[1].getHeight()
+            boolean isInBackBtnArea = e.getY() >= gp.getPause().getButton()[1].getY()
+                    && e.getY() <= gp.getPause().getButton()[1].getY() + gp.getPause().getButton()[1].getHeight()
                     && isInButtonXArea;
 
-            boolean isInRestartBtnArea = e.getY() >= p.getButton()[2].getY()
-                    && e.getY() <= p.getButton()[2].getY() + p.getButton()[2].getHeight()
+            boolean isInRestartBtnArea = e.getY() >= gp.getPause().getButton()[2].getY()
+                    && e.getY() <= gp.getPause().getButton()[2].getY() + gp.getPause().getButton()[2].getHeight()
                     && isInButtonXArea;
 
             if (isInResumeBtnArea) {
@@ -189,16 +203,49 @@ public class MouseHandler implements MouseListener {
             }
 
         } else if (GameState == CREDITS) {
-            boolean isInBackBtnArea = e.getX() >= cd.getBackBtn().getX()
-                    && e.getX() <= cd.getBackBtn().getX() + cd.getBackBtn().getWidth()
-                    && e.getY() >= cd.getBackBtn().getY()
-                    && e.getY() <= cd.getBackBtn().getY() + cd.getBackBtn().getHeight();
+            boolean isInBackBtnArea = e.getX() >= gp.getCredits().getBackBtn().getX()
+                    && e.getX() <= gp.getCredits().getBackBtn().getX() + gp.getCredits().getBackBtn().getWidth()
+                    && e.getY() >= gp.getCredits().getBackBtn().getY()
+                    && e.getY() <= gp.getCredits().getBackBtn().getY() + gp.getCredits().getBackBtn().getHeight();
 
             if (isInBackBtnArea) {
                 GamePanel.playSE(7);
                 GamePanel.GameState = MENU;
             }
 
+        } else if (GameState == LEADERBOARD) {
+            boolean isInBackBtnArea = e.getX() >= gp.getLeaderboard().getBackBtn().getX()
+                    && e.getX() <= gp.getLeaderboard().getBackBtn().getX()
+                            + gp.getLeaderboard().getBackBtn().getWidth()
+                    && e.getY() >= gp.getLeaderboard().getBackBtn().getY()
+                    && e.getY() <= gp.getLeaderboard().getBackBtn().getY()
+                            + gp.getLeaderboard().getBackBtn().getHeight();
+            if (isInBackBtnArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = MENU;
+            }
+        } else if (GameState == HOWTO1) {
+            boolean isInBackBtnArea = e.getX() >= gp.getHowto1().getBackBtn().getX()
+                    && e.getX() <= gp.getHowto1().getBackBtn().getX()
+                            + gp.getHowto1().getBackBtn().getWidth()
+                    && e.getY() >= gp.getHowto1().getBackBtn().getY()
+                    && e.getY() <= gp.getHowto1().getBackBtn().getY()
+                            + gp.getHowto1().getBackBtn().getHeight();
+
+            boolean isInNextBtnArea = e.getX() >= gp.getHowto1().getNextBtn().getX()
+                    && e.getX() <= gp.getHowto1().getNextBtn().getX()
+                            + gp.getHowto1().getNextBtn().getWidth()
+                    && e.getY() >= gp.getHowto1().getNextBtn().getY()
+                    && e.getY() <= gp.getHowto1().getNextBtn().getY()
+                            + gp.getHowto1().getNextBtn().getHeight();
+
+            if (isInBackBtnArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = MENU;
+            } else if (isInNextBtnArea) {
+                GamePanel.playSE(7);
+                GamePanel.GameState = HOWTO2;
+            }
         }
     }
 

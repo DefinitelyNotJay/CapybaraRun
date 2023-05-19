@@ -3,6 +3,7 @@ package screen;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -15,16 +16,19 @@ import static constant.Constants.*;
 
 import main.GamePanel;
 import methods.ScreenTools;
+import methods.Utilz;
 
 public class Leaderboard implements ScreenTools {
     private GamePanel gp;
     private Button btn;
     private ArrayList<Score> allScore;
+    private BufferedImage bgImg;
 
     public Leaderboard(GamePanel gp) {
         this.gp = gp;
         allScore = new ArrayList<Score>();
         buttonCreate();
+        loadImages();
     }
 
     public void writeData() {
@@ -60,36 +64,39 @@ public class Leaderboard implements ScreenTools {
     }
 
     public void addData(Score score) {
-        if (score.getScore() > allScore.get(allScore.size() - 1).getScore() && allScore.size() > 7) {
-            allScore.remove(allScore.size() - 1);
-        }
+        if (allScore.size() >= 1)
+            if (score.getScore() > allScore.get(allScore.size() - 1).getScore() && allScore.size() > 6) {
+                allScore.remove(allScore.size() - 1);
+            }
         allScore.add(score);
         allScore.sort(Comparator.comparing(Score::getScore, Comparator.reverseOrder()));
     }
 
     @Override
     public void loadImages() {
-
+        bgImg = Utilz.GetImage("/res/screen/Leaderboard/Score.png");
     }
 
     @Override
     public void buttonCreate() {
-        btn = new Button(300, 300, 154, 55);
+        btn = new Button(550, 440, 154, 55);
 
         btn.setImages("/res/screen/Leaderboard/back");
     }
 
     @Override
     public void paint(Graphics g) {
+        g.drawImage(bgImg, 0, 0, null);
         g.setFont(new Font("Arcade Normal", Font.PLAIN, gp.tileSize / 4));
         g.setColor(Color.BLACK);
-        for (int i = 0; i < allScore.size(); i++) {
-            int y = 180 + (i * 40);
-            g.drawString((i + 1) + "", 200, y);
-            g.drawString(allScore.get(i).getDate(), 300, y);
-            g.drawString(convertCharacter(allScore.get(i).getCharacter()), 700, y);
-            g.drawString(allScore.get(i).getScore() + "", 900, y);
-        }
+        if (allScore.size() > 0)
+            for (int i = 0; i < allScore.size(); i++) {
+                int y = 130 + (i * 40);
+                g.drawString((i + 1) + "", 200, y);
+                g.drawString(allScore.get(i).getDate(), 300, y);
+                g.drawString(convertCharacter(allScore.get(i).getCharacter()), 700, y);
+                g.drawString(allScore.get(i).getScore() + "", 900, y);
+            }
         btn.draw(g);
 
     }
@@ -114,6 +121,10 @@ public class Leaderboard implements ScreenTools {
                 break;
         }
         return result;
+    }
+
+    public Button getBackBtn() {
+        return btn;
     }
 
     public ArrayList<Score> getAllScore() {

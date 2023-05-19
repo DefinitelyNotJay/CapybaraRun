@@ -30,6 +30,8 @@ public class GamePanel extends JPanel {
     private Pause p;
     private AssetSetter as;
     private Credits cd;
+    private Howto1 ht1;
+    private Howto2 ht2;
     // test
     private Leaderboard lb;
     public static int GameState = MENU;
@@ -48,14 +50,16 @@ public class GamePanel extends JPanel {
         p = new Pause(this);
         cd = new Credits(this);
         lb = new Leaderboard(this);
+        ht1 = new Howto1();
+        ht2 = new Howto2();
 
         // item
         as = new AssetSetter(this);
 
         // listener
         addKeyListener(new KeyboardListener(this));
-        addMouseListener(new MouseHandler(this, mg, rs, cc, p, cd));
-        addMouseMotionListener(new MouseMotionHandler(this, mg, rs, cc, p, cd));
+        addMouseListener(new MouseHandler(this));
+        addMouseMotionListener(new MouseMotionHandler(this));
         // sound
         music = new Sound();
         effect = new Sound();
@@ -89,6 +93,8 @@ public class GamePanel extends JPanel {
             playMusic(3);
         } else if (GameState == LEADERBOARD) {
             lb.paint(g2);
+        } else if (GameState == HOWTO1) {
+            ht1.paint(g2);
         }
         g2.dispose();
     }
@@ -233,8 +239,32 @@ public class GamePanel extends JPanel {
         return music;
     }
 
+    public MenuGame getMenuGame() {
+        return mg;
+    }
+
+    public Result getResult() {
+        return rs;
+    }
+
+    public ChooseCharacter getChooseCharacter() {
+        return cc;
+    }
+
+    public Pause getPause() {
+        return p;
+    }
+
+    public Credits getCredits() {
+        return cd;
+    }
+
     public Leaderboard getLeaderboard() {
         return lb;
+    }
+
+    public Howto1 getHowto1() {
+        return ht1;
     }
 
 }
