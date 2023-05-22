@@ -28,6 +28,7 @@ public class MouseMotionHandler implements MouseMotionListener {
         public void mouseMoved(MouseEvent e) {
 
                 if (GameState == MENU) {
+                        System.out.println(e.getX());
                         boolean yButtonArea = gp.getMenuGame().getPlayBtn().getY() <= e.getY() &&
                                         gp.getMenuGame().getPlayBtn().getY()
                                                         + gp.getMenuGame().getPlayBtn().getHeight() >= e.getY();

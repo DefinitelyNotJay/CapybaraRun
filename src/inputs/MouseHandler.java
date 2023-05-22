@@ -129,16 +129,16 @@ public class MouseHandler implements MouseListener {
             // Page slide methods
             if (isInLeftBtnArea) {
                 GamePanel.playSE(7);
-                if (cc.getPage() == CAPY)
-                    cc.setPage(ZOMBIE);
+                if (gp.getChooseCharacter().getPage() == CAPY)
+                    gp.getChooseCharacter().setPage(ZOMBIE);
                 else
-                    cc.setPage(cc.getPage() - 1);
+                    gp.getChooseCharacter().setPage(gp.getChooseCharacter().getPage() - 1);
             } else if (isInRightBtnArea) {
                 GamePanel.playSE(7);
-                if (cc.getPage() == ZOMBIE) {
-                    cc.setPage(CAPY);
+                if (gp.getChooseCharacter().getPage() == ZOMBIE) {
+                    gp.getChooseCharacter().setPage(CAPY);
                 } else {
-                    cc.setPage(cc.getPage() + 1);
+                    gp.getChooseCharacter().setPage(gp.getChooseCharacter().getPage() + 1);
                 }
             } else if (isInBackBtnArea) {
                 GamePanel.playSE(7);
@@ -146,7 +146,7 @@ public class MouseHandler implements MouseListener {
                 GamePanel.stopMusic();
                 GamePanel.playMusic(0);
             } else if (isInGoBtnArea) {
-                int player = cc.getPage();
+                int player = gp.getChooseCharacter().getPage();
                 switch (player) {
                     case CAPY:
                         gp.setPlayer(new Capybara(gp, CAPY, 150, gp.tileSize * 2, 320, gp.tileSize, gp.tileSize));
