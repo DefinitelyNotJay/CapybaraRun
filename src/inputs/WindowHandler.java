@@ -15,7 +15,6 @@ public class WindowHandler implements WindowListener {
     @Override
     public void windowOpened(WindowEvent e) {
         gp.getLeaderboard().readData();
-        System.out.println(gp.getLeaderboard().getAllScore().toString());
     }
 
     @Override
