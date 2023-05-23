@@ -91,7 +91,7 @@ public class Leaderboard implements ScreenTools {
         g.setColor(Color.BLACK);
         if (allScore.size() > 0)
             for (int i = 0; i < allScore.size(); i++) {
-                int y = 130 + (i * 40);
+                int y = 150 + (i * 40);
                 g.drawString((i + 1) + "", 200, y);
                 g.drawString(allScore.get(i).getDate(), 300, y);
                 g.drawString(convertCharacter(allScore.get(i).getCharacter()), 700, y);
