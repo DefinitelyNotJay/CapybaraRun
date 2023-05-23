@@ -52,7 +52,6 @@ public class Zombie extends Player {
         rateDecreaseHP = 0;
         GamePanel.playSE(13);
         setSkillOnUse(true);
-        System.out.println(isImmune());
     }
 
     @Override
