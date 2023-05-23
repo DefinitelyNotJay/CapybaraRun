@@ -123,6 +123,16 @@ public class Leaderboard implements ScreenTools {
         return result;
     }
 
+    public boolean isInButton(int x, int y, int num) {
+        return x >= btn.getX() && x <= btn.getX() + btn.getWidth()
+                && y >= btn.getY() && y <= btn.getY() + btn.getHeight();
+    }
+
+    public boolean isInButton(int x, int y) {
+        return x >= btn.getX() && x <= btn.getX() + btn.getWidth()
+                && y >= btn.getY() && y <= btn.getY() + btn.getHeight();
+    }
+
     public Button getBackBtn() {
         return btn;
     }

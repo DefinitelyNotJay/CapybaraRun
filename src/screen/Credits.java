@@ -24,6 +24,11 @@ public class Credits implements ScreenTools {
         bgImg = Utilz.GetImage("/res/screen/credits/1.png");
     }
 
+    public boolean isInButton(int x, int y, int num) {
+        return x >= button[num].getX() && x <= button[num].getX() + button[num].getWidth()
+                && y >= button[num].getY() && y <= button[num].getY() + button[num].getHeight();
+    }
+
     @Override
     public void buttonCreate() {
         button = new Button[1];

@@ -41,6 +41,11 @@ public class Howto2 implements ScreenTools {
         }
     }
 
+    public boolean isInButton(int x, int y, int num) {
+        return x >= button[num].getX() && x <= button[num].getX() + button[num].getWidth()
+                && y >= button[num].getY() && y <= button[num].getY() + button[num].getHeight();
+    }
+
     public Button getBackBtn() {
         return button[0];
     }

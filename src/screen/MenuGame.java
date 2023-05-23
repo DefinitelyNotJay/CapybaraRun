@@ -73,6 +73,11 @@ public class MenuGame extends JPanel implements Animations, ScreenTools {
         g2.drawImage(runningCapy[aniIndex], 590, 380, (int) (32 * 2.5), (int) (34 * 2.5), null);
     }
 
+    public boolean isInButton(int x, int y, int num) {
+        return x >= button[num].getX() && x <= button[num].getX() + button[num].getWidth()
+                && y >= button[num].getY() && y <= button[num].getY() + button[num].getHeight();
+    }
+
     public Button getCreditsBtn() {
         return button[0];
     }

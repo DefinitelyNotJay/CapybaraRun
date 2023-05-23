@@ -103,6 +103,11 @@ public class ChooseCharacter implements ScreenTools, Animations {
         }
     }
 
+    public boolean isInButton(int x, int y, int num) {
+        return x >= btn[num].getX() && x <= btn[num].getX() + btn[num].getWidth()
+                && y >= btn[num].getY() && y <= btn[num].getY() + btn[num].getHeight();
+    }
+
     public Button getLeftBtn() {
         return btn[0];
     }
