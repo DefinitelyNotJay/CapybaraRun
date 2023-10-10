@@ -43,9 +43,9 @@ public class Utilz {
 
     public static void sleep(int time) {
         try {
-            Thread.sleep(time * 1000); // suspends the current thread for 1000 milliseconds (1 second)
+            Thread.sleep(time * 1000);
         } catch (InterruptedException e) {
-            // handle the InterruptedException (if necessary)
+            e.printStackTrace();
         }
     }
 }

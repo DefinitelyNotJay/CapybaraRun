@@ -43,7 +43,7 @@ public class Item extends SuperObjects {
                     itemUsed = true;
                 } else if (mapX < -1500 && !itemReset) {
                     GAMESPEED = 4;
-                    if (!gp.getPlayer().isSkillOnUse())
+                    if (!gp.getPlayer().isSkillOnUse() || gp.getPlayer().getCharacter() == ZOMBIE)
                         itemReset = true;
                 }
             case DECREASEHP:
